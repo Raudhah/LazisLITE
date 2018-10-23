@@ -102,7 +102,7 @@ Perlu diperhatikan bahwa beberapa user dapat login bersama-sama sekaligus menggu
 4. Mau dukungan teknis program ini di LAZ tempat kamu bekerja? Contact Author ya
 
 > LazisLite CopyLEFT oleh Raudhah Project
-> hubungi kami di salam@raudhahproject.com
+> hubungi kami di salam [at] raudhahproject [dot] com
 
 
 
