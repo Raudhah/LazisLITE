@@ -14,14 +14,10 @@ Beberapa fitur utama dari LazisLITE adalah sebagai berikut :
 ### Multiple user. 
 - Terdapat 3 jenis user utama yaitu : 
   1. Superadmin
-     adalah orang yang dapat mengelola konfigurasi dari program. Superadmin dapat mengelola data user (admin pengguna program), mengelola data amil, dan mengelola data jenis donasi, 
+     adalah orang yang dapat mengelola konfigurasi dari program. Superadmin dapat mengelola data user (admin pengguna program), mengelola data amil, dan mengelola data jenis donasi, sekaligus melakukan konfigurasi-konfigurasi program (Nama LAZ, logo, dlsb).
   2. Admin
-     Adalah orang yang bertugas sehari-hari mencatat dan mengelola transaksi donasi, dan juga mengelola data para donatur. 
-  3. Guest
-     Adalah orang yang dapat membuka program, namun mereka tidak login. Bagi mereka dapat melihat beberapa laporan umum yang tersedia melalui menu laporan. 
+     Adalah orang yang bertugas sehari-hari mencatat dan mengelola transaksi donasi, dan juga mengelola data para donatur.  
 - Beberapa user dapat login bersama-sama menggunakan akun yang berbeda.
-- Sebuah transaksi yang sedang diedit, tidak akan dapat di-edit oleh admin yang lain pada waktu yang bersamaan. 
-
 
 
 ### Manajemen Jenis Donasi (peruntukan), 
@@ -45,16 +41,72 @@ Data donatur yang disimpan meliputi :
 - Alamat Donatur (Opsional)
 - Nomor Telepon (Opsional)
 
-### Manajejemen Data Transaksi
-Admin dapat mengentry data transaksi donasi yang terjadi. 
-Untuk setiap transaksi yang dientry, Admin dapat langsung mencetak data kuitansi. 
-Pada Setiap Data Transaksi yang terjadi selalu tersimpan data sebagai berikut : 
-- IDTransaksi (Otomatis)
-- Donatur
-- Tanggal Transaksi
-- Peruntukan Jenis Donasi
-- Jumlah Donasi
-- Amil
-- Sumber Donasi (Kotak Infak / Donatur Rutin)
-- Keterangan
+### Pencatatan Data Transaksi
+- Admin dapat mengentry data transaksi donasi yang terjadi. 
+- Untuk setiap transaksi yang dientry, Admin dapat langsung mencetak data kuitansi. 
+- Kuitansi dapat dicetak ulang dengan mencari data Transaksi yang ingin dicetak, kemudian klik pada tombol cetak kuitansi 
+- Pada Setiap Data Transaksi yang terjadi selalu tersimpan data sebagai berikut : 
+    1. IDTransaksi (Otomatis)
+    2. Donatur
+    3. Tanggal Transaksi
+    4. Peruntukan Jenis Donasi
+    5. Jumlah Donasi
+    6. Amil
+    7. Sumber Donasi (Kotak Infak / Donatur Rutin)
+
+
+### Laporan-Laporan
+Beberapa laporan yang dihasilkan dari LazisLITE antara lain
+1. Laporan KESELURUHAN (detail per item) data donasi yang masuk pada rentang waktu tertentu 
+2. Laporan REKAP data donasi yang masuk pada rentang waktu tertentu, berdasarkan Peruntukan Jenis Donasi
+   Contoh : Zakat sekian juta, Wakaf sekian juta, dst. 
+3. Laporan REKAP data donasi yang masuk pada rentang waktu tertentu, berdasarkan Amil 
+   Contoh : Amil A sekian juta, Amil B sekian juta
+4. Laporan REKAP data donasi per donatur pada rentang waktu tertentu, urut berdasarkan jumlah dari terbesar ke terkecil. 
+
+Yang dimaksud dengan rentang waktu tertentu disini ialah, admin / pengguna dapat memilih untuk menampilkan laporan dari tanggal sekian hingga tanggal sekian. Semisal untuk menampilkan laporan dalam 1 bulan  
+
+
+# Alur Penggunaan Program oleh Admin
+1. Setiap user (Admin) login ke LazisLITE dengan memasukkan username dan password yang telah disediakan. 
+2. Admin meng-klik menu Data Donatur untuk mengelola data donatur
+3. Admin meng-klik menu Transaksi untuk mencatat data transaksi. Pada pencatatan 
+4. Untuk melihat laporan-laporan, Admin meng-klik menu Laporan. 
+5. Semisal terdapat perubahan pada Jenis Donasi dan Amil, maka hanya Super Admin yang dapat melakukan penambahan tersebut dengan login pada akun Super Admin
+
+# Konfigurasi
+Setiap instalasi program dapat dikustomisasi antara lain : 
+- Logo LAZ
+- Nama dan alamat LAZ
+- Gambar tanda tangan pada kuitansi
+- Background Kuitansi
+Hanya user dengan level akses SuperAdmin yang dapat mengkustomisasi ini.
+
+# Copyright & Authorship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
