@@ -45,6 +45,11 @@ Perlu diperhatikan bahwa beberapa user dapat login bersama-sama sekaligus menggu
    - Nama Donatur
    - Alamat Donatur (Opsional)
    - Nomor Telepon (Opsional)
+   - Tanggal lahir (Opsional)
+   - Pekerjaan (Opsional)
+   - Jenis Kelamin (Opsional)
+4. Data-data yang tercatat tersebut kedepan dapat digunakan untuk profiling segmen donatur manakah yang potensial. 
+
 
 ### Pencatatan Data Transaksi
 1. Admin dapat mengentry, mencari, mengubah, dan menghapus data transaksi donasi yang terjadi.
@@ -59,6 +64,12 @@ Perlu diperhatikan bahwa beberapa user dapat login bersama-sama sekaligus menggu
    - Jumlah Donasi
    - Amil
    - Sumber Donasi (Kotak Infak / Donatur Rutin)
+6. Dalam satu transaksi memungkinkan untuk beberapa jenis donasi sekaligus semisal : 
+   - Zakat      : xxxx ribu
+   - Sodaqoh    : xxxx juta
+   - Program A  : xxxx ribu
+     TOTAL      : xxxxx juta xxxx ribu
+    
 
 
 
