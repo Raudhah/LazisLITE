@@ -27,6 +27,6 @@ Route::get('/tester', function () {
 
 //================ PERUNTUKAN DONASI
 
-Route::get('peruntukandonasi', 'peruntukanDonasiController@index');
+Route::get('peruntukandonasi', 'peruntukandonasiController@index');
 
 
