@@ -17,19 +17,16 @@ Route::get('/', function () {
 });
 
 
-Route::get('/kotakinfaq', function () {
-    return view('kotakinfaq');
-});
-
-Route::get('/kotakinfaq/tambah', function () {
-    return view('kotakinfaq-tambah');
-});
 
 Route::get('/tester', function () {
     return view('master/layout');
 });
 
-Route::get('foo', function () {
-    return 'Hello World';
-});
+
+
+
+//================ PERUNTUKAN DONASI
+
+Route::get('peruntukandonasi', 'peruntukanDonasiController@index');
+
 

@@ -8,4 +8,8 @@ class peruntukandonasi extends Model
 {
     //
     protected $table = 'peruntukandonasi';
+
+
+    // function semua()
+
 }
