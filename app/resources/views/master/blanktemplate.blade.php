@@ -1,25 +1,38 @@
-<!-- // peruntukan donasi 
+<!-- // peruntukan donasi -->
 
 @extends('master.layout')
 
-<!-- //========== SITE TITLE ========
-@section('name', 'Tambah Peruntukan Donasi yaa')
+<!-- //========== SITE TITLE ======== -->
+@section('pagename', 'Data Peruntukan Donasi')
 
-<!-- //========== MODUL HEADER ==========
+<!-- //========== MODUL HEADER ========== -->
 @section('modulname', 'Peruntukan Donasi')
 
-@section('modulsection', 'Tambah')
+@section('modulsection', 'Tampilkan')
+@section('modulicon', 'fa fa-inbox')
 
-<!-- //===========  HEADER ===========
-@section('headertitle', 'Tambah Peruntukan Donasi')
+<!-- //===========BOX  HEADER =========== -->
+@section('boxheader-title', 'Tampilkan Peruntukan Donasi')
 
-@section('headerinstruction', 'Isi form berikut. Tanda * wajib diisi')
-
-
-<!-- //========== CONTENT ===========
-@section('content')
-
-    Ini isi Formnya
+@section('boxheader-instruction', '...')
 
 
+<!-- //========== BOX CONTENT =========== -->
+@section('boxcontent')
+
+
+
+
+@endsection
+
+<!-- //===========BOX  FOOTER ===========   -->
+@section('boxfooter')
+        
+
+
+@endsection
+
+<!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
+@section('footer-code')
+    
 @endsection

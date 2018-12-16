@@ -15,8 +15,9 @@ class CreateLzPeruntukan extends Migration
     {
         //
         Schema::create('peruntukandonasi', function(Blueprint $table){
-            $table->increments('idperuntukandonasi');
+            $table->increments('id');
             $table->string('namaperuntukandonasi');
+            $table->boolean('statusaktif')->default(true);
             $table->timestamps(); 
         });  
     }
@@ -29,6 +30,6 @@ class CreateLzPeruntukan extends Migration
     public function down()
     {
         //
-        Schema::dropIfExist('peruntukandonasi');
+        Schema::dropIfExists('peruntukandonasi');
     }
 }

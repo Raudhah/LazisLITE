@@ -62,9 +62,16 @@
                       @yield('boxheader-instruction', 'Instruksi bla bla') 
                     </h4>
                 </div>
+
+
+
+
+
                 <!-- /.box-header -->
             
                 <div class="box-body">
+
+                    @yield('boxmessage')
 
                     @yield('boxcontent')
 

@@ -8,6 +8,7 @@ class peruntukandonasi extends Model
 {
     //
     protected $table = 'peruntukandonasi';
+    protected $fillable = ['namaperuntukandonasi', 'statusaktif'];
 
 
     // function semua()

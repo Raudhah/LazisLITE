@@ -18,15 +18,12 @@ Route::get('/', function () {
 
 
 
-Route::get('/tester', function () {
-    return view('master/layout');
-});
-
-
+Route::get('/tester', 'peruntukandonasiController@tester');
 
 
 //================ PERUNTUKAN DONASI
 
-Route::get('peruntukandonasi', 'peruntukandonasiController@index');
+Route::resource('peruntukandonasi', 'peruntukandonasiController');
+Route::get('peruntukandonasi/{peruntukandonasi}/delete', 'peruntukandonasiController@delete');
 
 

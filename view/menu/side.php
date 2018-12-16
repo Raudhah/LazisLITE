@@ -123,8 +123,8 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="lz-peruntukan-tambah.php"><i class="fa fa-plus"></i> Tambah Peruntukan Donasi</a></li>
-            <li><a href="lz-peruntukan-tampilkan.php"><i class="fa fa-list"></i> Tampilkan Data Peruntukan</a></li>
+            <li><a href="/peruntukandonasi/create"><i class="fa fa-plus"></i> Tambah Peruntukan Donasi</a></li>
+            <li><a href="/peruntukandonasi"><i class="fa fa-list"></i> Tampilkan Data Peruntukan</a></li>
           </ul>
         </li>
         <!-- / MENU PERUNTUKAN DONASI -->
