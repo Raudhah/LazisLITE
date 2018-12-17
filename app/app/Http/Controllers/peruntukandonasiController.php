@@ -45,6 +45,11 @@ class peruntukandonasiController extends Controller
     public function store(Request $request)
     {
 
+        $validdata = request()->validate([
+            'namaperuntukandonasi' => ['required', 'min:3'],
+            'statusaktif' => ['required', 'boolean']
+        ]);
+
         $data = request(['namaperuntukandonasi', 'statusaktif']);
         $namaperuntukandonasi = request('namaperuntukandonasi');
         

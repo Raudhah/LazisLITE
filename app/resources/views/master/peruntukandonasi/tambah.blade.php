@@ -16,9 +16,25 @@
 
 @section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi')
 
+<!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
+@section('boxmessage')
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <ul>
+                    @foreach ($errors-> all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif            
+    
+@endsection
+
 
 <!-- //========== BOX CONTENT =========== -->
 @section('boxcontent')
+
 
 <!-- form start -->
 <form class="form-horizontal" method="POST" action="/peruntukandonasi">
@@ -31,7 +47,7 @@
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namaperuntukandonasi" id="namaperuntukandonasi" placeholder="Nama Peruntukan Donasi (misal : zakat, wakaf, program yatim, program Pondok Lansia, )" required>
+                <input type="text" class="form-control input-lg" name="namaperuntukandonasi" value="{{old('namaperuntukandonasi')}}" id="namaperuntukandonasi" placeholder="Nama Peruntukan Donasi (misal : zakat, wakaf, program yatim, program Pondok Lansia, )" required>
             </div>
 
         </div>
