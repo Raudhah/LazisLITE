@@ -1,20 +1,20 @@
-<!-- // peruntukan donasi -->
+<!-- // pekerjaan donatur -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Data Peruntukan Donasi')
+@section('pagename', 'Data Pekerjaan Donatur')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Peruntukan Donasi')
+@section('modulname', 'Pekerjaan Donatur')
 
 @section('modulsection', 'Tampilkan')
 @section('modulicon', 'fa fa-list')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tampilkan Data Peruntukan Donasi')
+@section('boxheader-title', 'Tampilkan Data Pekerjaan Donatur')
 
-@section('boxheader-instruction', 'Hanya data dengan status "aktif" yang muncul saat transaksi')
+@section('boxheader-instruction', 'Hanya data dengan status "aktif" yang muncul saat Tambah Donatur')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
@@ -31,7 +31,7 @@
     <thead>
     <tr>
       <th>No.</th>
-      <th>Nama Peruntukan Donasi</th>
+      <th>Nama Pekerjaan Donatur</th>
       <th>Status</th>
       <th></th>
       <th></th>
@@ -47,7 +47,7 @@
 
         <tr>
             <td>{{ ++$key}}</td>
-            <td> {{ $item->namaperuntukandonasi }}</td>
+            <td> {{ $item->namapekerjaandonatur }}</td>
             <td> 
                 @if($item->statusaktif)
                     {{ 'Aktif'}}
@@ -56,8 +56,8 @@
                 @endif
             </td>
 
-            <td><a href="/peruntukandonasi/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/peruntukandonasi/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td><a href="/pekerjaandonatur/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="/pekerjaandonatur/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

@@ -1,19 +1,19 @@
 
-<!-- // peruntukan donasi -->
+<!-- // pekerjaan donatur -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Hapus Peruntukan Donasi')
+@section('pagename', 'Hapus Pekerjaan Donatur')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Peruntukan Donasi')
+@section('modulname', 'Pekerjaan Donatur')
 
 @section('modulsection', 'Hapus')
 @section('modulicon', 'fa fa-trash')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Hapus Peruntukan Donasi')
+@section('boxheader-title', 'Hapus Pekerjaan Donatur')
 
 @section('boxheader-instruction', 'Apakah Yakin Anda Mau Menghapus Data Berikut?')
 
@@ -30,7 +30,7 @@
 @section('boxcontent')
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/peruntukandonasi/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="/pekerjaandonatur/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('DELETE')}}
 
@@ -45,8 +45,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <th>Nama Peruntukan Donasi</th>
-                    <td>{{$data->namaperuntukandonasi}}</td>
+                    <th>Nama Pekerjaan Donatur</th>
+                    <td>{{$data->namapekerjaandonatur}}</td>
                 </tr>
 
                 <tr>

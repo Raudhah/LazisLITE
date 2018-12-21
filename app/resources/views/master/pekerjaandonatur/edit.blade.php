@@ -1,18 +1,18 @@
-<!-- // peruntukan donasi -->
+<!-- // pekerjaan donatur -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Edit Peruntukan Donasi')
+@section('pagename', 'Edit Pekerjaan Donatur')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Peruntukan Donasi')
+@section('modulname', 'Pekerjaan Donatur')
 
 @section('modulsection', 'Edit')
 @section('modulicon', 'fa fa-pencil')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Edit Peruntukan Donasi')
+@section('boxheader-title', 'Edit Pekerjaan Donatur')
 
 @section('boxheader-instruction', 'Edit form berikut. Tanda * wajib diisi')
 
@@ -29,17 +29,17 @@
 @section('boxcontent')
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/peruntukandonasi/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="/pekerjaandonatur/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('PATCH')}}
 
         <div class="form-group">
-            <label for="namaperuntukandonasi" class="col-sm-2 control-label input-lg">
-                Nama Peruntukan Donasi *
+            <label for="namapekerjaandonatur" class="col-sm-2 control-label input-lg">
+                Nama Pekerjaan Donatur *
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namaperuntukandonasi" id="namaperuntukandonasi" placeholder="Nama Peruntukan Donasi (misal : zakat, wakaf, program yatim, program Pondok Lansia, )" value="{{$data->namaperuntukandonasi}}" required>
+                <input type="text" class="form-control input-lg" name="namapekerjaandonatur" id="namapekerjaandonatur" placeholder="Nama Pekerjaan Donatur (misal : zakat, wakaf, program yatim, program Pondok Lansia, )" value="{{$data->namapekerjaandonatur}}" required>
             </div>
 
         </div>

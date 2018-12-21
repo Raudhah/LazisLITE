@@ -1,27 +1,27 @@
-<!-- // peruntukan donasi -->
+<!-- // pekerjaan donatur -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Tambah Peruntukan Donasi yaa')
+@section('pagename', 'Tambah Pekerjaan Donatur')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Peruntukan Donasi')
+@section('modulname', 'Pekerjaan Donatur')
 
 @section('modulsection', 'Tambah')
 @section('modulicon', 'fa fa-plus')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tambah Peruntukan Donasi')
+@section('boxheader-title', 'Tambah Pekerjaan Donatur')
 
-@section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi')
+@section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi. Pekerjaan yang aktif akan muncul saat tambah Donatur')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
 
     <!--//ambil dari file untuk formatnya   -->
     @include('master/general/boxmessage')
-    
+
 @endsection
 
 
@@ -30,17 +30,17 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/peruntukandonasi">
+<form class="form-horizontal" method="POST" action="/pekerjaandonatur">
 {{@csrf_field()}}
 
 
         <div class="form-group">
-            <label for="namaperuntukandonasi" class="col-sm-2 control-label input-lg">
-                Nama Peruntukan Donasi *
+            <label for="namapekerjaandonatur" class="col-sm-2 control-label input-lg">
+                Nama Pekerjaan Donatur *
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namaperuntukandonasi" value="{{old('namaperuntukandonasi')}}" id="namaperuntukandonasi" placeholder="Nama Peruntukan Donasi (misal : zakat, wakaf, program yatim, program Pondok Lansia, )" required>
+                <input type="text" class="form-control input-lg" name="namapekerjaandonatur" value="{{old('namapekerjaandonatur')}}" id="namapekerjaandonatur" placeholder="Nama Pekerjaan Donatur (misal : PNS, Wiraswasta, Pengusaha... dll )" required>
             </div>
 
         </div>

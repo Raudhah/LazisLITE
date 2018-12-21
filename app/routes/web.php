@@ -22,8 +22,11 @@ Route::get('/tester', 'peruntukandonasiController@tester');
 
 
 //================ PERUNTUKAN DONASI
-
 Route::resource('peruntukandonasi', 'peruntukandonasiController');
 Route::get('peruntukandonasi/{peruntukandonasi}/delete', 'peruntukandonasiController@delete');
+
+//================ PEKERJAAN DONATUR
+Route::resource('pekerjaandonatur', 'PekerjaandonaturController');
+Route::get('pekerjaandonatur/{pekerjaandonatur}/delete', 'PekerjaandonaturController@delete');
 
 

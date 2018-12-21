@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class peruntukandonasiController extends Controller
 {
+    public $vrule_namaperuntukandonasi = 'required|min:3';
+    public $vrule_statusaktif = 'required|boolean';
+
     /**
      * Display a listing of the resource.
      *
@@ -15,14 +18,10 @@ class peruntukandonasiController extends Controller
     public function index()
     {
 
-        $data = \App\peruntukandonasi::all();
-
-        // $message = [
-        //     'show'  => '1',
-        //     'type' => 'success',
-        //     'content' => 'Yes, data berhasil disimpan',
-        //     ];
-
+        $data = \App\peruntukandonasi:: orderBy('statusaktif', 'desc')
+                                        ->orderBy('namaperuntukandonasi', 'asc')
+                                        ->take('500')
+                                        ->get();
         return view('master/peruntukandonasi/tampilkan', compact('data', 'message'));
     }
 
@@ -44,27 +43,31 @@ class peruntukandonasiController extends Controller
      */
     public function store(Request $request)
     {
-
+        //cek dulu apakah data nya valid ataukah tidak. 
         $validdata = request()->validate([
-            'namaperuntukandonasi' => ['required', 'min:3'],
-            'statusaktif' => ['required', 'boolean']
+            'namaperuntukandonasi' => $this->vrule_namaperuntukandonasi,
+            'statusaktif' => $this->vrule_statusaktif
         ]);
 
-        $data = request(['namaperuntukandonasi', 'statusaktif']);
+        //untuk ditampilkan dalam alert boxnya
         $namaperuntukandonasi = request('namaperuntukandonasi');
         
-        if(peruntukandonasi::create($data)){
-
+        //jika sukses menambahkan
+        if(peruntukandonasi::create($validdata)){
+            
+            $data = \App\peruntukandonasi:: orderBy('statusaktif', 'desc')
+                                            ->orderBy('namaperuntukandonasi', 'asc')
+                                            ->take('500')
+                                            ->get();
+            //buat message nya
+            $message = [
+                'show'  => '1',
+                'type' => 'success',
+                'content' => 'Alhamdulillah, data '.$namaperuntukandonasi.' berhasil disimpan!',
+                ];
     
-                $data = \App\peruntukandonasi::all();
-
-                $message = [
-                    'show'  => '1',
-                    'type' => 'success',
-                    'content' => 'Alhamdulillah, data '.$namaperuntukandonasi.' berhasil disimpan!',
-                    ];
-        
-                return view('master/peruntukandonasi/tampilkan', compact('data', 'message'));
+            // tampilkan juga
+            return view('master/peruntukandonasi/tampilkan', compact('data', 'message'));
         }
         else{
             return dd('Uups! Error, data gagal masuk ke dalam database');
@@ -107,6 +110,12 @@ class peruntukandonasiController extends Controller
      */
     public function update(Request $request, peruntukandonasi $peruntukandonasi)
     {
+
+        $validdata = request()->validate([
+            'namaperuntukandonasi' => $this->vrule_namaperuntukandonasi,
+            'statusaktif' => $this->vrule_statusaktif
+        ]);
+        
         $peruntukandonasi->namaperuntukandonasi = request('namaperuntukandonasi');
         $peruntukandonasi->statusaktif = request('statusaktif');
 
@@ -176,6 +185,10 @@ class peruntukandonasiController extends Controller
         }
 
         return redirect('/peruntukandonasi');
+    }
+
+    public function tampilkan($status, $nama, $message){
+        
     }
 
     public function tester(){

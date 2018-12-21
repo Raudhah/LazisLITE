@@ -89,8 +89,8 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="lz-pekerjaandonatur-tambah.php"><i class="fa fa-plus"></i> Tambah Pekerjaan Donatur</a></li>
-            <li><a href="lz-pekerjaandonatur-tampilkan.php"><i class="fa fa-list"></i> Tampilkan List Pekerjaan Donatur</a></li>
+            <li><a href="/pekerjaandonatur/tambah"><i class="fa fa-plus"></i> Tambah Pekerjaan Donatur</a></li>
+            <li><a href="/pekerjaandonatur"><i class="fa fa-list"></i> Tampilkan List Pekerjaan Donatur</a></li>
           </ul>
         </li>
         <!-- / MENU PEKERJAAN DONATUR -->
