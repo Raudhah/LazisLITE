@@ -27,7 +27,7 @@
 <!-- //========== BOX CONTENT =========== -->
 @section('boxcontent')
 
-<table id="example2" class="table table-bordered table-striped table-hover">
+<table id="tabeldata" class="table table-bordered table-striped table-hover">
     <thead>
     <tr>
       <th>No.</th>
@@ -90,4 +90,21 @@
 <!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
 @section('footer-code')
     
+<script>
+    $(function () {
+      $('#tabeldata').DataTable({
+        'paging'      : true,
+        'pageLength'  : 50,  
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false,
+        'language'    : {
+            "search"    : "Cari Cepat",
+            "lengthMenu": "Tampilkan _MENU_ data"
+        }
+      });
+    })
+</script>
 @endsection

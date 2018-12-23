@@ -1,20 +1,20 @@
-<!-- // pekerjaan donatur -->
+<!-- // amil -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Data Pekerjaan Donatur')
+@section('pagename', 'Data Amil')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Pekerjaan Donatur')
+@section('modulname', 'Amil')
 
 @section('modulsection', 'Tampilkan')
 @section('modulicon', 'fa fa-list')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tampilkan Data Pekerjaan Donatur')
+@section('boxheader-title', 'Tampilkan Data Amil')
 
-@section('boxheader-instruction', 'Hanya data dengan status "aktif" yang muncul saat Tambah Donatur')
+@section('boxheader-instruction', 'Hanya Amil dengan status "aktif" yang muncul saat Transaksi / Tambah Donatur')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
@@ -27,11 +27,13 @@
 <!-- //========== BOX CONTENT =========== -->
 @section('boxcontent')
 
-<table id="tabeldata" class="table table-bordered table-striped table-hover">
+<table id="tabeldata" class="table table-bordered table-striped">
     <thead>
     <tr>
       <th>No.</th>
-      <th>Nama Pekerjaan Donatur</th>
+      <th>Nama Amil</th>
+      <th>Alamat</th>
+      <th>No. Telepon</th>
       <th>Status</th>
       <th></th>
       <th></th>
@@ -47,7 +49,9 @@
 
         <tr>
             <td>{{ ++$key}}</td>
-            <td> {{ $item->namapekerjaandonatur }}</td>
+            <td> {{ $item->namaamil }}</td>
+            <td> {{ $item->alamatamil }}</td>
+            <td> {{ $item->nomorteleponamil }}</td>
             <td> 
                 @if($item->statusaktif)
                     {{ 'Aktif'}}
@@ -56,8 +60,8 @@
                 @endif
             </td>
 
-            <td><a href="/pekerjaandonatur/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/pekerjaandonatur/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td><a href="/amil/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="/amil/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 
@@ -80,15 +84,16 @@
 
 @endsection
 
+
+
 <!-- //===========BOX  FOOTER ===========   -->
 @section('boxfooter')
-        
-
 
 @endsection
 
 <!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
 @section('footer-code')
+
 
 <script>
     $(function () {

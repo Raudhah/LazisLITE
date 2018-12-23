@@ -73,7 +73,7 @@
 
           <ul class="treeview-menu">
             <li><a href="lz-donatur-tambah.php"><i class="fa fa-plus"></i> Tambah Donatur</a></li>
-            <li><a href="lz-donatur-tampilkan.php"><i class="fa fa-list"></i> Tampilkan List Donatur</a></li>
+            <li><a href="lz-donatur-tampilkan.php"><i class="fa fa-list"></i> Tampilkan Donatur</a></li>
             <li><a href="lz-donatur-cari.php"><i class="fa fa-search"></i> Cari Donatur</a></li>
           </ul>
         </li>
@@ -90,7 +90,7 @@
 
           <ul class="treeview-menu">
             <li><a href="/pekerjaandonatur/create"><i class="fa fa-plus"></i> Tambah Pekerjaan Donatur</a></li>
-            <li><a href="/pekerjaandonatur"><i class="fa fa-list"></i> Tampilkan List Pekerjaan Donatur</a></li>
+            <li><a href="/pekerjaandonatur"><i class="fa fa-list"></i> Tampilkan List Pekerjaan</a></li>
           </ul>
         </li>
         <!-- / MENU PEKERJAAN DONATUR -->
@@ -106,9 +106,9 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="lz-amil-tambah.php"><i class="fa fa-plus"></i> Tambah Amil</a></li>
-            <li><a href="lz-amil-tampilkan.php"><i class="fa fa-list"></i> Tampilkan Data Amil</a></li>
-            <li><a href="lz-amil-cari.php"><i class="fa fa-search"></i> Cari Amil</a></li>
+            <li><a href="/amil/create"><i class="fa fa-plus"></i> Tambah Amil</a></li>
+            <li><a href="/amil"><i class="fa fa-list"></i> Tampilkan Data Amil</a></li>
+            <li><a href="/amil/search"><i class="fa fa-search"></i> Cari Amil</a></li>
           </ul>
         </li>
         <!-- / MENU AMIL -->

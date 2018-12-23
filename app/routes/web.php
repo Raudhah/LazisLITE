@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/tester', 'peruntukandonasiController@tester');
+Route::get('/tester', 'AmilController@search');
 
 
 //================ PERUNTUKAN DONASI
@@ -28,5 +28,13 @@ Route::get('peruntukandonasi/{peruntukandonasi}/delete', 'peruntukandonasiContro
 //================ PEKERJAAN DONATUR
 Route::resource('pekerjaandonatur', 'PekerjaandonaturController');
 Route::get('pekerjaandonatur/{pekerjaandonatur}/delete', 'PekerjaandonaturController@delete');
+
+//================ AMIL
+Route::get('/amil/search', 'AmilController@search');
+Route::post('/amil/search', 'AmilController@searchResult');
+Route::resource('amil', 'AmilController');
+Route::get('amil/{amil}/delete', 'AmilController@delete');
+
+
 
 
