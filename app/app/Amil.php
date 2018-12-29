@@ -8,4 +8,8 @@ class Amil extends Model
 {
     protected $table = 'amil';
     protected $fillable = ['namaamil', 'alamatamil','nomorteleponamil','statusaktif'];
+
+    public function donatur(){
+        return $this->hasMany('App\Donatur');
+    } 
 }

@@ -13,7 +13,7 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/master/dashboard/index');
 });
 
 
@@ -35,6 +35,12 @@ Route::post('/amil/search', 'AmilController@searchResult');
 Route::resource('amil', 'AmilController');
 Route::get('amil/{amil}/delete', 'AmilController@delete');
 
+
+//================ DONATUR
+Route::get('/donatur/search', 'DonaturController@search');
+Route::post('/donatur/search', 'DonaturController@searchResult');
+Route::resource('donatur', 'DonaturController');
+Route::get('donatur/{donatur}/delete', 'DonaturController@delete');
 
 
 

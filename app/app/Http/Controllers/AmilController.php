@@ -87,7 +87,8 @@ class AmilController extends Controller
      */
     public function show(Amil $amil)
     {
-        //
+        $data = $amil;
+        return view('master/amil/detail',compact('data'));
     }
 
     /** DONE

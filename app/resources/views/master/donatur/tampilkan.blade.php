@@ -1,20 +1,20 @@
-<!-- // amil -->
+<!-- // donatur -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Data Amil')
+@section('pagename', 'Data Donatur')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Amil')
+@section('modulname', 'Donatur')
 
 @section('modulsection', 'Tampilkan')
 @section('modulicon', 'fa fa-list')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tampilkan Data Amil')
+@section('boxheader-title', 'Tampilkan Data Donatur')
 
-@section('boxheader-instruction', 'Hanya Amil dengan status "aktif" yang muncul saat Transaksi / Tambah Donatur')
+@section('boxheader-instruction', 'Hanya Donatur dengan status "aktif" yang muncul saat Transaksi / Tambah Donatur')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
@@ -31,10 +31,10 @@
     <thead>
     <tr>
       <th>No.</th>
-      <th>Nama Amil</th>
+      <th>Nama Donatur</th>
       <th>Alamat</th>
       <th>No. Telepon</th>
-      <th>Status</th>
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -49,19 +49,12 @@
 
         <tr>
             <td>{{ ++$key}}</td>
-            <td> {{ $item->namaamil }}</td>
-            <td> {{ $item->alamatamil }}</td>
-            <td> {{ $item->nomorteleponamil }}</td>
-            <td> 
-                @if($item->statusaktif)
-                    {{ 'Aktif'}}
-                @else
-                    {{ 'Non Aktif' }}
-                @endif
-            </td>
-
-            <td><a href="/amil/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/amil/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td> {{ $item->namadonatur }}</td>
+            <td> {{ $item->alamatdonatur }}</td>
+            <td> {{ $item->nomortelepondonatur }}</td>
+            <td><a href="/donatur/{{ $item->id }}"  data-toggle="tooltip" title="detail"><i class="fa fa-search"></i></a></td>
+            <td><a href="/donatur/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="/donatur/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 
