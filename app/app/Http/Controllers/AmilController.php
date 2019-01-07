@@ -120,6 +120,7 @@ class AmilController extends Controller
             'statusaktif' => $this->vrule_statusaktif
         ]);
 
+        //update datanya
         $amil->namaamil         = request('namaamil');
         $amil->alamatamil       = request('alamatamil');
         $amil->nomorteleponamil = request('nomorteleponamil');

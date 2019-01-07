@@ -3,16 +3,16 @@
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Tambah Amil')
+@section('pagename', 'Edit Amil')
 
 <!-- //========== MODUL HEADER ========== -->
 @section('modulname', 'Amil')
 
-@section('modulsection', 'Tambah')
+@section('modulsection', 'Edit')
 @section('modulicon', 'fa fa-plus')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tambah Amil')
+@section('boxheader-title', 'Edit Amil')
 
 @section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi. Hanya Amil yang aktif akan muncul saat Transaksi')
 
@@ -30,9 +30,9 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/amil">
+<form class="form-horizontal" method="POST" action="/amil/{{$data->id}}">
 {{@csrf_field()}}
-
+{{method_field('PATCH')}}
 
         <div class="form-group">
             <label for="namaamil" class="col-sm-2 control-label input-lg">
@@ -40,7 +40,7 @@
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namaamil" value="{{old('namaamil')}}" id="namaamil" placeholder="Nama Amil" required>
+                <input type="text" class="form-control input-lg" name="namaamil" value="{{old('namaamil', $data->namaamil)}}" id="namaamil" placeholder="Nama Amil" required>
             </div>
 
         </div>
@@ -51,7 +51,7 @@
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="alamatamil" value="{{old('alamatamil')}}" id="alamatamil" placeholder="Jl... No...">
+                <input type="text" class="form-control input-lg" name="alamatamil" value="{{old('alamatamil', $data->alamatamil)}}" id="alamatamil" placeholder="Jl... No...">
             </div>
 
         </div>
@@ -62,7 +62,7 @@
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="nomorteleponamil" value="{{old('nomorteleponamil')}}" id="nomorteleponamil" placeholder="08xxxxx">
+                <input type="text" class="form-control input-lg" name="nomorteleponamil" value="{{old('nomorteleponamil', $data->nomorteleponamil)}}" id="nomorteleponamil" placeholder="08xxxxx">
             </div>
 
         </div>
@@ -75,10 +75,10 @@
             <div class="col-sm-10">
 
                     <label class="input-lg">
-                        <input type="radio" name="statusaktif" checked  value="1"> Aktif 
+                        <input type="radio" name="statusaktif" value="1" {{$data->statusaktif==1 ? "checked" : ""}}> Aktif 
                     </label>
                     <label class="input-lg">
-                        <input type="radio" name="statusaktif" value='0'> Non-Aktif
+                        <input type="radio" name="statusaktif" value='0' {{$data->statusaktif==0 ? "checked" : ""}}> Non-Aktif
                     </label>
             </div>
 
@@ -94,7 +94,7 @@
 
         <div class="col-sm-10">
             <button type="reset" class="btn btn-default btn-lg">Batal</button>
-            <button type="submit" class="btn btn-info btn-lg">Tambah Data</button>
+            <button type="submit" class="btn btn-info btn-lg">Edit Data</button>
         </div>
     
     </form>
