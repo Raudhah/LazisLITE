@@ -39,8 +39,15 @@ Route::get('amil/{amil}/delete', 'AmilController@delete');
 //================ DONATUR
 Route::get('/donatur/search', 'DonaturController@search');
 Route::post('/donatur/search', 'DonaturController@searchResult');
+Route::post('/donatur/ajaxsearch', 'DonaturController@donaturAjaxSearch');
 Route::resource('donatur', 'DonaturController');
 Route::get('donatur/{donatur}/delete', 'DonaturController@delete');
+
+//================ TRX IBRANKASKU
+Route::get('/trxibrankasku/search', 'TrxibrankaskuController@search');
+Route::post('/trxibrankasku/search', 'TrxibrankaskuController@searchResult');
+Route::resource('trxibrankasku', 'TrxibrankaskuController');
+Route::get('trxibrankasku/{trxibrankasku}/delete', 'TrxibrankaskuController@delete');
 
 
 

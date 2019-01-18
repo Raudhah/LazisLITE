@@ -76,7 +76,7 @@
                                 atau 
 
                                 <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal-donatur-tambah">
-                                <i class="fa fa-plus"></i> Tambah Donatur Baru
+                                    <i class="fa fa-plus"></i> Tambah Donatur Baru
                                 </button>
 
                             </div>

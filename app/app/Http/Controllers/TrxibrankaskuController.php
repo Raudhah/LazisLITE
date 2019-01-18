@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Trxibrankasku;
+//dependency relations untuk modelnya
+use App\Amil;
+use App\peruntukandonasi;
+use App\Donatur;
 use Illuminate\Http\Request;
 
 class TrxibrankaskuController extends Controller
@@ -14,7 +18,15 @@ class TrxibrankaskuController extends Controller
      */
     public function index()
     {
-        //
+        $data = \App\Trxibrankasku::select('id','tanggaldonasi', 'deskripsibarang', 'nominalvaluasi')
+                                    ->orderBy('id', 'desc')
+                                    ->take('500')
+                                    ->get();
+
+        
+        dd($data);
+
+        return view('master/trxibrankasku/tampilkan', compact('data', 'message'));
     }
 
     /**
@@ -24,7 +36,19 @@ class TrxibrankaskuController extends Controller
      */
     public function create()
     {
-        //
+        //ambil data peruntukandonasi buat ditampilkan di List Optionnya
+        $listperuntukandonasi = \App\peruntukandonasi::where('statusaktif','=','1')
+                                              ->orderBy('namaperuntukandonasi','asc')
+                                              ->take('500')
+                                              ->get();
+
+        //ambil data list amil buat ditampilkan di list Optionnya
+        $listamil = \App\Amil::where('statusaktif','=','1')
+                                ->orderBy('namaamil','asc')
+                                ->take('500')
+                                ->get();
+
+        return view('master/trxibrankasku/tambah', compact('listperuntukandonasi', 'listamil'));
     }
 
     /**

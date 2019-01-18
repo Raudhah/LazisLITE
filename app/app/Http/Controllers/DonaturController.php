@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Donatur;
@@ -350,12 +349,10 @@ class DonaturController extends Controller
 
         // dd($request->all());
 
-
         //jenis donatur
         $isdonaturrutin = $request->get('isdonaturrutin')==null ? 0 : 1;
         $iskotakinfaq = $request->get('iskotakinfaq')==null ? 0 : 1;
         $isdonaturinsidental = $request->get('isdonaturinsidental')==null ? 0 : 1;
-
 
         //dapatkan list amil dan list pekerjaandonatur (BENTUK ARRAY)
         $listamil = $request->amil_id;
@@ -373,10 +370,6 @@ class DonaturController extends Controller
         $tanggallahirawal = trim($tanggallahirarray[0]);
         $tanggallahirakhir = trim($tanggallahirarray[1]);
         
-        // dd($tanggallahirakhir);
-        
-
-
         $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur')
                             //when amil_id
                             ->when($request->amil_id != null, function($query) use ($listamil){
@@ -429,12 +422,42 @@ class DonaturController extends Controller
                             ->take('500')
                             ->get();
 
-        // dd($data);
-
         return view('master/donatur/tampilkan', compact('data'));
         
-        
-        
-        // dd($request->amil_id);
+    }
+
+    //MENCARI DATA DONATUR BERDASARKAN KRITERIA SEDERHANA TERTENTU
+    public function donaturAjaxSearch(Request $request){
+        $input = $request->all();
+        $query = $request->get('query');
+
+        if($request->get('function') == 'searchdonatur'){
+
+            //mencari-cari
+            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur', 'amil_id')
+                                        ->orWhere('namadonatur', 'like', '%'.$query.'%')
+                                        ->orWhere('nomortelepondonatur', 'like', '%'.$query.'%')
+                                        ->orWhere('alamatdonatur', 'like', '%'.$query.'%')
+                                        ->orderBy('id', 'desc')
+                                        ->take('50')
+                                        ->get();
+            //jika ada hasilnya ketemu
+            if(count($data) > 0){
+                $ketemu = 1;
+                $hasilcari = $data;
+            }
+            else{
+                $ketemu = 0;
+                $hasilcari = "kosong";
+            }
+                                          
+        }
+        else{
+            $ketemu = 0;
+            $hasilcari = "kosong";
+        }
+
+        // return response()->json(['success'=>'Pencarian selesai', 'data'=>$input]);
+        return response()->json(['success'=>'Pencarian selesai', 'ketemu'=>$ketemu ,'data'=>$hasilcari]);
     }
 }

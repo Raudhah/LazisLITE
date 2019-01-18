@@ -1,18 +1,18 @@
-<!-- // donatur -->
+<!-- // ibrankasku -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Data Donatur')
+@section('pagename', 'Data iBrankasku')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Donatur')
+@section('modulname', 'iBrankasku')
 
 @section('modulsection', 'Tampilkan')
 @section('modulicon', 'fa fa-list')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tampilkan Data Donatur')
+@section('boxheader-title', 'Tampilkan Data iBrankasku')
 
 @section('boxheader-instruction')
 
@@ -34,7 +34,7 @@
     <thead>
     <tr>
       <th>No.</th>
-      <th>Nama Donatur</th>
+      <th>Nama iBrankasku</th>
       <th>Alamat</th>
       <th>No. Telepon</th>
       <th></th>
@@ -52,12 +52,12 @@
 
         <tr>
             <td>{{ ++$key}}</td>
-            <td> {{ $item->namadonatur }}</td>
-            <td> {{ $item->alamatdonatur }}</td>
-            <td> {{ $item->nomortelepondonatur }}</td>
-            <td><a href="/donatur/{{ $item->id }}"  data-toggle="tooltip" title="detail"><i class="fa fa-search"></i></a></td>
-            <td><a href="/donatur/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/donatur/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td> {{ $item->tanggaldonasi }}</td>
+            <td> {{ $item->deskripsibarang }}</td>
+            <td> {{ $item->nomorteleponibrankasku }}</td>
+            <td><a href="/ibrankasku/{{ $item->id }}"  data-toggle="tooltip" title="detail"><i class="fa fa-search"></i></a></td>
+            <td><a href="/ibrankasku/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="/ibrankasku/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

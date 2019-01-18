@@ -4,6 +4,8 @@
 
 
     @include("master/header2")
+    
+    @yield('headertag', "")
 
     
 
