@@ -16,7 +16,7 @@
 
 @section('boxheader-instruction')
 
-    Klik Pada tanda <i class="fa fa-search"></i> Untuk Melihat Data lebih detail
+    Klik Pada tanda <i class="fa fa-print"></i> Untuk Mencetak Kuitansi atau Lihat Data lebih detail
 
 @endsection
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
@@ -34,9 +34,10 @@
     <thead>
     <tr>
       <th>No.</th>
-      <th>Nama iBrankasku</th>
-      <th>Alamat</th>
-      <th>No. Telepon</th>
+      <th>Tanggal</th>
+      <th>Nama Donatur</th>
+      <th>Detail Barang</th>
+      <th>Est. Valuasi (Rupiah)</th>
       <th></th>
       <th></th>
       <th></th>
@@ -53,11 +54,12 @@
         <tr>
             <td>{{ ++$key}}</td>
             <td> {{ $item->tanggaldonasi }}</td>
+            <td> {{ $item->donatur->namadonatur }}</td>
             <td> {{ $item->deskripsibarang }}</td>
-            <td> {{ $item->nomorteleponibrankasku }}</td>
-            <td><a href="/ibrankasku/{{ $item->id }}"  data-toggle="tooltip" title="detail"><i class="fa fa-search"></i></a></td>
-            <td><a href="/ibrankasku/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/ibrankasku/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td class="pull-right"> {{ number_format($item->nominalvaluasi,0,',','.') }}</td>
+            <td><a href="/trxibrankasku/{{ $item->id }}"  data-toggle="tooltip" title="detail"><i class="fa fa-print"></i></a></td>
+            <td><a href="/trxibrankasku/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="/trxibrankasku/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

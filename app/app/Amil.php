@@ -12,4 +12,8 @@ class Amil extends Model
     public function donatur(){
         return $this->hasMany('App\Donatur');
     } 
+
+    public function trxibrankasku(){
+        return $this->hasMany('App\Trxibrankasku');
+    } 
 }

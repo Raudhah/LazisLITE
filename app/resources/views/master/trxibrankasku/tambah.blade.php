@@ -45,15 +45,55 @@
             </label>
 
             <div class="col-sm-10">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-donatur-cari">
-                    <i class="fa fa-search"></i> Cari Donatur
-                </button>
+                <div id="tombolpilihan">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-donatur-cari">
+                        <i class="fa fa-search"></i> Cari Donatur
+                    </button>
 
-                atau 
+                    atau 
 
-                <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal-donatur-tambah">
-                    <i class="fa fa-plus"></i> Tambah Donatur Baru
-                </button>
+                    <a class="btn btn-success btn-lg" href="/donatur/create" target="_blank">
+                        <i class="fa fa-plus"></i> Tambah Donatur Baru
+                    </a>
+                </div>
+
+                <!-- //ini nanti akan hidden dan muncul jika sudah OK -->
+                <div class="row" id="datapilihan">
+                    <div class="col-sm-12">
+                        <!-- //INI UNTUK KEPERLUAN FORM NYA -->
+                        <input type="hidden" name="donatur_id" id="donatur_id" required="required">
+
+                        <!-- //Menampilkan donatur yang dipilih -->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Nama</th>
+                                <td id="detailnamadonatur">N/A</td>
+                            </tr>
+                            <tr>
+                                <th>Alamat</th>
+                                <td id="detailalamatdonatur">N/A</td>
+                            </tr>
+                            <tr>
+                                <th>Nomor Telepon</th>
+                                <td id="detailnomortelepondonatur">N/A</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <span id="tomboldetaildonatur">
+                                        
+                                    </span>
+
+                                    <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal-donatur-cari">
+                                            Ubah Donatur
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -131,9 +171,8 @@
             </label>
 
             <div class="col-sm-10">
-                <textarea rows="5" name="deskripsibarang" class="form-control input-lg" id="deskripsibarang" placeholder="Masukkan detail barangnya. Bagian ini AKAN tercetak di kuitansi.  ">{{old('deskripsibarang')}}</textarea>
+                <textarea rows="5" name="deskripsibarang" class="form-control input-lg" id="deskripsibarang" required="required" placeholder="Masukkan detail barangnya. Bagian ini AKAN tercetak di kuitansi.  ">{{old('deskripsibarang')}}</textarea>
             </div>
-
         </div>
         
         <!-- //NOMINAL VALUASI -->
@@ -153,44 +192,59 @@
         <!--// ================================================= -->
         <!--// MODAL CARI DONATUR -->
         <div class="modal modal-primary fade" id="modal-donatur-cari">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Cari Dari Data Donatur yang sudah Ada</h4>
-            </div>
-            <div class="modal-body">
-                <p>Masukkan bagian dari nama / alamat / nomor telepon &hellip;</p>
-                    <form class="form-inline" id="caridonatur">
-                       <div class="col-sm-12 form-group">
-                        
-                            <input type="text" class="form-control input-lg" id="inputcaridonatur" placeholder="Nama / Alamat / No. Telp.">
-
-                            <button type="button"  onclick="caridonatur()" class="btn btn-default btn-lg"><i class="fa fa-search"></i>CARI</button>
-
-                        </div>
-                    </form>
-
-                    <div class="col-sm-12 form-group">
-                        Hasil Pencarian
-                        <div id="hasilpencarian"> XXX </div>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Cari Dari Data Donatur yang sudah Ada</h4>
                     </div>
+
+                    <div class="modal-body">
+                        <p>Masukkan bagian dari nama / alamat / nomor telepon &hellip;</p>
+                            
+                            <div class="col-sm-12 form-group">
+                                
+                                    <input type="text" class="form-control input-lg" id="inputcaridonatur" placeholder="Nama / Alamat / No. Telp.">
+
+                                    <button type="button"  onclick="caridonatur()" class="btn btn-default btn-lg"><i class="fa fa-search"></i>CARI</button>
+
+                            </div>
+
+
+                            <div class="col-sm-12 form-group">
+                                
+                                <div id="hasilpencarian">
+
+                                </div>
+                            </div>
+                                
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="col-sm-10 form-group">
+                                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Tutup</button>    
+                        </div>
                         
-            </div>
-            <div class="modal-footer">
-                <div class="col-sm-10 form-group">
-                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Tutup</button>
-                        <button type="button" class="btn btn-outline">Simpan</button>    
+                    </div>
                 </div>
-                
+                <!-- /.modal-content -->
             </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+            <!-- /.modal-dialog -->
         </div>
         <!-- /.modal MODAL CARI DONATUR-->
+
+        <div class="col-sm-2">
+            </div>
+    
+            <div class="col-sm-10">
+                <button type="reset" class="btn btn-default btn-lg">Batal</button>
+                <button type="submit" class="btn btn-info btn-lg">Tambah Data</button>
+            </div>
+        
+        </form>
+        <!-- /form -->
 
 
 @endsection
@@ -198,16 +252,7 @@
 <!-- //===========BOX  FOOTER ===========   -->
 @section('boxfooter')
         
-        <div class="col-sm-2">
-        </div>
 
-        <div class="col-sm-10">
-            <button type="reset" class="btn btn-default btn-lg">Batal</button>
-            <button type="submit" class="btn btn-info btn-lg">Tambah Data</button>
-        </div>
-    
-    </form>
-    <!-- /form -->
 
 
 @endsection
@@ -218,6 +263,10 @@
 
         var GLOBALDATA = [];
 
+        //inisialisasi dulu
+        $('#datapilihan').hide();
+
+
 
         //Date picker
         $('#tanggaldonasi').datepicker({
@@ -226,6 +275,16 @@
             defaultDate : new Date(),
             autoclose: true,
         })
+
+
+        //jika dalam teks pencarian, ENTER di tekan, apa yang terjadi.. 
+        $("#inputcaridonatur").keypress(function(event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                caridonatur();
+            }
+        });
+
 
         function caridonatur(){
             //setup ajax
@@ -339,9 +398,32 @@
                     console.log("ALAMAT  " + data[i].alamatdonatur );
                     console.log("NOMOR TELEPON  " + data[i].nomortelepondonatur );
                     console.log("AMIL  " + data[i].amil_id );
+
+                    //menampilkan datanya
+                    $("#datapilihan").show(500);
+
+                    $("#detailnamadonatur").html(data[i].namadonatur);
+                    $("#detailalamatdonatur").html(data[i].alamatdonatur);
+                    $("#detailnomortelepondonatur").html(data[i].nomortelepondonatur);
+                    
+                    //ini isi form hidden
+                    $("#donatur_id").val(data[i].id);
+
+
+                    //set amil pada nilainya
+                    $("#amil_id").val(data[i].amil_id);
+                    
+                    //membuat tombol klik untuk detail donatur, buka di window baru
+                    var tekslinkdetail = '<a href="/donatur/' + data[i].id+ '" target="_blank" class="btn btn-primary btn-xs"> Detail Donatur </a>'
+                    $("#tomboldetaildonatur").html(tekslinkdetail);
+
+                    //mari memilih petugas Amil yang sesuai dengan ini
+
+                    //menyembunyikan tombol
+                    $("#tombolpilihan").hide(500);
+
                 }
             }
-            
         }
 
     </script>

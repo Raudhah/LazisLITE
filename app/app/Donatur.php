@@ -19,6 +19,10 @@ class Donatur extends Model
         return $this->belongsTo('App\Amil');
     }
 
+    public function trxibrankasku(){
+        return $this->hasMany('App\Trxibrankasku');
+    }
+
     //mengubah format tanggal lahir dari d-m-Y ke Y-m-d untuk disimpan ke DB
     public function setTanggallahirAttribute($value){
         if($value!= null){
