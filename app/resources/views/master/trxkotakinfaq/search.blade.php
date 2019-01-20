@@ -457,7 +457,6 @@
 
                     //menyembunyikan tombol
                     $("#tombolpilihan").hide(500);
-                    $('#semuadonatur').hide();
 
                 }
             }

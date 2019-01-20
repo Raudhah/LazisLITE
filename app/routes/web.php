@@ -50,5 +50,12 @@ Route::get('/trxibrankasku/{trxibrankasku}/print', 'TrxibrankaskuController@show
 Route::resource('trxibrankasku', 'TrxibrankaskuController');
 Route::get('trxibrankasku/{trxibrankasku}/delete', 'TrxibrankaskuController@delete');
 
+//================ TRX KOTAKINFAQ
+Route::get('/trxkotakinfaq/search', 'TrxkotakinfaqController@search');
+Route::post('/trxkotakinfaq/search', 'TrxkotakinfaqController@searchResult');
+Route::get('/trxkotakinfaq/{trxkotakinfaq}/print', 'TrxkotakinfaqController@showKuitansi');
+Route::resource('trxkotakinfaq', 'TrxkotakinfaqController');
+Route::get('trxkotakinfaq/{trxkotakinfaq}/delete', 'TrxkotakinfaqController@delete');
+
 
 

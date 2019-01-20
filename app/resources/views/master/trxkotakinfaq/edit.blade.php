@@ -1,4 +1,4 @@
-<!-- // peruntukandonasi trxibrankasku -->
+<!-- // pekerjaan trxibrankasku -->
 
 @extends('master.layout')
 
@@ -8,18 +8,18 @@
 @endsection
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Cari Transaksi iBrankasku')
+@section('pagename', 'Tambah iBrankasku')
 
 <!-- //========== MODUL HEADER ========== -->
 @section('modulname', 'iBrankasku')
 
-@section('modulsection', 'Cari')
+@section('modulsection', 'Tambah')
 @section('modulicon', 'fa fa-plus')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Cari Transaksi iBrankasku berdasarkan Kriteria')
+@section('boxheader-title', 'Tambah iBrankasku')
 
-@section('boxheader-instruction', 'Silakan isi pada bagian yang ingin dicari. Kosongi / Biarkan pada bagian yang tidak menjadi kriteria pencarian ')
+@section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi. ')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
@@ -35,8 +35,10 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/trxibrankasku/search">
+<form class="form-horizontal" method="POST" action="/trxibrankasku/{{$data->id}}">
 {{@csrf_field()}}
+
+{{method_field('PATCH')}}
 
         <!-- // DONATURNYA -->
         <div class="form-group">
@@ -52,30 +54,30 @@
 
                     atau 
 
-                    <button type="button" class="btn btn-success btn-lg" id="tombolcaridisemuadonatur">
-                        <i class="fa fa-plus"></i> Cari di SEMUA DONATUR
-                    </button>
+                    <a class="btn btn-success btn-lg" href="/donatur/create" target="_blank">
+                        <i class="fa fa-plus"></i> Tambah Donatur Baru
+                    </a>
                 </div>
 
                 <!-- //ini nanti akan hidden dan muncul jika sudah OK -->
                 <div class="row" id="datapilihan">
                     <div class="col-sm-12">
                         <!-- //INI UNTUK KEPERLUAN FORM NYA -->
-                        <input type="hidden" name="donatur_id" id="donatur_id" value="0">
+                        <input type="hidden" name="donatur_id" id="donatur_id" required="required" value="{{$data->donatur_id}}">
 
                         <!-- //Menampilkan donatur yang dipilih -->
                         <table class="table table-striped">
                             <tr>
                                 <th>Nama</th>
-                                <td id="detailnamadonatur">N/A</td>
+                                <td id="detailnamadonatur">{{$datadonatur->namadonatur}}</td>
                             </tr>
                             <tr>
                                 <th>Alamat</th>
-                                <td id="detailalamatdonatur">N/A</td>
+                                <td id="detailalamatdonatur">{{$datadonatur->alamatdonatur}}</td>
                             </tr>
                             <tr>
                                 <th>Nomor Telepon</th>
-                                <td id="detailnomortelepondonatur">N/A</td>
+                                <td id="detailnomortelepondonatur">{{$datadonatur->nomortelepondonatur}}</td>
                             </tr>
                             <tr>
                                 <th></th>
@@ -93,38 +95,12 @@
 
                     </div>
                 </div>
-                <!-- //  /datapilihan -->
-
-                <!-- //CARI DI SEMUA DONATURini nanti akan hidden dan muncul jika sudah OK -->
-                <div class="row" id="semuadonatur">
-                    <div class="col-sm-12">
-                        <!-- //INI UNTUK KEPERLUAN FORM NYA -->
-                        <input type="checkbox" name="checkboxsemuadonatur" id="checkboxsemuadonatur" value="1"> Cari di SEMUA DONATUR
-                        <br/>
-                        Atau
-                        <br/>
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal-donatur-cari">
-                                <i class="fa fa-search"></i> Cari Donatur
-                        </button>
-                    </div>
-                </div>
-                <!-- //  /semuadonatur -->
 
             </div>
-
-            <!-- //  /col-sm-10 -->
-
-
         </div>
-        <!-- //  /form-group -->
 
 
 
-
-        <!-- //INI ADALAH MODAL CARI DONATUR -->
-
-        <!-- //INI ADALAH MODAL CARI DONATUR SECARA LIVE / BARU -->
-        
         <!-- //PERUNTUKAN DONASI -->
         <div class="form-group">
             <label for="peruntukandonasi_id" class="col-sm-2 control-label input-lg">
@@ -132,19 +108,15 @@
             </label>
 
             <div class="col-sm-10">
-                <select name="peruntukandonasi_id[]" size="6" multiple="multiple" id="peruntukandonasi_id" class="form-control input-lg">
+                <select name="peruntukandonasi_id"  id="peruntukandonasi_id" class="form-control input-lg">
                     
                     @foreach($listperuntukandonasi as $peruntukandonasi)                    
                     
-                        <option selected="selected" value="{{$peruntukandonasi->id}}">{{$peruntukandonasi->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$peruntukandonasi->namaperuntukandonasi}}</option>
+                        <option value="{{$peruntukandonasi->id}}" {{$peruntukandonasi->id == $data->peruntukandonasi_id ? "selected" : ""}}> {{$peruntukandonasi->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$peruntukandonasi->namaperuntukandonasi}}</option>
 
                     @endforeach
 
                 </select>
-                <br/>
-                <button type="button" id="pilihperuntukandonasisemua" class="btn btn-sm btn-success no-padding">Pilih semua</button> - 
-                <button type="button" id="lepasperuntukandonasisemua" class="btn btn-sm btn-warning  no-padding">Lepas Semua</button>
-
             </div>
 
         </div>
@@ -157,17 +129,14 @@
             </label>
 
             <div class="col-sm-10">
-                <select name="amil_id[]" size="6" multiple="multiple" id="amil_id" class="form-control input-lg">
+                <select name="amil_id" id="amil_id" class="form-control input-lg">
                     @foreach($listamil as $amil)
                     
-                    <option selected="selected" value="{{$amil->id}}">{{$amil->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$amil->namaamil}}</option>
+                    <option value="{{$amil->id}}" {{$amil->id == $data->amil_id ? "selected" : ""}}> {{$amil->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$amil->namaamil}}</option>
 
                     @endforeach
-                    
+
                 </select>
-                <br/>
-                    <button type="button" id="pilihamilsemua" class="btn btn-sm btn-success no-padding">Pilih semua</button> - 
-                    <button type="button" id="lepasamilsemua" class="btn btn-sm btn-warning  no-padding">Lepas Semua</button>
             </div>
 
         </div>
@@ -184,7 +153,7 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text"  name="tanggaldonasi" id="tanggaldonasi" value="{{old('tanggaldonasi', '01/01/1930 - 12/12/2030')}}"  class="form-control pull-right" required="required">
+                    <input type="text"  name="tanggaldonasi" id="tanggaldonasi" value="{{old('tanggaldonasi', $data->tanggaldonasi)}}"  class="form-control pull-right" required="required">
                 </div>
                 <!-- //.input group date -->    
             </div>
@@ -195,24 +164,22 @@
         <!-- //DESKRIPSI BARANG -->
         <div class="form-group">
             <label for="deskripsibarang" class="col-sm-2 control-label input-lg">
-                Deskripsi barang <small>Mengandung kata :  </small>
+                Deskripsi barang
             </label>
 
             <div class="col-sm-10">
-                <textarea rows="3" name="deskripsibarang" class="form-control input-lg" id="deskripsibarang" placeholder="Mengandung kata-kata berikut di deskripsi barang... (misal:mobil)">{{old('deskripsibarang')}}</textarea>
+                <textarea rows="5" name="deskripsibarang" class="form-control input-lg" id="deskripsibarang" required="required" placeholder="Masukkan detail barangnya. Bagian ini AKAN tercetak di kuitansi.  ">{{old('deskripsibarang', $data->deskripsibarang)}}</textarea>
             </div>
         </div>
         
         <!-- //NOMINAL VALUASI -->
         <div class="form-group">
             <label for="nominalvaluasi" class="col-sm-2 control-label input-lg">
-                Nominal Valuasi <small>Antara... hingga</small>
+                Nominal Valuasi <small>Mengganti bagian ini berimbas mengganti isi laporan bulanan</small>
             </label>
 
             <div class="col-sm-10">
-                <input type="number" name="nominalvaluasiawal"  class="form-control input-lg" id="nominalvaluasi" placeholder="estimasi nominal Awal">
-                Hingga... 
-                <input type="number" name="nominalvaluasiakhir"   class="form-control input-lg" id="nominalvaluasi" placeholder="estimasi nominal Akhir">
+                <input type="number" name="nominalvaluasi"  value="{{old('nominalvaluasi', $data->nominalvaluasi)}}" class="form-control input-lg" id="nominalvaluasi" placeholder="Bagian ini TIDAK TERCETAK di Kuitansi. Dapat diisi nanti (Edit).">
             </div>
 
         </div>
@@ -270,7 +237,7 @@
     
             <div class="col-sm-10">
                 <button type="reset" class="btn btn-default btn-lg">Batal</button>
-                <button type="submit" class="btn btn-info btn-lg">Cari Data</button>
+                <button type="submit" class="btn btn-warning btn-lg">Update Data</button>
             </div>
         
         </form>
@@ -294,21 +261,13 @@
         var GLOBALDATA = [];
 
         //inisialisasi dulu
-        $('#datapilihan').hide();
-        $('#semuadonatur').hide();
-        
-        
-        $('#tombolcaridisemuadonatur').click(function(){
-            $('#semuadonatur').show(500);
-            $('#tombolpilihan').hide(500);
-            $('#donatur_id').val(-1);
-            $('#checkboxsemuadonatur').prop("checked", true);
-        });
+        //$('#datapilihan').hide();
+        $("#tombolpilihan").hide();
 
 
 
         //Date picker
-        $('#tanggaldonasi').daterangepicker({
+        $('#tanggaldonasi').datepicker({
             
             format : "dd/mm/yyyy",
             defaultDate : new Date(),
@@ -345,7 +304,10 @@
                 data:{function:'searchdonatur', query: inputcaridonatur},
      
                 success:function(data){
-                   //alert('berhasil dapatnya');
+                   alert('berhasil dapatnya');
+
+                   
+                   
 
                    //success ajaxnya kah?
                    console.log(data.success);
@@ -419,7 +381,7 @@
         }
 
         function pilihdonatur(iddonatur){
-            //alert("Sebenarnya ini tu dipanggila apa ndak ya?");
+            alert("Sebenarnya ini tu dipanggila apa ndak ya?");
             console.log("Donatur terpilih " + iddonatur);
             console.log("isi GLOBALDATA ");
             console.log(GLOBALDATA);
@@ -457,29 +419,10 @@
 
                     //menyembunyikan tombol
                     $("#tombolpilihan").hide(500);
-                    $('#semuadonatur').hide();
 
                 }
             }
         }
-
-
-
-        $('#pilihamilsemua').click(function(){
-            $('#amil_id option').prop('selected', true);
-        });
-
-        $('#lepasamilsemua').click(function(){
-            $('#amil_id option').prop('selected', false);
-        });
-
-        $('#pilihperuntukandonasisemua').click(function(){
-            $('#peruntukandonasi_id option').prop('selected', true);
-        });
-
-        $('#lepasperuntukandonasisemua').click(function(){
-            $('#peruntukandonasi_id option').prop('selected', false);
-        });
 
     </script>
     

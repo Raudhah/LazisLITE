@@ -13,9 +13,27 @@ class CreateTrxkotakinfaqsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trxkotakinfaqs', function (Blueprint $table) {
+
+
+        Schema::create('trxkotakinfaq', function (Blueprint $table) {
             $table->increments('id');
+            //constraint dengan tabel lain (tabel amil, donatur, dan peruntukan donasi)
+            $table->integer('donatur_id')->unsigned();
+            $table->integer('amil_id')->unsigned();
+            $table->integer('peruntukandonasi_id')->unsigned();
+            //data dari isiannya
+            $table->date('tanggaldonasi');
+            $table->bigInteger('jumlahtotal')->default(0);
+            $table->text('keterangan');
+            //timestamps
             $table->timestamps();
+        });
+
+        Schema::table('trxkotakinfaq', function (Blueprint $table) {
+            //set foreign key constraints-nya
+            $table->foreign('peruntukandonasi_id')->references('id')->on('peruntukandonasi');
+            $table->foreign('donatur_id')->references('id')->on('donatur');
+            $table->foreign('amil_id')->references('id')->on('amil');
         });
     }
 
@@ -26,6 +44,6 @@ class CreateTrxkotakinfaqsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trxkotakinfaqs');
+        Schema::dropIfExists('trxkotakinfaq');
     }
 }

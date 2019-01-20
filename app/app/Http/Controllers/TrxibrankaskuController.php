@@ -7,6 +7,7 @@ use App\Trxibrankasku;
 use App\Amil;
 use App\peruntukandonasi;
 use App\Donatur;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TrxibrankaskuController extends Controller
@@ -411,7 +412,7 @@ class TrxibrankaskuController extends Controller
 
         //semua donatur
         $donatur_id = $request->donatur_id;
-        $semuadonatur = $request->semuadonatur; //null jika tidak diisi, //1 jika di check
+        $semuadonatur = $request->checkboxsemuadonatur; //null jika tidak diisi, //1 jika di check
 
         //SEKARANG MEMBUAT QUERY-NYA YAA.. 
         $data = \App\Trxibrankasku::select('id','donatur_id','tanggaldonasi', 'deskripsibarang', 'nominalvaluasi')
@@ -432,6 +433,20 @@ class TrxibrankaskuController extends Controller
                                     //when nominalvaluasi
                                     ->when($nominalvaluasiawal != null && $nominalvaluasiakhir !=null, function($query) use ($nominalvaluasiawal, $nominalvaluasiakhir){
                                         return $query->whereBetween('nominalvaluasi', [$nominalvaluasiawal, $nominalvaluasiakhir]);
+                                    })
+                                    //when tanggaldonasi
+                                    ->when($tanggaldonasiawal != null && $tanggaldonasiakhir !=null, function($query) use ($tanggaldonasiawal, $tanggaldonasiakhir){
+                                       // dd($tanggaldonasiawal.' hingga '.$tanggaldonasiakhir);
+
+                                        $tanggaldonasiawal = Carbon::createFromFormat('d/m/Y', $tanggaldonasiawal)->toDateString();
+                                        $tanggaldonasiakhir = Carbon::createFromFormat('d/m/Y', $tanggaldonasiakhir)->toDateString();
+
+                                        return $query->whereBetween('tanggaldonasi', [$tanggaldonasiawal, $tanggaldonasiakhir]);
+                                    })
+                                    //when donatur id
+                                    ->when($donatur_id != null && $donatur_id > 0, function($query) use ($donatur_id){
+                                        
+                                        return $query->where('donatur_id', $donatur_id);
                                     })
                                     
                                     ->orderBy('id', 'desc')
