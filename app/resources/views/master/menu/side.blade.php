@@ -40,9 +40,9 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="lz-trxibrankasku-tambah.php"><i class="fa fa-plus"></i> Tambah Transaksi</a></li>
-            <li><a href="lz-trxibrankasku-tampilkan.php"><i class="fa fa-list"></i> Tampilkan Data</a></li>
-            <li><a href="lz-trxibrankasku-cari.php"><i class="fa fa-search"></i> Cari Data iBrankasku</a></li>
+            <li><a href="/trxibrankasku/create"><i class="fa fa-plus"></i> Tambah Transaksi</a></li>
+            <li><a href="/trxibrankasku"><i class="fa fa-list"></i> Tampilkan Data</a></li>
+            <li><a href="/trxibrankasku/search"><i class="fa fa-search"></i> Cari Data iBrankasku</a></li>
           </ul>
         </li>
 
@@ -73,7 +73,7 @@
 
           <ul class="treeview-menu">
             <li><a href="/donatur/create"><i class="fa fa-plus"></i> Tambah Donatur</a></li>
-            <li><a href="/donatur/"><i class="fa fa-list"></i> Tampilkan Donatur</a></li>
+            <li><a href="/donatur"><i class="fa fa-list"></i> Tampilkan Donatur</a></li>
             <li><a href="/donatur/search"><i class="fa fa-search"></i> Cari Donatur</a></li>
           </ul>
         </li>

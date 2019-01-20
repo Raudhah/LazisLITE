@@ -7,7 +7,6 @@
     
     @yield('headertag', "")
 
-    
 
     @include("master/menu/top")
 

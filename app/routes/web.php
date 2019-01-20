@@ -46,6 +46,7 @@ Route::get('donatur/{donatur}/delete', 'DonaturController@delete');
 //================ TRX IBRANKASKU
 Route::get('/trxibrankasku/search', 'TrxibrankaskuController@search');
 Route::post('/trxibrankasku/search', 'TrxibrankaskuController@searchResult');
+Route::get('/trxibrankasku/{trxibrankasku}/print', 'TrxibrankaskuController@showKuitansi');
 Route::resource('trxibrankasku', 'TrxibrankaskuController');
 Route::get('trxibrankasku/{trxibrankasku}/delete', 'TrxibrankaskuController@delete');
 

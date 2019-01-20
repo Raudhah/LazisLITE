@@ -306,10 +306,7 @@
                 data:{function:'searchdonatur', query: inputcaridonatur},
      
                 success:function(data){
-                   alert('berhasil dapatnya');
-
-                   
-                   
+                   //alert('berhasil dapatnya');
 
                    //success ajaxnya kah?
                    console.log(data.success);
@@ -383,7 +380,7 @@
         }
 
         function pilihdonatur(iddonatur){
-            alert("Sebenarnya ini tu dipanggila apa ndak ya?");
+            //alert("Sebenarnya ini tu dipanggila apa ndak ya?");
             console.log("Donatur terpilih " + iddonatur);
             console.log("isi GLOBALDATA ");
             console.log(GLOBALDATA);

@@ -40,8 +40,8 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="lz-trxibrankasku-tambah.php"><i class="fa fa-plus"></i> Tambah Transaksi</a></li>
-            <li><a href="lz-trxibrankasku-tampilkan.php"><i class="fa fa-list"></i> Tampilkan Data</a></li>
+            <li><a href="/trxibrankasku/create"><i class="fa fa-plus"></i> Tambah Transaksi</a></li>
+            <li><a href="/trxibrankasku"><i class="fa fa-list"></i> Tampilkan Data</a></li>
             <li><a href="lz-trxibrankasku-cari.php"><i class="fa fa-search"></i> Cari Data iBrankasku</a></li>
           </ul>
         </li>

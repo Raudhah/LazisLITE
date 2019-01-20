@@ -2,5 +2,5 @@
     "git.ignoreLimitWarning": true,
     "workbench.iconTheme": "vs-minimal",
     "breadcrumbs.enabled": true,
-    "workbench.colorTheme": "Visual Studio Dark"
+    "workbench.colorTheme": "Default Dark+"
 }

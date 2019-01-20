@@ -1,19 +1,19 @@
 
-<!-- // donatur -->
+<!-- // trxibrankasku -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Detail Donatur')
+@section('pagename', 'Detail iBrankasku')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Donatur')
+@section('modulname', 'iBrankasku')
 
 @section('modulsection', 'Detail')
-@section('modulicon', 'fa fa-trash')
+@section('modulicon', 'fa fa-edit')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Detail Donatur')
+@section('boxheader-title', 'Detail iBrankasku')
 
 @section('boxheader-instruction', 'silakan Klik Edit / Hapus untuk mengubah Data')
 
@@ -41,70 +41,44 @@
             <tbody>
                 <tr>
                     <th>Nama Donatur</th>
-                    <td>{{$data->namadonatur}}</td>
+                    <td>{{$datadonatur->namadonatur}}</td>
+                </tr>
+                <tr>
+                    <th>Almat Donatur</th>
+                    <td>{{$datadonatur->alamatdonatur}}</td>
+                </tr>
+                <tr>
+                    <th>Nama Donatur</th>
+                    <td>{{$datadonatur->nomortelepondonatur}}</td>
                 </tr>
                 
-                <tr>
-                    <th>Jenis Donatur</th>
-                    <td>
-                        @if ($data->isdonaturrutin==1)
-                            <a href="#" class="btn btn-sm btn-primary"> Donatur Rutin, </a>             
-                        @endif
-                        
-                        @if ($data->iskotakinfaq)
-                            <a href="#" class="btn btn-sm btn-primary"> Kotak Infaq,   </a>            
-                        @endif
-                        @if ($data->isdonaturinsidental)
-                            <a href="#" class="btn btn-sm btn-primary"> Donatur Insidental,   </a>            
-                        @endif
-
-                    </td>
-
-                </tr>
-
                 <tr>
                     <th>Petugas AMIL</th>
-                    <td><a class="btn btn-success" href="/amil/{{$amil->id}}">{{$amil->namaamil}}</a></td>
-                </tr>
-
-                <tr>
-                    <th>Nomor Telepon Donatur</th>
-                    <td>{{$data->nomortelepondonatur}}</td>
-                </tr>
-
-
-                <tr>
-                    <th>Alamat Donatur</th>
-                    <td>{{$data->alamatdonatur}}</td>
+                    <td><a class="btn btn-success" href="/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
                 </tr>
 
                 
                 <tr>
-                    <th>Tanggal Lahir</th>
-                    <td>{{$data->tanggallahir}}</td>
+                    <th>Tanggal Donasi</th>
+                    <td>{{$tanggaldonasi}}</td>
+                </tr>
+
+                <tr>
+                    <th>Deskripsi Barang</th>
+                    <td><div>{{$deskripsibarang}}</div></td>
+                </tr>
+
+                <tr>
+                    <th>Nominal Valuasi</th>
+                    <td>{{number_format($nominalvaluasi,0,',','.')}}</td>
                 </tr>
                 
                 <tr>
-                    <th>Pekerjaan Donatur</th>
-                    <td><a class="btn btn-primary" href="#">{{$pekerjaandonatur->namapekerjaandonatur}}</a></td>
+                    <th>Peruntukan Donasi</th>
+                    <td><a class="btn btn-primary" href="/peruntukandonasi/{{$dataperuntukandonasi->id}}">{{$dataperuntukandonasi->namaperuntukandonasi}}</a></td>
                 </tr>
                 
 
-                
-
-                <tr>
-                    <th>Jenis Kelamin</th>
-                    <td>
-                        @if ($data->jeniskelamin == 1)
-                            Laki-Laki
-                        @elseif ($data->jeniskelamin == 2)
-                            Perempuan
-                        @else 
-                            Tidak Disebutkan
-                        @endif
-    
-                    </td>
-                </tr>
             </tbody>
         </table>
 
@@ -117,8 +91,8 @@
         </div>
 
         <div class="col-sm-10">
-            <a class="btn btn-warning" href="/donatur/{{$data->id}}/edit">Edit</a>
-            <a class="btn btn-danger" href="/donatur/{{$data->id}}/delete">Hapus</a>
+            <a class="btn btn-warning" href="/trxibrankasku/{{$idtransaksi}}/edit">Edit</a>
+            <a class="btn btn-danger" href="/trxibrankasku/{{$idtransaksi}}/delete">Hapus</a>
         </div>
     
 

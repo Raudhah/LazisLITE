@@ -10,7 +10,7 @@
 @section('modulname', 'iBrankasku')
 
 @section('modulsection', 'Detail')
-@section('modulicon', 'fa fa-trash')
+@section('modulicon', 'fa fa-edit')
 
 <!-- //===========BOX  HEADER =========== -->
 @section('boxheader-title', 'Detail iBrankasku')

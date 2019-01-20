@@ -152,12 +152,42 @@ class TrxibrankaskuController extends Controller
 
         $message = "";
 
+       
+        // tampilkan KUITANSINYA BRO
+        return view('master/trxibrankasku/detail', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Trxibrankasku  $trxibrankasku
+     * @return \Illuminate\Http\Response
+     */
+    public function showKuitansi(Trxibrankasku $trxibrankasku)
+    {
+
+        $idtransaksi = $trxibrankasku->id;
+        $tanggaldonasi = $trxibrankasku->tanggaldonasi;
+        $deskripsibarang = $trxibrankasku->deskripsibarang;
+        $nominalvaluasi = $trxibrankasku->nominalvaluasi;
+
+        //dapatkan data amil
+        $dataamil = $trxibrankasku->amil;
+
+        //dapatkan data donatur
+        $datadonatur = $trxibrankasku->donatur;
+
+        //dapatkan data peruntukan donasi
+        $dataperuntukandonasi = $trxibrankasku->peruntukandonasi;
+
+        $message = "";
+
         // dd($datadonatur);
 
         // dd(compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
 
         // tampilkan KUITANSINYA BRO
-        return view('master/trxibrankasku/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+        return view('master/trxibrankasku/detail', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
     }
 
     /**
@@ -168,7 +198,25 @@ class TrxibrankaskuController extends Controller
      */
     public function edit(Trxibrankasku $trxibrankasku)
     {
-        //
+        //populating untuk select dlsb... 
+
+        //ambil data peruntukandonasi buat ditampilkan di List Optionnya
+        $listperuntukandonasi = \App\peruntukandonasi::orderBy('namaperuntukandonasi','asc')
+                                                    ->take('500')
+                                                    ->get();
+
+        //ambil data list amil buat ditampilkan di list Optionnya
+        $listamil = \App\Amil::orderBy('namaamil','asc')
+                                ->take('500')
+                                ->get();
+
+
+        //data transaksi adalah ya trx ibrankasku itu
+        $data = $trxibrankasku;
+        $datadonatur = $trxibrankasku->donatur;
+       
+        // tampilkan KUITANSINYA BRO
+        return view('master/trxibrankasku/edit', compact('data', 'datadonatur','listamil', 'listperuntukandonasi'));
     }
 
     /**
@@ -180,7 +228,89 @@ class TrxibrankaskuController extends Controller
      */
     public function update(Request $request, Trxibrankasku $trxibrankasku)
     {
-        //
+         //cek dulu apakah data nya valid ataukah tidak. 
+         $validdata = request()->validate([
+            'donatur_id' => $this->vrule_donatur_id,
+            'amil_id' => $this->vrule_amil_id,
+            'peruntukandonasi_id' => $this->vrule_peruntukandonasi_id,
+            'tanggaldonasi' => $this->vrule_tanggaldonasi,
+            'nominalvaluasi' => $this->vrule_nominalvaluasi,
+            'deskripsibarang' => $this->vrule_deskripsibarang,
+        ]);
+
+
+        //UPDATE DATA DULU GAES
+        $trxibrankasku->donatur_id = $request->donatur_id;
+        $trxibrankasku->amil_id = $request->amil_id;
+        $trxibrankasku->peruntukandonasi_id = $request->peruntukandonasi_id;
+        $trxibrankasku->tanggaldonasi = $request->tanggaldonasi;
+        $trxibrankasku->nominalvaluasi = $request->nominalvaluasi;
+        $trxibrankasku->deskripsibarang = $request->deskripsibarang;
+
+        //SIMPAN YUK
+        $status = $trxibrankasku->save();
+
+        if($status){
+            //menampilkan kuitansinya loh ya, bukan listnya lagi....
+            //preparing data
+            $deskripsibarang = request('deskripsibarang'); 
+            
+            $nominalvaluasi = request('nominalvaluasi'); 
+            $tanggaldonasi = request('tanggaldonasi'); 
+            $dataamil = $trxibrankasku->amil; 
+            $dataperuntukandonasi = $trxibrankasku->peruntukandonasi;
+            $datadonatur = $trxibrankasku->donatur; 
+
+            //id yang terakhir disimpan ini
+            $idtransaksi = $trxibrankasku->id;
+            
+            //buat message nya
+            $message = [
+                'show'  => '1',
+                'type' => 'success',
+                'content' => 'Alhamdulillah, Transaksi "'.$deskripsibarang.'" berhasil diUpdate!',
+                ];
+    
+            // tampilkan KUITANSINYA BRO
+            return view('master/trxibrankasku/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+        }
+        else{
+            return dd('Uups! Error, data gagal masuk ke dalam database');
+        }
+        dd($status);
+
+
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Trxibrankasku  $trxibrankasku
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Trxibrankasku $trxibrankasku)
+    {
+
+        $idtransaksi = $trxibrankasku->id;
+        $tanggaldonasi = $trxibrankasku->tanggaldonasi;
+        $deskripsibarang = $trxibrankasku->deskripsibarang;
+        $nominalvaluasi = $trxibrankasku->nominalvaluasi;
+
+        //dapatkan data amil
+        $dataamil = $trxibrankasku->amil;
+
+        //dapatkan data donatur
+        $datadonatur = $trxibrankasku->donatur;
+
+        //dapatkan data peruntukan donasi
+        $dataperuntukandonasi = $trxibrankasku->peruntukandonasi;
+
+        $message = "";
+
+       
+        // tampilkan KUITANSINYA BRO
+        return view('master/trxibrankasku/delete', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
     }
 
     /**
@@ -191,6 +321,129 @@ class TrxibrankaskuController extends Controller
      */
     public function destroy(Trxibrankasku $trxibrankasku)
     {
-        //
+        //kompilasi buat messagenya sebelum kehapus
+        $namadonatur = $trxibrankasku->donatur->namadonatur;
+        $tanggaldonasi = $trxibrankasku->tanggaldonasi;
+        $deskripsibarang = $trxibrankasku->deskripsibarang;
+        $nominalvaluasi = $trxibrankasku->nominalvaluasi;
+
+        $messagecontent = 'Transaksi iBrankasku atas nama "'.$namadonatur.'" Pada tanggal: -"'.$tanggaldonasi.'"- senilai -"'.number_format($nominalvaluasi,0,',','.').'"- ('.$deskripsibarang.' ) BERHASIL DIHAPUS';
+
+         //buat message nya
+         $message = [
+            'show'  => '1',
+            'type' => 'success',
+            'content' => $messagecontent,
+            ];
+
+        $status = $trxibrankasku->delete();
+
+        if($status){
+            $data = \App\Trxibrankasku::select('id','donatur_id','tanggaldonasi', 'deskripsibarang', 'nominalvaluasi')
+                                        ->with(['donatur'])
+                                        ->orderBy('id', 'desc')
+                                        ->take('500')
+                                        ->get();
+
+
+            // dd($data);
+            return view('master/trxibrankasku/tampilkan', compact('data', 'message'));
+        }
+        else{
+            return dd('Uups! Error, data gagal masuk ke dalam database');
+        }
+
+        dd($status);
     }
+
+
+    /**
+     * Show the form for searching the specified resource.
+     *
+     * @param  \App\Trxibrankasku  $trxibrankasku
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+            //ambil data peruntukandonasi buat ditampilkan di List Optionnya
+        $listperuntukandonasi = \App\peruntukandonasi::orderBy('namaperuntukandonasi','asc')
+                                                    ->take('500')
+                                                    ->get();
+
+        //ambil data list amil buat ditampilkan di list Optionnya
+        $listamil = \App\Amil::orderBy('namaamil','asc')
+                                ->take('500')
+                                ->get();
+       
+        // tampilkan FORM CARINYA BRO
+        return view('master/trxibrankasku/search', compact('listamil', 'listperuntukandonasi'));
+    }
+
+
+    /**
+     * Show the form for displaying search result of the specified resource.
+     *
+     * @param  \App\Trxibrankasku  $trxibrankasku
+     * @return \Illuminate\Http\Response
+     */
+
+     public function searchResult(Request $request){
+        //dapatkan semua isinya dahulu
+
+        // dd($request->all());
+
+        $deskripsibarang = $request->deskripsibarang;
+        $nominalvaluasiawal = $request->nominalvaluasiawal;
+        $nominalvaluasiakhir = $request->nominalvaluasiakhir;
+
+        //dapatkan tanggal donasi dan memisahkannya (-)
+        $tanggaldonasiantara = $request->tanggaldonasi;
+
+        $tanggaldonasiarray = explode("-", $tanggaldonasiantara);
+        //hapus spasi
+        $tanggaldonasiawal = trim($tanggaldonasiarray[0]);
+        $tanggaldonasiakhir = trim($tanggaldonasiarray[1]);
+
+
+        //dapatkan list amil dan list peruntukandonasi (BENTUK ARRAY)
+        $listamil = $request->amil_id;
+        $listperuntukandonasi = $request->peruntukandonasi_id;
+
+        //semua donatur
+        $donatur_id = $request->donatur_id;
+        $semuadonatur = $request->semuadonatur; //null jika tidak diisi, //1 jika di check
+
+        //SEKARANG MEMBUAT QUERY-NYA YAA.. 
+        $data = \App\Trxibrankasku::select('id','donatur_id','tanggaldonasi', 'deskripsibarang', 'nominalvaluasi')
+                                    ->with(['donatur'])
+                                    //when amil_id
+                                    ->when($request->amil_id != null, function($query) use ($listamil){
+                                        return $query->whereIn('amil_id', $listamil);
+                                    })
+                                    //when peruntukandonasi_id
+                                    ->when($request->peruntukandonasi_id != null, function($query) use ($listperuntukandonasi){
+                                        return $query->whereIn('peruntukandonasi_id', $listperuntukandonasi);
+                                    })
+                                    //when deskripsibarang
+                                    ->when($request->deskripsibarang != null, function($query) use ($deskripsibarang){
+                                        // dd("Deskripsi barang mengandung : ".$deskripsibarang);
+                                        return $query->where('deskripsibarang', 'like', '%'.$deskripsibarang.'%');
+                                    })
+                                    //when nominalvaluasi
+                                    ->when($nominalvaluasiawal != null && $nominalvaluasiakhir !=null, function($query) use ($nominalvaluasiawal, $nominalvaluasiakhir){
+                                        return $query->whereBetween('nominalvaluasi', [$nominalvaluasiawal, $nominalvaluasiakhir]);
+                                    })
+                                    
+                                    ->orderBy('id', 'desc')
+                                    ->take('500')
+                                    ->get();
+
+        
+        // dd($data);
+        return view('master/trxibrankasku/tampilkan', compact('data'));
+
+         dd($request->all());
+     }
+
+
 }

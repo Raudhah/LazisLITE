@@ -126,7 +126,7 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text"  name="tanggallahir" id="tanggallahir" value="01/01/1920 - 12/12/2020"  class="form-control pull-right" >
+                    <input type="text"  name="tanggallahir" id="tanggallahir" value="01/01/1930 - 12/12/2030"  class="form-control pull-right" >
                 </div>
                 <!-- //.input group date -->    
             </div>
