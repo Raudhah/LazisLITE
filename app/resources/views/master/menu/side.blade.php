@@ -24,9 +24,9 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="lz-trxdonasi-tambah.php"><i class="fa fa-plus"></i> Tambah Transaksi</a></li>
-            <li><a href="lz-trxdonasi-tampilkan.php"><i class="fa fa-list"></i> Tampilkan Data</a></li>
-            <li><a href="lz-trxdonasi-cari.php"><i class="fa fa-search"></i> Cari Data Donasi</a></li>
+            <li><a href="/trxdonasi/create"><i class="fa fa-plus"></i> Tambah Transaksi</a></li>
+            <li><a href="/trxdonasi"><i class="fa fa-list"></i> Tampilkan Data</a></li>
+            <li><a href="/trxdonasi/search"><i class="fa fa-search"></i> Cari Data Donasi</a></li>
           </ul>
         </li>
 

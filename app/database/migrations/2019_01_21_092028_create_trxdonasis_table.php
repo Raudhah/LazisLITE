@@ -13,9 +13,24 @@ class CreateTrxdonasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('trxdonasis', function (Blueprint $table) {
+        Schema::create('trxdonasi', function (Blueprint $table) {
             $table->increments('id');
+            //constraint dengan tabel lain (tabel amil, donatur, dan peruntukan donasi)
+            $table->integer('donatur_id')->unsigned();
+            $table->integer('amil_id')->unsigned();
+            //data dari isiannya
+            $table->boolean('insidentil')->nullable()->default(0);
+            $table->date('tanggaldonasi');
+            $table->bigInteger('jumlahtotal')->default(0);
+            $table->text('keterangan')->nullable();
+            //timestamps
             $table->timestamps();
+        });
+
+        Schema::table('trxdonasi', function (Blueprint $table) {
+            //set foreign key constraints-nya
+            $table->foreign('donatur_id')->references('id')->on('donatur');
+            $table->foreign('amil_id')->references('id')->on('amil');
         });
     }
 
@@ -26,6 +41,6 @@ class CreateTrxdonasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trxdonasis');
+        Schema::dropIfExists('trxdonasi');
     }
 }

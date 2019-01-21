@@ -19,6 +19,7 @@ class TrxibrankaskuController extends Controller
     public $vrule_peruntukandonasi_id = 'required|numeric|min:0';
 
     public $vrule_tanggaldonasi = 'required|dateformat:d/m/Y';
+   
 
     public $vrule_nominalvaluasi = 'sometimes|numeric|min:0';
     public $vrule_deskripsibarang = 'required|min:3';
