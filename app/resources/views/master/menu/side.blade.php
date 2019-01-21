@@ -56,9 +56,9 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="lz-trxkotakinfaq-tambah.php"><i class="fa fa-plus"></i> Tambah Transaksi</a></li>
-            <li><a href="lz-trxkotakinfaq-tampilkan.php"><i class="fa fa-list"></i> Tampilkan Data</a></li>
-            <li><a href="lz-trxkotakinfaq-cari.php"><i class="fa fa-search"></i> Cari Data kotak Infaq</a></li>
+            <li><a href="/trxkotakinfaq/create"><i class="fa fa-plus"></i> Tambah Transaksi</a></li>
+            <li><a href="/trxkotakinfaq"><i class="fa fa-list"></i> Tampilkan Data</a></li>
+            <li><a href="/trxkotakinfaq/search"><i class="fa fa-search"></i> Cari Data kotak Infaq</a></li>
           </ul>
         </li>
 

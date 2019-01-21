@@ -1,4 +1,4 @@
-<!-- // pekerjaan trxibrankasku -->
+<!-- // pekerjaan trxkotakinfaq -->
 
 @extends('master.layout')
 
@@ -8,16 +8,16 @@
 @endsection
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Tambah iBrankasku')
+@section('pagename', 'Tambah Kotak Infaq')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'iBrankasku')
+@section('modulname', 'Kotak Infaq')
 
 @section('modulsection', 'Tambah')
 @section('modulicon', 'fa fa-plus')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tambah iBrankasku')
+@section('boxheader-title', 'Tambah Kotak Infaq')
 
 @section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi. ')
 
@@ -35,12 +35,12 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/trxibrankasku">
+<form class="form-horizontal" method="POST" action="/trxkotakinfaq">
 {{@csrf_field()}}
 
         <!-- // DONATURNYA -->
         <div class="form-group">
-            <label for="namatrxibrankasku" class="col-sm-2 control-label input-lg">
+            <label for="namatrxkotakinfaq" class="col-sm-2 control-label input-lg">
                 Donatur
             </label>
 
@@ -99,32 +99,6 @@
 
 
 
-
-        <!-- //INI ADALAH MODAL CARI DONATUR -->
-
-        <!-- //INI ADALAH MODAL TAMBAH DONATUR SECARA LIVE / BARU -->
-        
-        <!-- //PERUNTUKAN DONASI -->
-        <div class="form-group">
-            <label for="peruntukandonasi_id" class="col-sm-2 control-label input-lg">
-                Peruntukan Donasi *
-            </label>
-
-            <div class="col-sm-10">
-                <select name="peruntukandonasi_id"  id="peruntukandonasi_id" class="form-control input-lg">
-                    
-                    @foreach($listperuntukandonasi as $peruntukandonasi)                    
-                    
-                        <option value="{{$peruntukandonasi->id}}">{{$peruntukandonasi->namaperuntukandonasi}}</option>
-
-                    @endforeach
-
-                </select>
-            </div>
-
-        </div>
-
-
         <!-- //AMil yang bertanggung Jawab -->
         <div class="form-group">
             <label for="amil_id" class="col-sm-2 control-label input-lg">
@@ -148,7 +122,7 @@
         <!-- //TANGGAL DONASI -->
         <div class="form-group">
             <label for="tanggaldonasi" class="col-sm-2 control-label input-lg">
-                Tanggal Donasi *
+                Tanggal Disetorkan *
             </label>
 
             <div class="col-sm-10">
@@ -163,29 +137,30 @@
 
         </div>
 
-
-        <!-- //DESKRIPSI BARANG -->
-        <div class="form-group">
-            <label for="deskripsibarang" class="col-sm-2 control-label input-lg">
-                Deskripsi barang
-            </label>
-
-            <div class="col-sm-10">
-                <textarea rows="5" name="deskripsibarang" class="form-control input-lg" id="deskripsibarang" required="required" placeholder="Masukkan detail barangnya. Bagian ini AKAN tercetak di kuitansi.  ">{{old('deskripsibarang')}}</textarea>
-            </div>
-        </div>
         
-        <!-- //NOMINAL VALUASI -->
+        <!-- //Jumlah Total -->
         <div class="form-group">
-            <label for="nominalvaluasi" class="col-sm-2 control-label input-lg">
-                Nominal Valuasi <small>Bisa diisi nanti</small>
+            <label for="jumlahtotal" class="col-sm-2 control-label input-lg">
+                Jumlah Total <small>(isi kotak infaq)</small>
             </label>
 
             <div class="col-sm-10">
-                <input type="number" name="nominalvaluasi"  value="{{old('nominalvaluasi')}}" class="form-control input-lg" id="nominalvaluasi" placeholder="Bagian ini TIDAK TERCETAK di Kuitansi. Dapat diisi nanti (Edit).">
+                <input type="number" name="jumlahtotal"  value="{{old('jumlahtotal')}}" class="form-control input-lg" id="jumlahtotal" placeholder="Isi dengan Hanya Angka.">
             </div>
 
         </div>
+
+        <!-- //Keterangan -->
+        <div class="form-group">
+            <label for="keterangan" class="col-sm-2 control-label input-lg">
+                Keterangan
+            </label>
+
+            <div class="col-sm-10">
+                <textarea rows="2" name="keterangan" class="form-control input-lg" id="keterangan" placeholder="Keterangan (jika ada)">{{old('keterangan')}}</textarea>
+            </div>
+        </div>
+
 
 
 

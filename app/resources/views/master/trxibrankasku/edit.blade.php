@@ -8,18 +8,18 @@
 @endsection
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Tambah iBrankasku')
+@section('pagename', 'Edit Transaksi iBrankasku')
 
 <!-- //========== MODUL HEADER ========== -->
 @section('modulname', 'iBrankasku')
 
-@section('modulsection', 'Tambah')
-@section('modulicon', 'fa fa-plus')
+@section('modulsection', 'Edit')
+@section('modulicon', 'fa fa-pencil')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tambah iBrankasku')
+@section('boxheader-title', 'Edit Transaksi iBrankasku')
 
-@section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi. ')
+@section('boxheader-instruction', 'Tanda * wajib diisi. ')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')

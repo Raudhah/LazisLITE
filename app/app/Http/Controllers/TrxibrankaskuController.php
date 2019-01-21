@@ -188,7 +188,7 @@ class TrxibrankaskuController extends Controller
         // dd(compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
 
         // tampilkan KUITANSINYA BRO
-        return view('master/trxibrankasku/detail', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+        return view('master/trxibrankasku/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
     }
 
     /**

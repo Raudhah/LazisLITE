@@ -1,19 +1,19 @@
 
-<!-- // trxibrankasku -->
+<!-- // trxkotakinfaq -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Detail iBrankasku')
+@section('pagename', 'Detail Kotak Infaq')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'iBrankasku')
+@section('modulname', 'Kotak Infaq')
 
 @section('modulsection', 'Detail')
 @section('modulicon', 'fa fa-edit')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Detail iBrankasku')
+@section('boxheader-title', 'Detail Kotak Infaq')
 
 @section('boxheader-instruction', 'silakan Klik Edit / Hapus untuk mengubah Data')
 
@@ -63,21 +63,18 @@
                     <td>{{$tanggaldonasi}}</td>
                 </tr>
 
-                <tr>
-                    <th>Deskripsi Barang</th>
-                    <td>{{$deskripsibarang}}</td>
-                </tr>
 
                 <tr>
-                    <th>Nominal Valuasi</th>
-                    <td>{{number_format($nominalvaluasi,0,',','.')}}</td>
+                    <th>Jumlah Total</th>
+                    <td>{{number_format($jumlahtotal,0,',','.')}}</td>
                 </tr>
-                
+
+
                 <tr>
-                    <th>Peruntukan Donasi</th>
-                    <td><a class="btn btn-primary" href="#">{{$dataperuntukandonasi->namaperuntukandonasi}}</a></td>
+                    <th>Keterangan</th>
+                    <td>{{$keterangan}}</td>
                 </tr>
-                
+
 
             </tbody>
         </table>
@@ -91,8 +88,8 @@
         </div>
 
         <div class="col-sm-10">
-            <a class="btn btn-warning" href="/trxibrankasku/{{$idtransaksi}}/edit">Edit</a>
-            <a class="btn btn-danger" href="/trxibrankasku/{{$idtransaksi}}/delete">Hapus</a>
+            <a class="btn btn-warning" href="/trxkotakinfaq/{{$idtransaksi}}/edit">Edit</a>
+            <a class="btn btn-danger" href="/trxkotakinfaq/{{$idtransaksi}}/delete">Hapus</a>
         </div>
     
 

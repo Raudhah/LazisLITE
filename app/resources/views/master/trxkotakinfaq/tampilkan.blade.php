@@ -1,18 +1,18 @@
-<!-- // ibrankasku -->
+<!-- // kotakinfaq -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Data iBrankasku')
+@section('pagename', 'Data Kotak Infaq')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'iBrankasku')
+@section('modulname', 'Kotak Infaq')
 
 @section('modulsection', 'Tampilkan')
 @section('modulicon', 'fa fa-list')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tampilkan Data iBrankasku')
+@section('boxheader-title', 'Tampilkan Data Kotak Infaq')
 
 @section('boxheader-instruction')
 
@@ -35,9 +35,10 @@
     <tr>
       <th>No.</th>
       <th>Tanggal</th>
+      <th>Amil</th>
       <th>Nama Donatur</th>
-      <th>Detail Barang</th>
-      <th>Est. Valuasi (Rupiah)</th>
+      <th>Jumlah Total</th>
+      <th>Keterangan</th>
       <th></th>
       <th></th>
       <th></th>
@@ -55,13 +56,14 @@
         <tr>
             <td>{{ ++$key}}</td>
             <td> {{ $item->tanggaldonasi }}</td>
+            <td> {{ $item->amil->namaamil }}</td>
             <td> {{ $item->donatur->namadonatur }}</td>
-            <td> {{ $item->deskripsibarang }}</td>
-            <td class="pull-right"> {{ number_format($item->nominalvaluasi,0,',','.') }}</td>
-            <td><a href="/trxibrankasku/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi"><i class="fa fa-print"></i></a></td>
-            <td><a href="/trxibrankasku/{{ $item->id }}"  data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a></td>
-            <td><a href="/trxibrankasku/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/trxibrankasku/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td class="pull-right"> {{ number_format($item->jumlahtotal,0,',','.') }}</td>
+            <td> {{ $item->keterangan }}</td>
+            <td><a href="/trxkotakinfaq/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi"><i class="fa fa-print"></i></a></td>
+            <td><a href="/trxkotakinfaq/{{ $item->id }}"  data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a></td>
+            <td><a href="/trxkotakinfaq/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="/trxkotakinfaq/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

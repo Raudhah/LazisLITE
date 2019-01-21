@@ -1,4 +1,4 @@
-<!-- // pekerjaan trxibrankasku -->
+<!-- // pekerjaan trxkotakinfaq -->
 
 @extends('master.layout')
 
@@ -8,18 +8,18 @@
 @endsection
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Tambah iBrankasku')
+@section('pagename', 'Edit Kotak Infaq')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'iBrankasku')
+@section('modulname', 'Kotak Infaq')
 
-@section('modulsection', 'Tambah')
-@section('modulicon', 'fa fa-plus')
+@section('modulsection', 'Edit')
+@section('modulicon', 'fa fa-pencil')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tambah iBrankasku')
+@section('boxheader-title', 'Edit Kotak Infaq')
 
-@section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi. ')
+@section('boxheader-instruction', 'Tanda * wajib diisi.')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
@@ -35,14 +35,14 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/trxibrankasku/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="/trxkotakinfaq/{{$data->id}}">
 {{@csrf_field()}}
 
 {{method_field('PATCH')}}
 
         <!-- // DONATURNYA -->
         <div class="form-group">
-            <label for="namatrxibrankasku" class="col-sm-2 control-label input-lg">
+            <label for="namatrxkotakinfaq" class="col-sm-2 control-label input-lg">
                 Donatur
             </label>
 
@@ -101,27 +101,6 @@
 
 
 
-        <!-- //PERUNTUKAN DONASI -->
-        <div class="form-group">
-            <label for="peruntukandonasi_id" class="col-sm-2 control-label input-lg">
-                Peruntukan Donasi *
-            </label>
-
-            <div class="col-sm-10">
-                <select name="peruntukandonasi_id"  id="peruntukandonasi_id" class="form-control input-lg">
-                    
-                    @foreach($listperuntukandonasi as $peruntukandonasi)                    
-                    
-                        <option value="{{$peruntukandonasi->id}}" {{$peruntukandonasi->id == $data->peruntukandonasi_id ? "selected" : ""}}> {{$peruntukandonasi->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$peruntukandonasi->namaperuntukandonasi}}</option>
-
-                    @endforeach
-
-                </select>
-            </div>
-
-        </div>
-
-
         <!-- //AMil yang bertanggung Jawab -->
         <div class="form-group">
             <label for="amil_id" class="col-sm-2 control-label input-lg">
@@ -159,29 +138,28 @@
             </div>
 
         </div>
-
-
-        <!-- //DESKRIPSI BARANG -->
-        <div class="form-group">
-            <label for="deskripsibarang" class="col-sm-2 control-label input-lg">
-                Deskripsi barang
-            </label>
-
-            <div class="col-sm-10">
-                <textarea rows="5" name="deskripsibarang" class="form-control input-lg" id="deskripsibarang" required="required" placeholder="Masukkan detail barangnya. Bagian ini AKAN tercetak di kuitansi.  ">{{old('deskripsibarang', $data->deskripsibarang)}}</textarea>
-            </div>
-        </div>
         
-        <!-- //NOMINAL VALUASI -->
+        <!-- //JUMLAH TOTAL -->
         <div class="form-group">
-            <label for="nominalvaluasi" class="col-sm-2 control-label input-lg">
-                Nominal Valuasi <small>Mengganti bagian ini berimbas mengganti isi laporan bulanan</small>
+            <label for="jumlahtotal" class="col-sm-2 control-label input-lg">
+                Jumlah Total 
             </label>
 
             <div class="col-sm-10">
-                <input type="number" name="nominalvaluasi"  value="{{old('nominalvaluasi', $data->nominalvaluasi)}}" class="form-control input-lg" id="nominalvaluasi" placeholder="Bagian ini TIDAK TERCETAK di Kuitansi. Dapat diisi nanti (Edit).">
+                <input type="number" name="jumlahtotal"  value="{{old('jumlahtotal', $data->jumlahtotal)}}" class="form-control input-lg" id="jumlahtotal" placeholder="Isi dengan Hanya Angka.">
             </div>
 
+        </div>
+
+        <!-- //KETERANGAN -->
+        <div class="form-group">
+            <label for="keterangan" class="col-sm-2 control-label input-lg">
+                Keterangan (jika ada)
+            </label>
+
+            <div class="col-sm-10">
+                <textarea rows="2" name="keterangan" class="form-control input-lg" id="keterangan" placeholder="Keterangan / Catatan (jika ada)  ">{{old('keterangan', $data->keterangan)}}</textarea>
+            </div>
         </div>
 
 

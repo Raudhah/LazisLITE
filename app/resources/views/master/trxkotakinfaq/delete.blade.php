@@ -1,21 +1,21 @@
 
-<!-- // trxibrankasku -->
+<!-- // trxkotakinfaq -->
 
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'HAPUS Transaksi iBrankasku')
+@section('pagename', 'HAPUS Transaksi Kotak Infaq')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'iBrankasku')
+@section('modulname', 'Kotak Infaq')
 
 @section('modulsection', 'HAPUS')
 @section('modulicon', 'fa fa-trash')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'HAPUS iBrankasku')
+@section('boxheader-title', 'HAPUS Kotak Infaq')
 
-@section('boxheader-instruction', 'silakan Klik Edit / Hapus untuk mengubah Data')
+@section('boxheader-instruction', 'Apakah Yakin Anda Mau Menghapus Data Berikut?')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
@@ -64,21 +64,16 @@
                 </tr>
 
                 <tr>
-                    <th>Deskripsi Barang</th>
-                    <td><div>{{$deskripsibarang}}</div></td>
+                    <th>Keterangan</th>
+                    <td><div>{{$keterangan}}</div></td>
                 </tr>
 
                 <tr>
-                    <th>Nominal Valuasi</th>
-                    <td>{{number_format($nominalvaluasi,0,',','.')}}</td>
+                    <th>Jumlah Total</th>
+                    <td>{{number_format($jumlahtotal,0,',','.')}}</td>
                 </tr>
                 
-                <tr>
-                    <th>Peruntukan Donasi</th>
-                    <td><a class="btn btn-primary" href="/peruntukandonasi/{{$dataperuntukandonasi->id}}">{{$dataperuntukandonasi->namaperuntukandonasi}}</a></td>
-                </tr>
-                
-
+ 
             </tbody>
         </table>
 
@@ -93,7 +88,7 @@
         <div class="col-sm-10">
 
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="/trxibrankasku/{{$idtransaksi}}">
+            <form class="form-horizontal" method="POST" action="/trxkotakinfaq/{{$idtransaksi}}">
                 
                 {{@csrf_field()}}
                 {{method_field('DELETE')}}

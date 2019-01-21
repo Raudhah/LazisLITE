@@ -15,7 +15,7 @@
 <!-- //===========BOX  HEADER =========== -->
 @section('boxheader-title', 'HAPUS iBrankasku')
 
-@section('boxheader-instruction', 'silakan Klik Edit / Hapus untuk mengubah Data')
+@section('boxheader-instruction', 'Apakah Yakin Anda Mau Menghapus Data Berikut?')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')

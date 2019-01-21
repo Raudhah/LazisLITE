@@ -1,4 +1,4 @@
-<!-- // peruntukandonasi trxibrankasku -->
+<!-- //  trxkotakinfaq -->
 
 @extends('master.layout')
 
@@ -8,16 +8,16 @@
 @endsection
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Cari Transaksi iBrankasku')
+@section('pagename', 'Cari Transaksi Kotak Infaq')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'iBrankasku')
+@section('modulname', 'Kotak Infaq')
 
 @section('modulsection', 'Cari')
 @section('modulicon', 'fa fa-plus')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Cari Transaksi iBrankasku berdasarkan Kriteria')
+@section('boxheader-title', 'Cari Transaksi Kotak Infaq berdasarkan Kriteria')
 
 @section('boxheader-instruction', 'Silakan isi pada bagian yang ingin dicari. Kosongi / Biarkan pada bagian yang tidak menjadi kriteria pencarian ')
 
@@ -35,12 +35,12 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/trxibrankasku/search">
+<form class="form-horizontal" method="POST" action="/trxkotakinfaq/search">
 {{@csrf_field()}}
 
         <!-- // DONATURNYA -->
         <div class="form-group">
-            <label for="namatrxibrankasku" class="col-sm-2 control-label input-lg">
+            <label for="namatrxkotakinfaq" class="col-sm-2 control-label input-lg">
                 Donatur
             </label>
 
@@ -121,34 +121,6 @@
 
 
 
-        <!-- //INI ADALAH MODAL CARI DONATUR -->
-
-        <!-- //INI ADALAH MODAL CARI DONATUR SECARA LIVE / BARU -->
-        
-        <!-- //PERUNTUKAN DONASI -->
-        <div class="form-group">
-            <label for="peruntukandonasi_id" class="col-sm-2 control-label input-lg">
-                Peruntukan Donasi *
-            </label>
-
-            <div class="col-sm-10">
-                <select name="peruntukandonasi_id[]" size="6" multiple="multiple" id="peruntukandonasi_id" class="form-control input-lg">
-                    
-                    @foreach($listperuntukandonasi as $peruntukandonasi)                    
-                    
-                        <option selected="selected" value="{{$peruntukandonasi->id}}">{{$peruntukandonasi->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$peruntukandonasi->namaperuntukandonasi}}</option>
-
-                    @endforeach
-
-                </select>
-                <br/>
-                <button type="button" id="pilihperuntukandonasisemua" class="btn btn-sm btn-success no-padding">Pilih semua</button> - 
-                <button type="button" id="lepasperuntukandonasisemua" class="btn btn-sm btn-warning  no-padding">Lepas Semua</button>
-
-            </div>
-
-        </div>
-
 
         <!-- //AMil yang bertanggung Jawab -->
         <div class="form-group">
@@ -192,29 +164,30 @@
         </div>
 
 
-        <!-- //DESKRIPSI BARANG -->
+        <!-- //Jumlah Total -->
         <div class="form-group">
-            <label for="deskripsibarang" class="col-sm-2 control-label input-lg">
-                Deskripsi barang <small>Mengandung kata :  </small>
+            <label for="jumlahtotal" class="col-sm-2 control-label input-lg">
+                Jumlah Total <small>Antara... hingga</small>
             </label>
 
             <div class="col-sm-10">
-                <textarea rows="3" name="deskripsibarang" class="form-control input-lg" id="deskripsibarang" placeholder="Mengandung kata-kata berikut di deskripsi barang... (misal:mobil)">{{old('deskripsibarang')}}</textarea>
-            </div>
-        </div>
-        
-        <!-- //NOMINAL VALUASI -->
-        <div class="form-group">
-            <label for="nominalvaluasi" class="col-sm-2 control-label input-lg">
-                Nominal Valuasi <small>Antara... hingga</small>
-            </label>
-
-            <div class="col-sm-10">
-                <input type="number" name="nominalvaluasiawal"  class="form-control input-lg" id="nominalvaluasi" placeholder="estimasi nominal Awal">
+                <input type="number" name="jumlahtotalawal"  class="form-control input-lg" id="jumlahtotal" placeholder="estimasi nominal Awal">
                 Hingga... 
-                <input type="number" name="nominalvaluasiakhir"   class="form-control input-lg" id="nominalvaluasi" placeholder="estimasi nominal Akhir">
+                <input type="number" name="jumlahtotalakhir"   class="form-control input-lg" id="jumlahtotal" placeholder="estimasi nominal Akhir">
             </div>
 
+        </div>
+
+
+        <!-- //Keterangan -->
+        <div class="form-group">
+            <label for="keterangan" class="col-sm-2 control-label input-lg">
+                Keterangan <small>Mengandung kata :  </small>
+            </label>
+
+            <div class="col-sm-10">
+                <textarea rows="3" name="keterangan" class="form-control input-lg" id="keterangan" placeholder="Mengandung kata-kata berikut di Keterangan... (misal:mobil)">{{old('keterangan')}}</textarea>
+            </div>
         </div>
 
 
@@ -470,14 +443,6 @@
 
         $('#lepasamilsemua').click(function(){
             $('#amil_id option').prop('selected', false);
-        });
-
-        $('#pilihperuntukandonasisemua').click(function(){
-            $('#peruntukandonasi_id option').prop('selected', true);
-        });
-
-        $('#lepasperuntukandonasisemua').click(function(){
-            $('#peruntukandonasi_id option').prop('selected', false);
         });
 
     </script>
