@@ -232,7 +232,10 @@ class TrxdonasiController extends Controller
      */
     public function edit(Trxdonasi $trxdonasi)
     {
-        //populating untuk select dlsb... 
+        //ambil data peruntukandonasi buat ditampilkan di List Optionnya
+        $listperuntukandonasi = \App\peruntukandonasi::orderBy('namaperuntukandonasi','asc')
+                                              ->take('500')
+                                              ->get();
 
         //ambil data list amil buat ditampilkan di list Optionnya
         $listamil = \App\Amil::orderBy('namaamil','asc')
@@ -242,10 +245,14 @@ class TrxdonasiController extends Controller
 
         //data transaksi adalah ya trx donasi itu
         $data = $trxdonasi;
+        //rincian detail donasinya
+        $datadetaildonasi = $trxdonasi->trxdonasidetail;
+
+        //data donaturnya
         $datadonatur = $trxdonasi->donatur;
        
         // tampilkan KUITANSINYA BRO
-        return view('master/trxdonasi/edit', compact('data', 'datadonatur','listamil'));
+        return view('master/trxdonasi/edit', compact('data', 'datadetaildonasi','datadonatur','listamil', 'listperuntukandonasi'));
     }
 
     /**
@@ -262,6 +269,7 @@ class TrxdonasiController extends Controller
             'donatur_id' => $this->vrule_donatur_id,
             'amil_id' => $this->vrule_amil_id,
             'tanggaldonasi' => $this->vrule_tanggaldonasi,
+            'insidentil' => $this->vrule_insidentil,
             'jumlahtotal' => $this->vrule_jumlahtotal,
             'keterangan' => $this->vrule_keterangan,
         ]);
@@ -271,34 +279,84 @@ class TrxdonasiController extends Controller
         $trxdonasi->donatur_id = $request->donatur_id;
         $trxdonasi->amil_id = $request->amil_id;
         $trxdonasi->tanggaldonasi = $request->tanggaldonasi;
+        $trxdonasi->insidentil = $request->insidentil;
         $trxdonasi->jumlahtotal = $request->jumlahtotal;
         $trxdonasi->keterangan = $request->keterangan;
 
         //SIMPAN YUK
         $status = $trxdonasi->save();
 
+        //jika suskes mengentry transaksi donasinya... 
         if($status){
+
+                    //SEKARANG TRXDONASIDETAILNYA, JENGJENG.... 
+                    //========================================================================================
+
+                    //kita mulai dengan menghapus seluruh data yang ada trxdonasi_id nya sama dengan sekarang, 
+                    //=== PHASE 1 MENGHAPUS DATA TRXDONASI DETAILNYA DAHULU
+                    
+                    $listtrxdonasidetail = $trxdonasi->trxdonasidetail;
+                    //menghapus satu-satu trxdonasi detail
+                    foreach($listtrxdonasidetail as $trxdonasidetail){
+                        $statusitem = $trxdonasidetail->delete();
+                    }
+
+                    //=== PHASE 2 MENGISI ULANG DATA TRXDONASI DETAILNYA DAHULU
+
+                        //ambil data peruntukandonasi buat ditampilkan UNTUK lOOP CHECK 
+                        $listperuntukandonasi = \App\peruntukandonasi::orderBy('namaperuntukandonasi','asc')
+                                                                    ->take('500')
+                                                                    ->get();
+                        
+                        //mendapatkan isi detail donasi yang mana tidak 0 tentunya
+                        foreach($listperuntukandonasi as $peruntukandonasi){
+                            
+                            if(request('detaildonasi'.$peruntukandonasi->id) > 0){
+                                
+                                $trxdonasidetail = new Trxdonasidetail;
+
+                                $trxdonasidetail->trxdonasi_id = $trxdonasi->id;
+                                $trxdonasidetail->peruntukandonasi_id = $peruntukandonasi->id;
+                                $trxdonasidetail->jumlah = request('detaildonasi'.$peruntukandonasi->id);
+
+                                //simpan juga sekarang
+                                $trxdonasidetail->save();
+                            }
+                            
+                        }
+
+                    //================================= TRXDONASIDETAIL END =================================
+
             //menampilkan kuitansinya loh ya, bukan listnya lagi....
             //preparing data
             $keterangan = request('keterangan'); 
             
             $jumlahtotal = request('jumlahtotal'); 
             $tanggaldonasi = request('tanggaldonasi'); 
+            $insidentil = request('insidentil'); 
+
+            //dataamil
             $dataamil = $trxdonasi->amil; 
+            //datadonatur
             $datadonatur = $trxdonasi->donatur; 
 
             //id yang terakhir disimpan ini
             $idtransaksi = $trxdonasi->id;
             
+            //sekarang dapatkan itu-itu yang sudah keentry
+            $listtrxdonasidetail = $trxdonasi->trxdonasidetail;
+
+            
             //buat message nya
             $message = [
                 'show'  => '1',
                 'type' => 'success',
-                'content' => 'Alhamdulillah, Transaksi "'.$keterangan.'" berhasil diUpdate!',
+                'content' => 'Alhamdulillah, Transaksi dari "'.$datadonatur->nama.'" sebesar "'.$jumlahtotal.'"  berhasil disimpan!',
                 ];
     
             // tampilkan KUITANSINYA BRO
-            return view('master/trxdonasi/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
+            return view('master/trxdonasi/kuitansi', compact('listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil','message'));    
+
         }
         else{
             return dd('Uups! Error, data gagal masuk ke dalam database');

@@ -64,5 +64,12 @@ Route::get('/trxdonasi/{trxdonasi}/print', 'TrxdonasiController@showKuitansi');
 Route::resource('trxdonasi', 'TrxdonasiController');
 Route::get('trxdonasi/{trxdonasi}/delete', 'TrxdonasiController@delete');
 
+//================ TRX DONASI
+Route::get('/konfigurasi/search', 'KonfigurasiController@search');
+Route::post('/konfigurasi/search', 'KonfigurasiController@searchResult');
+Route::get('/konfigurasi/{konfigurasi}/print', 'KonfigurasiController@showKuitansi');
+Route::resource('konfigurasi', 'KonfigurasiController');
+Route::get('konfigurasi/{konfigurasi}/delete', 'KonfigurasiController@delete');
+
 
 

@@ -1,29 +1,100 @@
 
-<!-- // trxibrankasku -->
 
-@extends('master.layout')
+<!-- // trxdonasi -->
 
-<!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Detail iBrankasku')
+@extends('master.layoutkuitansi')
 
-<!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'iBrankasku')
 
-@section('modulsection', 'Detail')
-@section('modulicon', 'fa fa-edit')
 
-<!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Detail iBrankasku')
+<!-- //========== HEADER KUITANSI ======== -->
+<!-- //========== logo, alamat, dkk ditaruh disini ya ======== -->
+@section('headerkuitansi')
+    <i class="fa fa-car"></i>
+    
+    LazisLITE
 
-@section('boxheader-instruction', 'silakan Klik Edit / Hapus untuk mengubah Data')
+@endsection
 
-<!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
-@section('boxmessage')
+<!-- //========== NOMOR KUITANSI ======== -->
+@section('nomorkuitansi')
+    Kuitansi Nomor : IBRK-{{$idtransaksi}}
+@endsection
 
-    <!--//ambil dari file untuk formatnya   -->
-    @include('master/general/boxmessage')
+<!-- //========== KOLOM KIRI KUITANSI ======== -->
+@section('kolomkiri')
+    
+    <table class="table table-condensed no-border">
+        <tbody>
+                <tr>
+                    <th>Nama Donatur</th>
+                    <td>{{$datadonatur->namadonatur}}</td>
+                </tr>
+                <tr>
+                    <th>Almat Donatur</th>
+                    <td>{{$datadonatur->alamatdonatur}}</td>
+                </tr>
+                <tr>
+                    <th>Nomor Telepon Donatur</th>
+                    <td>{{$datadonatur->nomortelepondonatur}}</td>
+                </tr>
+        </tbody>
+    </table>
+
+@endsection
+
+<!-- //========== KOLOM KANAN KUITANSI ======== -->
+@section('kolomkanan')
+    
+    <table class="table table-condensed no-border">
+        <tbody>
+                    
+                    <tr>
+                        <th>Petugas AMIL</th>
+                        <td><a href="/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
+                    </tr>
+        
+                    
+                    <tr>
+                        <th>Tanggal </th>
+                        <td>{{$tanggaldonasi}}</td>
+                    </tr>
+        
+        </tbody>
+
+    </table>
+
+
+@endsection
+
+<!-- //========== RINCIAN KUITANSI ======== -->
+@section('rinciankuitansi')
+
+        <blockquote>
+            Alhamdulillah, telah diterima Pada Tanggal {{$tanggaldonasi}}  <br/>
+            Donasi berupa <strong>{{$deskripsibarang}}</strong>
+            <small><em>Semoga ALLAH memberi pahala atas apa yang Anda berikan, <br/> memberikan barokah atas apa yang masih di tangan Anda, <br/> dan menjadikannya sebagai pembersih Anda</em></small>
+        </blockquote>
+
+@endsection
+
+<!-- //========== NOMOR KUITANSI ======== -->
+@section('kolombawahkiri')
+    
+    
+    <br/>
+@endsection
+
+@section('kolombawahkanan')
+    TANDA TANGAN DISINI
+@endsection
+
+
+<!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
+@section('footer-code')
     
 @endsection
+
+
 
 
 <!-- //========== BOX CONTENT =========== -->

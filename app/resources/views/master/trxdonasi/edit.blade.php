@@ -101,24 +101,20 @@
 
 
 
-        <!-- //PERUNTUKAN DONASI -->
+        <!-- //INI ADALAH MODAL TAMBAH DONATUR SECARA LIVE / BARU -->
         <div class="form-group">
-            <label for="peruntukandonasi_id" class="col-sm-2 control-label input-lg">
-                Peruntukan Donasi *
+            <label for="insidentil" class="col-sm-2 control-label input-lg">
+                Jenis 
             </label>
 
             <div class="col-sm-10">
-                <select name="peruntukandonasi_id"  id="peruntukandonasi_id" class="form-control input-lg">
-                    
-                    @foreach($listperuntukandonasi as $peruntukandonasi)                    
-                    
-                        <option value="{{$peruntukandonasi->id}}" {{$peruntukandonasi->id == $data->peruntukandonasi_id ? "selected" : ""}}> {{$peruntukandonasi->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$peruntukandonasi->namaperuntukandonasi}}</option>
-
-                    @endforeach
-
-                </select>
+            <label class="input-lg">
+                    <input type="radio" name="insidentil" value="0" {{($data->insidentil==0?"checked":"")}}> Donasi Rutin 
+                </label>
+                <label class="input-lg">
+                    <input type="radio" name="insidentil" value="1" {{($data->insidentil==1?"checked":"")}}> Donasi Insidentil
+                </label>
             </div>
-
         </div>
 
 
@@ -168,18 +164,51 @@
             </label>
 
             <div class="col-sm-10">
-                <textarea rows="3" name="keterangan" class="form-control input-lg" id="keterangan" required="required" placeholder="Masukkan detail barangnya. Bagian ini AKAN tercetak di kuitansi.  ">{{old('keterangan', $data->keterangan)}}</textarea>
+                <textarea rows="2" name="keterangan" class="form-control input-lg" id="keterangan"  placeholder="Isi dengan keterangan jika ada">{{old('keterangan', $data->keterangan)}}</textarea>
             </div>
         </div>
         
-        <!-- //Jumlah Total -->
+
+        <!-- //DETAIL DONASI DAN JUMLAH TOTAL ================ -->
         <div class="form-group">
             <label for="jumlahtotal" class="col-sm-2 control-label input-lg">
-                Jumlah Total <small>Mengganti bagian ini berimbas mengganti isi laporan bulanan</small>
+                Detail Donasi*
             </label>
 
             <div class="col-sm-10">
-                <input type="number" name="jumlahtotal"  value="{{old('jumlahtotal', $data->jumlahtotal)}}" class="form-control input-lg" id="jumlahtotal" placeholder="Bagian ini TIDAK TERCETAK di Kuitansi. Dapat diisi nanti (Edit).">
+
+                <!--  //======== MERINCI SETIAP ITEM PERUNTUKAN DONASI ========== -->
+                <div class="row">
+                @foreach($listperuntukandonasi as $peruntukandonasi)   
+                
+                    <div class="form-group col-sm-12">
+                        <label for="detaildonasi{{$peruntukandonasi->id}}" class="col-sm-3 control-label input-lg">
+                                {{ $peruntukandonasi->namaperuntukandonasi}} {{$peruntukandonasi->statusaktif == 1 ? "" : "(TIDAK AKTIF!)"}}
+                        </label>
+
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control input-lg"  name="detaildonasi{{$peruntukandonasi->id}}" id="detaildonasi{{$peruntukandonasi->id}}" value="{{old('detaildonasi'.$peruntukandonasi->id, 0)}}"  placeholder="Jumlah {{$peruntukandonasi->namaperuntukandonasi}}" >        
+                        </div>
+                    </div>
+                    <!-- //form-group -->
+                @endforeach
+
+
+                    <div class="form-group col-sm-12 ">
+                        <label for="jumlahtotal" class=" bg-orange col-sm-3 control-label input-lg">
+                            Jumlah Total
+                        </label>
+
+                        <div class="col-sm-6 ">
+                            <input type="number" class=" bg-orange form-control input-lg" id="displayjumlahtotal" name="displayjumlahtotal" disabled value="{{old('jumlahtotal', $data->jumlahtotal)}}"  placeholder="Jumlah Total">        
+                            <input type="hidden" class="form-control input-lg" id="jumlahtotal" name="jumlahtotal" value="{{old('jumlahtotal', $data->jumlahtotal)}}"  placeholder="Jumlah Total">        
+                        </div>
+                    </div>
+                    <!-- //form-group -->
+
+            
+                </div>
+
             </div>
 
         </div>
@@ -424,6 +453,48 @@
             }
         }
 
+
+        //======= FUNGSI MENAMBAH-NAMBAHI INI 
+
+        //fungsi untuk menambah jumlah
+        function addJumlahTotal(){
+            //set nilai awal dulu
+            var sum = 0;
+            //foreach lalu menambahkan ke semuanya
+
+            @foreach($listperuntukandonasi as $peruntukandonasi)
+
+                sum = sum + parseInt($("#detaildonasi{{$peruntukandonasi->id}}").val());
+
+            @endforeach
+
+
+
+            //now set the jumlahtotal
+
+            $("#jumlahtotal").val(sum);           //the input which is submitted
+            $("#displayjumlahtotal").val(sum);    //for display only
+        }
+
+
+        @foreach($listperuntukandonasi as $peruntukandonasi)   
+        
+            $("#detaildonasi{{$peruntukandonasi->id}}").keyup(function(){
+                addJumlahTotal();
+            });
+
+        @endforeach
+
+        
+        
+    //FOREACH INI UNTUK MENGISI NILAI-NILAI SETIAP ITEMNYA DETAIL DONASI -->
+        @foreach ($datadetaildonasi as $detaildonasi)
+            $("#detaildonasi{{$detaildonasi->peruntukandonasi_id}}").val({{$detaildonasi->jumlah}});
+        @endforeach
+
     </script>
+
+
+        
     
 @endsection
