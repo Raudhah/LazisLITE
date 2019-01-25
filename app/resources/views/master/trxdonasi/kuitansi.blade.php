@@ -4,19 +4,41 @@
 @extends('master.layoutkuitansi')
 
 
+@section('pagename')
+    Cetak Kuitansi
+@endsection
+
 
 <!-- //========== HEADER KUITANSI ======== -->
 <!-- //========== logo, alamat, dkk ditaruh disini ya ======== -->
 @section('headerkuitansi')
-    <i class="fa fa-car"></i>
-    
-    LazisLITE
+<div class="row">
+        <div class="col-sm-3">
+                <img src="{{asset('img/'.$konfig->namafilelogo)}}" width="100"/>
+        </div>
+        <div class="col-sm-6">
+                {{$konfig->namacabang}}
+                <br/>
+
+                <small>
+
+                    {{$konfig->alamatcabang}}
+
+                </small>
+        </div>
+        <div class="col-sm-3" style="text-align:right">
+                <small>
+                    No. : DNS-{{$idtransaksi}}
+                </small>
+        </div>
+    </div>
+
+
 
 @endsection
 
 <!-- //========== NOMOR KUITANSI ======== -->
 @section('nomorkuitansi')
-    Kuitansi Nomor : DNS-{{$idtransaksi}}
 @endsection
 
 <!-- //========== KOLOM KIRI KUITANSI ======== -->

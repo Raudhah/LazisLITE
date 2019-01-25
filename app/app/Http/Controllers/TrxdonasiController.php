@@ -8,6 +8,7 @@ use App\Amil;
 use App\peruntukandonasi;
 use App\Donatur;
 use App\Trxdonasidetail;
+use App\Konfigurasi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -141,6 +142,9 @@ class TrxdonasiController extends Controller
 
             $listtrxdonasidetail = $trxdonasi->trxdonasidetail;
 
+            //konfig untuk data tampilannya utamanya
+            $konfig = \App\Konfigurasi::first();
+
             
             //buat message nya
             $message = [
@@ -150,7 +154,7 @@ class TrxdonasiController extends Controller
                 ];
     
             // tampilkan KUITANSINYA BRO
-            return view('master/trxdonasi/kuitansi', compact('listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil','message'));
+            return view('master/trxdonasi/kuitansi', compact('listtrxdonasidetail','konfig','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil','message'));
         }
         else{
             return dd('Uups! Error, data gagal masuk ke dalam database');
@@ -214,14 +218,15 @@ class TrxdonasiController extends Controller
 
         //dapatkan data donatur
         $datadonatur = $trxdonasi->donatur;
-
         $message = "";
 
         $listtrxdonasidetail = $trxdonasi->trxdonasidetail;
 
+        $konfig = \App\Konfigurasi::first();
+
 
         // tampilkan KUITANSINYA BRO
-        return view('master/trxdonasi/kuitansi', compact('listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil',  'message'));
+        return view('master/trxdonasi/kuitansi', compact('konfig','listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil',  'message'));
     }
 
     /**
@@ -346,6 +351,10 @@ class TrxdonasiController extends Controller
             //sekarang dapatkan itu-itu yang sudah keentry
             $listtrxdonasidetail = $trxdonasi->trxdonasidetail;
 
+            //dapatkan konfigurasi
+            //konfig untuk data tampilannya utamanya
+            $konfig = \App\Konfigurasi::first();
+
             
             //buat message nya
             $message = [
@@ -355,7 +364,7 @@ class TrxdonasiController extends Controller
                 ];
     
             // tampilkan KUITANSINYA BRO
-            return view('master/trxdonasi/kuitansi', compact('listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil','message'));    
+            return view('master/trxdonasi/kuitansi', compact('listtrxdonasidetail','konfig','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil','message'));    
 
         }
         else{
@@ -467,9 +476,14 @@ class TrxdonasiController extends Controller
         $listamil = \App\Amil::orderBy('namaamil','asc')
                                 ->take('500')
                                 ->get();
+
+        //ambil data peruntukandonasi buat ditampilkan di List Optionnya
+        $listperuntukandonasi = \App\peruntukandonasi::orderBy('namaperuntukandonasi','asc')
+                                                    ->take('500')
+                                                    ->get();
        
         // tampilkan FORM CARINYA BRO
-        return view('master/trxdonasi/search', compact('listamil'));
+        return view('master/trxdonasi/search', compact('listamil', 'listperuntukandonasi'));
     }
 
 
@@ -483,34 +497,35 @@ class TrxdonasiController extends Controller
      public function searchResult(Request $request){
         //dapatkan semua isinya dahulu
 
-        // dd($request->all());
-
         $keterangan = $request->keterangan;
         $jumlahtotalawal = $request->jumlahtotalawal;
         $jumlahtotalakhir = $request->jumlahtotalakhir;
 
+
         //dapatkan tanggal donasi dan memisahkannya (-)
         $tanggaldonasiantara = $request->tanggaldonasi;
 
-        $tanggaldonasiarray = explode("-", $tanggaldonasiantara);
-        //hapus spasi
-        $tanggaldonasiawal = trim($tanggaldonasiarray[0]);
-        $tanggaldonasiakhir = trim($tanggaldonasiarray[1]);
-
-
         //dapatkan list amil
         $listamil = $request->amil_id;
+
+        $insidentil = $request->insidentil;
+        
 
         //semua donatur
         $donatur_id = $request->donatur_id;
         $semuadonatur = $request->checkboxsemuadonatur; //null jika tidak diisi, //1 jika di check
 
         //SEKARANG MEMBUAT QUERY-NYA YAA.. 
-        $data = \App\Trxdonasi::select('id','donatur_id','tanggaldonasi', 'keterangan', 'jumlahtotal')
+        $data = \App\Trxdonasi::select('id','donatur_id','amil_id','tanggaldonasi', 'keterangan', 'jumlahtotal')
                                     ->with(['donatur'])
+                                    ->with(['amil'])
                                     //when amil_id
                                     ->when($request->amil_id != null, function($query) use ($listamil){
                                         return $query->whereIn('amil_id', $listamil);
+                                    })
+                                    //when insidentil di set
+                                    ->when($insidentil != -1, function($query) use ($insidentil){
+                                        return $query->where('insidentil', $insidentil);
                                     })
 
                                     //when keterangan
@@ -523,8 +538,13 @@ class TrxdonasiController extends Controller
                                         return $query->whereBetween('jumlahtotal', [$jumlahtotalawal, $jumlahtotalakhir]);
                                     })
                                     //when tanggaldonasi
-                                    ->when($tanggaldonasiawal != null && $tanggaldonasiakhir !=null, function($query) use ($tanggaldonasiawal, $tanggaldonasiakhir){
-                                       // dd($tanggaldonasiawal.' hingga '.$tanggaldonasiakhir);
+                                    ->when($tanggaldonasiantara != null, function($query) use ($tanggaldonasiantara){
+
+                                        $tanggaldonasiarray = explode("-", $tanggaldonasiantara);
+                                        //hapus spasi
+                                        $tanggaldonasiawal = trim($tanggaldonasiarray[0]);
+                                        $tanggaldonasiakhir = trim($tanggaldonasiarray[1]);
+
 
                                         $tanggaldonasiawal = Carbon::createFromFormat('d/m/Y', $tanggaldonasiawal)->toDateString();
                                         $tanggaldonasiakhir = Carbon::createFromFormat('d/m/Y', $tanggaldonasiakhir)->toDateString();
@@ -541,8 +561,6 @@ class TrxdonasiController extends Controller
                                     ->take('500')
                                     ->get();
 
-        
-        // dd($data);
         return view('master/trxdonasi/tampilkan', compact('data'));
 
          dd($request->all());

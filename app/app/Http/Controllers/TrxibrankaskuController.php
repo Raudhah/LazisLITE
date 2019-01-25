@@ -401,10 +401,7 @@ class TrxibrankaskuController extends Controller
         //dapatkan tanggal donasi dan memisahkannya (-)
         $tanggaldonasiantara = $request->tanggaldonasi;
 
-        $tanggaldonasiarray = explode("-", $tanggaldonasiantara);
-        //hapus spasi
-        $tanggaldonasiawal = trim($tanggaldonasiarray[0]);
-        $tanggaldonasiakhir = trim($tanggaldonasiarray[1]);
+       
 
 
         //dapatkan list amil dan list peruntukandonasi (BENTUK ARRAY)
@@ -436,8 +433,13 @@ class TrxibrankaskuController extends Controller
                                         return $query->whereBetween('nominalvaluasi', [$nominalvaluasiawal, $nominalvaluasiakhir]);
                                     })
                                     //when tanggaldonasi
-                                    ->when($tanggaldonasiawal != null && $tanggaldonasiakhir !=null, function($query) use ($tanggaldonasiawal, $tanggaldonasiakhir){
+                                    ->when($tanggaldonasiantara != null, function($query) use ($tanggaldonasiantara){
                                        // dd($tanggaldonasiawal.' hingga '.$tanggaldonasiakhir);
+
+                                        $tanggaldonasiarray = explode("-", $tanggaldonasiantara);
+                                        //hapus spasi
+                                        $tanggaldonasiawal = trim($tanggaldonasiarray[0]);
+                                        $tanggaldonasiakhir = trim($tanggaldonasiarray[1]);
 
                                         $tanggaldonasiawal = Carbon::createFromFormat('d/m/Y', $tanggaldonasiawal)->toDateString();
                                         $tanggaldonasiakhir = Carbon::createFromFormat('d/m/Y', $tanggaldonasiakhir)->toDateString();

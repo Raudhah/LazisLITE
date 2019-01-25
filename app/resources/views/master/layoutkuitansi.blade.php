@@ -1,11 +1,11 @@
 @include("master/header1")
   
-    <title>@yield('appname', 'LazisLITE 2') | @yield('pagename')</title>
+    <title>@yield('appname', env('APP_NAME')) | @yield('pagename')</title>
 
 
     @include("master/header2")
     
-    @yield('headertag', "")
+    @yield('headertag')
 
 
     @include("master/menu/top")
@@ -27,12 +27,12 @@
       <div class="pad margin no-print">
         <div class="callout callout-info" style="margin-bottom: 0!important;">
           <h4><i class="fa fa-info"></i> Note:</h4>
-          This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+          Halaman ini dioptimasi untuk dapat dicetak. Klik tombol Cetak di bawah. Anda juga dapat mendownload versi PDF nya. 
         </div>
       </div>
   
       <!-- Main content -->
-      <section class="invoice">
+      <section class="invoice" style="border:1px solid black">
         <!-- title row -->
         <div class="row">
           <div class="col-xs-12">
@@ -89,18 +89,23 @@
         </div>
         <!-- /.row -->
   
-        <!-- this row will not appear when printing -->
-        <div class="row no-print">
-          <div class="col-xs-12">
-            <button type="button" class="btn btn-default" onclick="window.print()"><i class="fa fa-print"></i> Cetak Kuitansi</a>
-            </button>
-            <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-              <i class="fa fa-download"></i> Download PDF
-            </button>
-          </div>
-        </div>
+        
       </section>
       <!-- /.content -->
+      
+        <section class="invoice no-print">
+            <!-- this row will not appear when printing -->
+            <div class="row no-print">
+              <div class="col-xs-12">
+                <button type="button" class="btn btn-default" onclick="window.print()"><i class="fa fa-print"></i> Cetak Kuitansi</a>
+                </button>
+                <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                  <i class="fa fa-download"></i> Download PDF
+                </button>
+              </div>
+            </div>
+
+        </section>
       <div class="clearfix"></div>
     </div>
     <!-- /.content-wrapper -->

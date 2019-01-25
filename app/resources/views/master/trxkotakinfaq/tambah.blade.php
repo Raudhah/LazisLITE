@@ -108,8 +108,15 @@
             <div class="col-sm-10">
                 <select name="amil_id" id="amil_id" class="form-control input-lg">
                     @foreach($listamil as $amil)
+
+                    @if (old('amil_id') == $amil->id)
+                        <option selected="selected" value="{{$amil->id}}">{{$amil->namaamil}}</option>
+                    @else
+                        <option value="{{$amil->id}}">{{$amil->namaamil}}</option>
+                        
+                    @endif
                     
-                    <option value="{{$amil->id}}">{{$amil->namaamil}}</option>
+
 
                     @endforeach
 
@@ -141,11 +148,11 @@
         <!-- //Jumlah Total -->
         <div class="form-group">
             <label for="jumlahtotal" class="col-sm-2 control-label input-lg">
-                Jumlah Total <small>(isi kotak infaq)</small>
+                Jumlah Total* <small>(isi kotak infaq)</small>
             </label>
 
             <div class="col-sm-10">
-                <input type="number" name="jumlahtotal"  value="{{old('jumlahtotal')}}" class="form-control input-lg" id="jumlahtotal" placeholder="Isi dengan Hanya Angka.">
+                <input type="number" name="jumlahtotal"  value="{{old('jumlahtotal')}}" class="form-control input-lg" required="required" id="jumlahtotal" placeholder="Isi dengan Hanya Angka.">
             </div>
 
         </div>

@@ -34,25 +34,25 @@
 {{@csrf_field()}}
 {{method_field('PATCH')}}
 
-        <!-- //namaprogram -->
+        <!-- //namalaz -->
         <div class="form-group">
-            <label for="namaprogram" class="col-sm-2 control-label input-lg">
-                Nama Program *
+            <label for="namalaz" class="col-sm-2 control-label input-lg">
+                Nama LAZ *
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namaprogram" value="{{old('namaprogram', $data->namaprogram)}}" id="namaprogram" required>
+                <input type="text" class="form-control input-lg" name="namalaz" value="{{old('namalaz', $data->namalaz)}}" id="namalaz" required="required">
             </div>
         </div>
  
         <!-- //kodelaz -->
         <div class="form-group">
             <label for="kodelaz" class="col-sm-2 control-label input-lg">
-                KODE LAZ *
+                Kode LAZ *
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="kodelaz" value="{{old('kodelaz', $data->kodelaz)}}" id="kodelaz" required>
+                <input type="text" class="form-control input-lg" name="kodelaz" value="{{old('kodelaz', $data->kodelaz)}}" id="kodelaz" required="required">
             </div>
         </div>
  
@@ -85,18 +85,73 @@
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="alamatcabang" value="{{old('alamatcabang', $data->alamatcabang)}}" id="alamatcabang" required>
+                <input type="text" class="form-control input-lg" name="alamatcabang" value="{{old('alamatcabang', $data->alamatcabang)}}" id="alamatcabang" required="required">
             </div>
         </div>
  
-        <!-- //kontakcabang -->
+        <!-- //nomorteleponcabang -->
         <div class="form-group">
-            <label for="kontakcabang" class="col-sm-2 control-label input-lg">
-                Kontak Cabang *
+            <label for="nomorteleponcabang" class="col-sm-2 control-label input-lg">
+                Nomor Telepon*
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="kontakcabang" value="{{old('kontakcabang', $data->kontakcabang)}}" id="kontakcabang" required>
+                <input type="text" class="form-control input-lg" name="nomorteleponcabang" value="{{old('nomorteleponcabang', $data->nomorteleponcabang)}}" id="nomorteleponcabang" required="required">
+            </div>
+        </div>
+ 
+        <!-- //websitecabang -->
+        <div class="form-group">
+            <label for="websitecabang" class="col-sm-2 control-label input-lg">
+                Website LAZ
+            </label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control input-lg" name="websitecabang" value="{{old('websitecabang', $data->websitecabang)}}" id="websitecabang">
+            </div>
+        </div>
+ 
+        <!-- //emailcabang -->
+        <div class="form-group">
+            <label for="emailcabang" class="col-sm-2 control-label input-lg">
+                Email Cabang
+            </label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control input-lg" name="emailcabang" value="{{old('emailcabang', $data->emailcabang)}}" id="emailcabang">
+            </div>
+        </div>
+
+        <!-- //nomorrekeningcabang -->
+        <div class="form-group">
+            <label for="nomorrekeningcabang" class="col-sm-2 control-label input-lg">
+                Nomor Rekening Cabang
+            </label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control input-lg" name="nomorrekeningcabang" value="{{old('nomorrekeningcabang', $data->nomorrekeningcabang)}}" id="nomorrekeningcabang">
+            </div>
+        </div>
+
+        <!-- //keterangan -->
+        <div class="form-group">
+            <label for="keterangan" class="col-sm-2 control-label input-lg">
+                Keterangan
+            </label>
+
+            <div class="col-sm-10">
+                <textarea rows="4" class="form-control input-lg" name="keterangan" id="keterangan">{{old('keterangan', $data->keterangan)}}</textarea>
+            </div>
+        </div>
+
+        <!-- //tekskuitansi -->
+        <div class="form-group">
+            <label for="tekskuitansi" class="col-sm-2 control-label input-lg">
+                Teks di Kuitansi
+            </label>
+
+            <div class="col-sm-10">
+                <textarea rows="4" class="form-control input-lg" name="tekskuitansi" id="tekskuitansi">{{old('tekskuitansi', $data->tekskuitansi)}}</textarea>
             </div>
         </div>
  
@@ -127,7 +182,7 @@
         <!-- //namafilebackground -->
         <div class="form-group">
             <label for="namafilebackground" class="col-sm-2 control-label input-lg">
-                Nama Program *
+                Nama File Background Kuitansi
             </label>
 
             <div class="col-sm-10">

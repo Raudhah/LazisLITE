@@ -139,10 +139,10 @@
           </a>
 
           <ul class="treeview-menu">
-            <li><a href="lz-laporan-trx-semua.php"><i class="fa fa-circle-o"></i> Laporan Semua Transaksi</a></li>
-            <li><a href="lz-laporan-trx-rekapamil.php"><i class="fa fa-circle-o"></i> Laporan Per-Amil</a></li>
-            <li><a href="lz-laporan-trx-rekapperuntukan.php"><i class="fa fa-circle-o"></i> Rekap Per-Peruntukan</a></li>
-            <li><a href="lz-laporan-trx-rekapdonatur.php"><i class="fa fa-circle-o"></i> Rekap Per-Donatur</a></li>
+            <li><a href="/laporan/all"><i class="fa fa-circle-o"></i> Laporan Semua Transaksi</a></li>
+            <li><a href="/laporan/amil"><i class="fa fa-circle-o"></i> Laporan Berdasarkan Amil</a></li>
+            <li><a href="/laporan/peruntukandonasi"><i class="fa fa-circle-o"></i> Rekap Per-Peruntukan</a></li>
+            <li><a href="/laporan/donatur"><i class="fa fa-circle-o"></i> Rekap Per-Donatur</a></li>
           </ul>
         </li>
         <!-- / MENU Laporan -->
@@ -150,7 +150,7 @@
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book text-red"></i> <span>Petunjuk Penggunaan</span></a></li>
         
         <li class="header">Atur Program</li>
-        <li><a href="lz-konfig-konfigurasi.php"><i class="fa fa-gears text-teal"></i> <span>Konfigurasi</span></a></li>
+        <li><a href="/konfigurasi"><i class="fa fa-gears text-teal"></i> <span>Konfigurasi</span></a></li>
         <li><a href="lz-konfig-backup.php"><i class="fa fa-cubes text-teal"></i> <span>Backup Database</span></a></li>
 
         <li class="header">User</li>

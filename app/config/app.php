@@ -1,6 +1,26 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Application Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    |
+    */
+
+    'kodedonatur' => env('KODE_DONATUR', 'AMLG-'),
+    'kodeamil' => env('KODE_AMIL', 'A-'),
+    'kodekuitansi' => [
+        'trxdonasi'     =>     env('KODE_KUITANSI_DONASI', 'dns-'), 
+        'trxkotakinfaq'     =>     env('KODE_KUITANSI_KOTAKINFAQ', 'inf-'), 
+        'trxibrankasku'     =>     env('KODE_KUITANSI_IBRANKASKU', 'ibr-'), 
+    ],
+
+
 
     /*
     |--------------------------------------------------------------------------

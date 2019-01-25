@@ -98,7 +98,7 @@
         </div>
 
 
-        <!-- //INI ADALAH MODAL TAMBAH DONATUR SECARA LIVE / BARU -->
+        <!-- //JENIS DONASI -->
         <div class="form-group">
             <label for="insidentil" class="col-sm-2 control-label input-lg">
                 Jenis 

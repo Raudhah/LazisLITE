@@ -126,7 +126,7 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text"  name="tanggallahir" id="tanggallahir" value="01/01/1930 - 12/12/2030"  class="form-control pull-right" >
+                    <input type="text"  name="tanggallahir" id="tanggallahir" value=""  class="form-control pull-right" >
                 </div>
                 <!-- //.input group date -->    
             </div>
@@ -206,9 +206,14 @@
         $('#tanggallahir').daterangepicker({
             
             format : "dd/mm/yyyy",
-            setDate : "17/09/1987",
+            locale: {
+                format: 'DD/MM/YYYY' // --------Here
+            },
             autoclose: true,
+            allowEmpty:true,
         })
+        //emptying the daterangepicker on init
+        $('#tanggallahir').val('');
 
         $('#pilihamilsemua').click(function(){
             $('#amil_id option').prop('selected', true);

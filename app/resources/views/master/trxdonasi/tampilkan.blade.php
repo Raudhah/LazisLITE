@@ -35,8 +35,8 @@
     <tr>
       <th>No.</th>
       <th>Tanggal</th>
-      <th>Amil</th>
       <th>Donatur</th>
+      <th>Amil</th>
       <th>Jumlah Total</th>
       <th></th>
       <th></th>
@@ -55,8 +55,8 @@
         <tr>
             <td>{{ ++$key}}</td>
             <td> {{ $item->tanggaldonasi }}</td>
-            <td> {{ $item->amil->namaamil }}</td>
             <td> {{ $item->donatur->namadonatur }}</td>
+            <td> {{ $item->amil->namaamil }}</td>
             <td class="pull-right"> {{ number_format($item->jumlahtotal,0,',','.') }}</td>
             <td><a href="/trxdonasi/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi"><i class="fa fa-print"></i></a></td>
             <td><a href="/trxdonasi/{{ $item->id }}"  data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a></td>

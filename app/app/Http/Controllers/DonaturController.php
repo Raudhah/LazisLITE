@@ -364,11 +364,7 @@ class DonaturController extends Controller
         $nomortelepondonatur = $request->nomortelepondonatur;
         //Jeng-Jeng.... TANGGAL LAHIR
         $tanggallahirantara = $request->tanggallahir;
-        //mecah dulu
-        $tanggallahirarray = explode("-", $tanggallahirantara);
-        //hapus spasi
-        $tanggallahirawal = trim($tanggallahirarray[0]);
-        $tanggallahirakhir = trim($tanggallahirarray[1]);
+
         
         $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur')
                             //when amil_id
@@ -409,7 +405,13 @@ class DonaturController extends Controller
                                 return $query->where('nomortelepondonatur','like','%'.$nomortelepondonatur.'%');
                             })
                             //when tanggal lahir benar diset
-                            ->when(($tanggallahirawal != null && $tanggallahirakhir != null), function($query) use ($tanggallahirawal, $tanggallahirakhir){
+                            ->when(($tanggallahirantara!= null), function($query) use ($tanggallahirantara){
+
+                                    //mecah dulu
+                                $tanggallahirarray = explode("-", $tanggallahirantara);
+                                //hapus spasi
+                                $tanggallahirawal = trim($tanggallahirarray[0]);
+                                $tanggallahirakhir = trim($tanggallahirarray[1]);
                                 
                                 $tanggallahirawal = Carbon::createFromFormat('d/m/Y', $tanggallahirawal)->toDateString();
                                 $tanggallahirakhir = Carbon::createFromFormat('d/m/Y', $tanggallahirakhir)->toDateString();

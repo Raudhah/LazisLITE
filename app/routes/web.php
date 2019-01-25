@@ -71,5 +71,12 @@ Route::get('/konfigurasi/{konfigurasi}/print', 'KonfigurasiController@showKuitan
 Route::resource('konfigurasi', 'KonfigurasiController');
 Route::get('konfigurasi/{konfigurasi}/delete', 'KonfigurasiController@delete');
 
+//================ LAPORAN
+Route::get('/laporan', 'LaporanController@semuaTrx');
+Route::get('/laporan/all', 'LaporanController@semuaTrx');
+Route::post('/laporan/all', 'LaporanController@semuaTrxProses');
+Route::get('/laporan/amil', 'LaporanAmilController@semuaTrx');
+Route::post('/laporan/amil', 'LaporanAmilController@semuaTrxProses');
+
 
 

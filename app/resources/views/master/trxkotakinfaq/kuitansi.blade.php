@@ -4,20 +4,35 @@
 
 @extends('master.layoutkuitansi')
 
+<!-- //========== SITE TITLE ======== -->
+@section('pagename', 'Cetak Kuitansi')
 
 
 <!-- //========== HEADER KUITANSI ======== -->
 <!-- //========== logo, alamat, dkk ditaruh disini ya ======== -->
 @section('headerkuitansi')
-    <i class="fa fa-car"></i>
-    
-    LazisLITE
+<div class="row">
+        <div class="col-sm-3">
+                <img src="{{asset('img/logolaz.png')}}" width="100"/>
+        </div>
+        <div class="col-sm-6">
+                LAZ Baitul Maal Abdurrahman Bin Auf (LAZ ABA)
+                <br/>
+        </div>
+        <div class="col-sm-3" style="text-align:right">
+                <small>
+                    No. : INFQ-{{$idtransaksi}}
+                </small>
+        </div>
+    </div>
+
+
 
 @endsection
 
 <!-- //========== NOMOR KUITANSI ======== -->
 @section('nomorkuitansi')
-    Kuitansi Nomor : INFQ-{{$idtransaksi}}
+   
 @endsection
 
 <!-- //========== KOLOM KIRI KUITANSI ======== -->

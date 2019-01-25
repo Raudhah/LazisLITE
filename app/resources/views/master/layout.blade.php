@@ -1,6 +1,6 @@
 @include("master/header1")
   
-    <title>@yield('appname', 'LazisLITE 2') | @yield('pagename')</title>
+    <title>@yield('appname', env('APP_NAME')) | @yield('pagename')</title>
 
 
     @include("master/header2")

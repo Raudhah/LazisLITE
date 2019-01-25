@@ -41,7 +41,7 @@
         <!-- // DONATURNYA -->
         <div class="form-group">
             <label for="namatrxibrankasku" class="col-sm-2 control-label input-lg">
-                Donatur
+                Donatur*
             </label>
 
             <div class="col-sm-10">
@@ -113,9 +113,15 @@
             <div class="col-sm-10">
                 <select name="peruntukandonasi_id"  id="peruntukandonasi_id" class="form-control input-lg">
                     
-                    @foreach($listperuntukandonasi as $peruntukandonasi)                    
+                    @foreach($listperuntukandonasi as $peruntukandonasi)   
                     
-                        <option value="{{$peruntukandonasi->id}}">{{$peruntukandonasi->namaperuntukandonasi}}</option>
+                        @if (old('peruntukandonasi_id') == $peruntukandonasi->id)
+                            <option selected="selected" value="{{$peruntukandonasi->id}}">{{$peruntukandonasi->namaperuntukandonasi}}</option>    
+                        @else
+                            <option value="{{$peruntukandonasi->id}}">{{$peruntukandonasi->namaperuntukandonasi}}</option>
+                        @endif
+                    
+                        
 
                     @endforeach
 
@@ -135,7 +141,13 @@
                 <select name="amil_id" id="amil_id" class="form-control input-lg">
                     @foreach($listamil as $amil)
                     
-                    <option value="{{$amil->id}}">{{$amil->namaamil}}</option>
+                    @if (old('amil_id') == $amil->id)
+                        <option selected="selected" value="{{$amil->id}}">{{$amil->namaamil}}</option>    
+                    @else
+                        <option value="{{$amil->id}}">{{$amil->namaamil}}</option>
+                    @endif
+
+                    
 
                     @endforeach
 
@@ -156,7 +168,7 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text"  name="tanggaldonasi" id="tanggaldonasi" value="{{old('tanggaldonasi')}}"  class="form-control pull-right" required="required">
+                    <input type="text"   name="tanggaldonasi" id="tanggaldonasi" value="{{old('tanggaldonasi')}}"  class="form-control pull-right" required="required">
                 </div>
                 <!-- //.input group date -->    
             </div>
@@ -167,7 +179,7 @@
         <!-- //DESKRIPSI BARANG -->
         <div class="form-group">
             <label for="deskripsibarang" class="col-sm-2 control-label input-lg">
-                Deskripsi barang
+                Deskripsi barang*
             </label>
 
             <div class="col-sm-10">
@@ -178,11 +190,11 @@
         <!-- //NOMINAL VALUASI -->
         <div class="form-group">
             <label for="nominalvaluasi" class="col-sm-2 control-label input-lg">
-                Nominal Valuasi <small>Bisa diisi nanti</small>
+                Nominal Valuasi <small>(Bisa diisi nanti)</small>
             </label>
 
             <div class="col-sm-10">
-                <input type="number" name="nominalvaluasi"  value="{{old('nominalvaluasi')}}" class="form-control input-lg" id="nominalvaluasi" placeholder="Bagian ini TIDAK TERCETAK di Kuitansi. Dapat diisi nanti (Edit).">
+                <input type="number" name="nominalvaluasi"  value="{{old('nominalvaluasi',0)}}" class="form-control input-lg" id="nominalvaluasi" placeholder="Bagian ini TIDAK TERCETAK di Kuitansi. Dapat diisi nanti (Edit).">
             </div>
 
         </div>

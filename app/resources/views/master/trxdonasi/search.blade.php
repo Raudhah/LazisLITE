@@ -119,34 +119,23 @@
         <!-- //  /form-group -->
 
 
-
-
-        <!-- //INI ADALAH MODAL CARI DONATUR -->
-
-        <!-- //INI ADALAH MODAL CARI DONATUR SECARA LIVE / BARU -->
-        
-        <!-- //PERUNTUKAN DONASI -->
+        <!-- //JENIS DONASI -->
         <div class="form-group">
-            <label for="peruntukandonasi_id" class="col-sm-2 control-label input-lg">
-                Peruntukan Donasi *
+            <label for="insidentil" class="col-sm-2 control-label input-lg">
+                Jenis 
             </label>
 
             <div class="col-sm-10">
-                <select name="peruntukandonasi_id[]" size="6" multiple="multiple" id="peruntukandonasi_id" class="form-control input-lg">
-                    
-                    @foreach($listperuntukandonasi as $peruntukandonasi)                    
-                    
-                        <option selected="selected" value="{{$peruntukandonasi->id}}">{{$peruntukandonasi->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$peruntukandonasi->namaperuntukandonasi}}</option>
-
-                    @endforeach
-
-                </select>
-                <br/>
-                <button type="button" id="pilihperuntukandonasisemua" class="btn btn-sm btn-success no-padding">Pilih semua</button> - 
-                <button type="button" id="lepasperuntukandonasisemua" class="btn btn-sm btn-warning  no-padding">Lepas Semua</button>
-
+                <label class="input-lg">
+                    <input type="radio" name="insidentil" value="-1" checked> Semuanya 
+                </label>
+                <label class="input-lg">
+                    <input type="radio" name="insidentil" value="0"> Donasi Rutin 
+                </label>
+                <label class="input-lg">
+                    <input type="radio" name="insidentil" value="1"> Donasi Insidentil
+                </label>
             </div>
-
         </div>
 
 
@@ -184,7 +173,7 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text"  name="tanggaldonasi" id="tanggaldonasi" value="{{old('tanggaldonasi', '01/01/1930 - 12/12/2030')}}"  class="form-control pull-right" required="required">
+                    <input type="text"  name="tanggaldonasi" id="tanggaldonasi" value="{{old('tanggaldonasi')}}"  class="form-control pull-right">
                 </div>
                 <!-- //.input group date -->    
             </div>
@@ -311,10 +300,14 @@
         $('#tanggaldonasi').daterangepicker({
             
             format : "dd/mm/yyyy",
-            defaultDate : new Date(),
+            locale: {
+                format: 'DD/MM/YYYY' // --------Here
+            },
             autoclose: true,
+            allowEmpty:true,
         })
 
+        $('#tanggaldonasi').val('');
 
         //jika dalam teks pencarian, ENTER di tekan, apa yang terjadi.. 
         $("#inputcaridonatur").keypress(function(event) {

@@ -370,12 +370,6 @@ class TrxkotakinfaqController extends Controller
         //dapatkan tanggal donasi dan memisahkannya (-)
         $tanggaldonasiantara = $request->tanggaldonasi;
 
-        $tanggaldonasiarray = explode("-", $tanggaldonasiantara);
-        //hapus spasi
-        $tanggaldonasiawal = trim($tanggaldonasiarray[0]);
-        $tanggaldonasiakhir = trim($tanggaldonasiarray[1]);
-
-
         //dapatkan list amil (BENTUK ARRAY)
         $listamil = $request->amil_id;
 
@@ -402,9 +396,14 @@ class TrxkotakinfaqController extends Controller
                                         return $query->whereBetween('jumlahtotal', [$jumlahtotalawal, $jumlahtotalakhir]);
                                     })
                                     //when tanggaldonasi
-                                    ->when($tanggaldonasiawal != null && $tanggaldonasiakhir !=null, function($query) use ($tanggaldonasiawal, $tanggaldonasiakhir){
-                                       // dd($tanggaldonasiawal.' hingga '.$tanggaldonasiakhir);
+                                    ->when($tanggaldonasiantara != null, function($query) use ($tanggaldonasiantara){
 
+                                       $tanggaldonasiarray = explode("-", $tanggaldonasiantara);
+                                       //hapus spasi
+                                       $tanggaldonasiawal = trim($tanggaldonasiarray[0]);
+                                       $tanggaldonasiakhir = trim($tanggaldonasiarray[1]);
+                               
+                               
                                         $tanggaldonasiawal = Carbon::createFromFormat('d/m/Y', $tanggaldonasiawal)->toDateString();
                                         $tanggaldonasiakhir = Carbon::createFromFormat('d/m/Y', $tanggaldonasiakhir)->toDateString();
 

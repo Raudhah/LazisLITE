@@ -74,8 +74,12 @@
             <div class="col-sm-10">
                 <select name="amil_id" id="amil_id" class="form-control input-lg">
                     @foreach($listamil as $amil)
-                    
-                    <option value="{{$amil->id}}">{{$amil->namaamil}}</option>
+
+                    @if (old('amil_id') == $amil->id)
+                        <option selected="selected" value="{{$amil->id}}">{{$amil->namaamil}}</option>    
+                    @else
+                        <option value="{{$amil->id}}">{{$amil->namaamil}}</option>
+                    @endif
 
                     @endforeach
 
@@ -135,9 +139,15 @@
             <div class="col-sm-10">
                 <select name="pekerjaandonatur_id"  id="pekerjaandonatur_id" class="form-control input-lg">
                     
-                    @foreach($listpekerjaandonatur as $pekerjaandonatur)                    
+                    @foreach($listpekerjaandonatur as $pekerjaandonatur)
                     
-                        <option value="{{$pekerjaandonatur->id}}">{{$pekerjaandonatur->namapekerjaandonatur}}</option>
+                        @if (old('pekerjaandonatur_id') == $pekerjaandonatur->id)
+                            <option selected="selected" value="{{$pekerjaandonatur->id}}">{{$pekerjaandonatur->namapekerjaandonatur}}</option>    
+                        @else
+                            <option value="{{$pekerjaandonatur->id}}">{{$pekerjaandonatur->namapekerjaandonatur}}</option>
+                        @endif
+                    
+                        
 
                     @endforeach
 

@@ -176,7 +176,7 @@
         <!-- //TANGGAL DONASI -->
         <div class="form-group">
             <label for="tanggaldonasi" class="col-sm-2 control-label input-lg">
-                Tanggal Donasi *
+                Tanggal Donasi
             </label>
 
             <div class="col-sm-10">
@@ -184,7 +184,7 @@
                     <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text"  name="tanggaldonasi" id="tanggaldonasi" value="{{old('tanggaldonasi', '01/01/1930 - 12/12/2030')}}"  class="form-control pull-right" required="required">
+                    <input type="text"  name="tanggaldonasi" id="tanggaldonasi" value="{{old('tanggaldonasi')}}"  class="form-control pull-right">
                 </div>
                 <!-- //.input group date -->    
             </div>
@@ -311,9 +311,14 @@
         $('#tanggaldonasi').daterangepicker({
             
             format : "dd/mm/yyyy",
-            defaultDate : new Date(),
+            locale: {
+                format: 'DD/MM/YYYY' // --------Here
+            },
             autoclose: true,
+            allowEmpty:true,
         })
+
+        $('#tanggaldonasi').val('');
 
 
         //jika dalam teks pencarian, ENTER di tekan, apa yang terjadi.. 
