@@ -77,6 +77,14 @@ Route::get('/laporan/all', 'LaporanController@semuaTrx');
 Route::post('/laporan/all', 'LaporanController@semuaTrxProses');
 Route::get('/laporan/amil', 'LaporanAmilController@semuaTrx');
 Route::post('/laporan/amil', 'LaporanAmilController@semuaTrxProses');
+Route::get('/laporan/peruntukandonasi', 'LaporanPeruntukandonasiController@semuaTrx');
+Route::post('/laporan/peruntukandonasi', 'LaporanPeruntukandonasiController@semuaTrxProses');
+Route::get('/laporan/donatur', 'LaporanDonaturController@semuaTrx');
+Route::post('/laporan/donatur', 'LaporanDonaturController@semuaTrxProses');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

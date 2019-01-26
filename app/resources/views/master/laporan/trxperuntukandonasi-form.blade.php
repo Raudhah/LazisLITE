@@ -3,16 +3,16 @@
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Laporan Rekap Per Amil')
+@section('pagename', 'Laporan Rekap Per Peruntukan Donasi')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Laporan Rekap Per Amil')
+@section('modulname', 'Laporan Rekap Per Peruntukan Donasi')
 
 @section('modulsection', 'Laporan')
 @section('modulicon', 'fa fa-bar-chart')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Laporan Amil')
+@section('boxheader-title', 'Laporan Peruntukan Donasi')
 
 @section('boxheader-instruction', 'Pilih laporan yang ingin Anda tampilkan.')
 
@@ -30,55 +30,37 @@
 @section('boxcontent')
 
 
-<p>Laporan ini akan menampilkan Data dari Amil </p>
+<p>Laporan ini akan menampilkan Data dari Peruntukan Donasi </p>
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/laporan/amil">
+<form class="form-horizontal" method="POST" action="/laporan/peruntukandonasi">
 {{@csrf_field()}}
+    
 
-        <!-- //AMil yang bertanggung Jawab -->
-        <div class="form-group">
-            <label for="amil_id" class="col-sm-2 control-label input-lg">
-                Petugas Amil* 
-            </label>
-
-            <div class="col-sm-10">
-                <select name="amil_id" id="amil_id" class="form-control input-lg">
-                    @foreach($listamil as $amil)
-                    
-                    <option value="{{$amil->id}}">{{$amil->statusaktif == 1 ? "" : "(TIDAK AKTIF!) :: "}} {{$amil->namaamil}}</option>
-
-                    @endforeach
-                    
-                </select>
-            </div>
-
-        </div>
-
-
-
-        <!-- // Jenis Transaksi -->
+        <!-- //JENIS LAPORAN -->
         <div class="form-group">
 
-            <label class="col-sm-2 control-label input-lg">
-                Jenis Laporan*
+            <label for="tipelaporan" class="col-sm-2 control-label input-lg">
+                Tipe Laporan
             </label>
             
             <div class="col-sm-10">
-                <label class="input-lg">
-                    <input type="checkbox" name="istrxdonasi" value="1" checked="checked"> Transaksi Donasi
-                </label>
-                <label class="input-lg">
-                    <input type="checkbox" name="istrxkotakinfaq" value="1"  checked="checked"> Transaksi Kotak Infaq
-                </label>
-                <label class="input-lg">
-                    <input type="checkbox" name="istrxibrankasku" value="1"  checked="checked"> Transaksi iBrankasku
-                </label>
+                <div class="row input-lg">
+                    <div class="col-sm-12">
+                        <input type="radio" name="tipelaporan" id="tipelaporansemua" value="1">Semua Peruntukan Donasi
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="radio" name="tipelaporan" id="tipelaporansemua" value="2">Hanya Peruntukan Donasi Aktif
+                    </div>
+
+
+
+                </div>
             </div>
         </div>
 
 
-        <!-- //TANGGAL DONASI -->
+        <!-- //PERIODE LAPORAN -->
         <div class="form-group">
             <label for="periodelaporan" class="col-sm-2 control-label input-lg">
                 Periode Laporan
@@ -95,35 +77,12 @@
             </div>
 
         </div>
-    
 
-        <!-- //JENIS LAPORAN -->
-        <div class="form-group">
-
-            <label for="jeniskelaminlaporan" class="col-sm-2 control-label input-lg">
-                Tipe Laporan
-            </label>
-            
-            <div class="col-sm-10">
-                <ul class="input-lg">
-                    <input type="radio" name="tipelaporan" value="1" checked> Transaksi yang Diproses oleh Amil
-                </ul>
-                <ul class="input-lg">
-                    <input type="radio" name="tipelaporan" value="2"> Transaksi Selesai dari Donatur Yang jadi Tanggungan Amil
-                </ul>
-                <ul class="input-lg">
-                    <input type="radio" name="tipelaporan" value="3"> Rekap Tanggungan Yang Sudah dan Belum Terambil
-                </ul>
-                <ul class="input-lg">
-                    <input type="radio" name="tipelaporan" value="4"> Daftar Tanggungan Amil <small>(Isi periode dengan sembarang tanggal)</small>
-                </ul>
-            </div>
-        </div>
 
         <!-- //RADIO URUTKAN BERDASARKAN -->
         <div class="form-group">
 
-            <label for="jeniskelaminlaporan" class="col-sm-2 control-label input-lg">
+            <label for="sortby" class="col-sm-2 control-label input-lg">
                 Urutkan Berdasarkan
             </label>
             
@@ -159,8 +118,6 @@
 <!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
 @section('footer-code')
     <script>
-
-
 
         //Date picker
         $('#periodelaporan').daterangepicker({
