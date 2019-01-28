@@ -10,8 +10,12 @@
 
     @include("master/menu/top")
 
+@if (auth::user()->levelakses == 1)
+  @include("master/menu/side")    
+@else
+  @include("master/menu/sidesuperadmin")
+@endif
 
-    @include("master/menu/side")
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

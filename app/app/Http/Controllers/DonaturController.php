@@ -25,6 +25,10 @@ class DonaturController extends Controller
     public $vrule_jeniskelamin = 'numeric|between:1,3';
 
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -37,8 +41,6 @@ class DonaturController extends Controller
                             ->take('500')
                             ->get();
 
-
-        // dd($data);
 
         return view('master/donatur/tampilkan', compact('data', 'message'));
     }

@@ -27,6 +27,10 @@ class LaporanAmilController extends Controller
         public $vrule_sortby = 'required';
         public $vrule_amil_id = 'required|numeric';
 
+        public function __construct(){
+            $this->middleware('auth');
+        }
+        
 
 //===========================================================================================
 //      FUNGSI TAMPIL PROSES

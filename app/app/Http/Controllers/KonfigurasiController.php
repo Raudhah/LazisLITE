@@ -24,6 +24,10 @@ class KonfigurasiController extends Controller
         public $vrule_namafilebackground    = 'required|min3';
 
 
+        public function __construct(){
+            $this->middleware('auth');
+        }
+        
     /**
      * Display a listing of the resource.
      *

@@ -12,9 +12,7 @@
 */
 
 
-Route::get('/', function () {
-    return view('/master/dashboard/index');
-});
+Route::get('/', 'Dashboard@index');
 
 
 
@@ -82,9 +80,16 @@ Route::post('/laporan/peruntukandonasi', 'LaporanPeruntukandonasiController@semu
 Route::get('/laporan/donatur', 'LaporanDonaturController@semuaTrx');
 Route::post('/laporan/donatur', 'LaporanDonaturController@semuaTrxProses');
 
+//========= DASHBOARD
+Route::get('/dashboard', 'Dashboard@index');
+
+//========= USER 
+Route::get('/user', 'UserController@index');
 
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Dashboard@index')->name('dashboard');
+
+

@@ -11,6 +11,10 @@ class PekerjaandonaturController extends Controller
     public $vrule_namapekerjaandonatur = 'required|min:3';
     public $vrule_statusaktif = 'required|boolean';
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *

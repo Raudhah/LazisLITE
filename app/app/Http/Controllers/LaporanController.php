@@ -25,7 +25,10 @@ class LaporanController extends Controller
     //vrule urutkan berdasarkan
     public $vrule_sortby = 'required';
     
-
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
 //===========================================================================================
 //      FUNGSI TAMPIL PROSES
 //===========================================================================================

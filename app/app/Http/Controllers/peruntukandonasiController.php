@@ -10,6 +10,10 @@ class peruntukandonasiController extends Controller
     public $vrule_namaperuntukandonasi = 'required|min:3';
     public $vrule_statusaktif = 'required|boolean';
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *

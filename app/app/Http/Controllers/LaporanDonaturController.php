@@ -22,6 +22,10 @@ class LaporanDonaturController extends Controller
     public $vrule_sortby = 'required|numeric';
     public $vrule_donatur_id = 'required_if:tipelaporan,3';
     
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
 //===========================================================================================
 //      FUNGSI TAMPIL PROSES
 //===========================================================================================
@@ -49,20 +53,25 @@ class LaporanDonaturController extends Controller
             'periodelaporan' => $this->vrule_periodelaporan,
             'tipelaporan' => $this->vrule_tipelaporan,
             'donatur_id' => $this->vrule_donatur_id,
+            'checkboxsemuadonatur' => $this->vrule_donatur_id,
+            'donatur_id' => $this->vrule_donatur_id,
             'sortby' => $this->vrule_sortby,
         ]);
 
-        // dd($request->all());
+        //  dd($request->all());
 
         //DAPATKAN VARIABELNYA =================================
         $periodelaporan = $request->periodelaporan;
         $donatur_id = $request->donatur_id;
         $tipelaporan = $request->tipelaporan;
         $sortby = $request->sortby;
+        $checkboxsemuadonatur = $request->checkboxsemuadonatur;
 
-        //data peruntukan donasi
-        $listdonatur = \App\donatur::orderBy('namadonatur','asc')->get();
-        $listdonaturaktif = \App\donatur::where('statusaktif','=',1)->orderBy('namadonatur','asc')->get();
+        //data donatur
+        $listdonatur = \App\Donatur::orderBy('namadonatur','asc')->get();
+        $datadonatur = \App\Donatur::find($donatur_id);
+
+        // dd($datadonatur);
 
         //MEMBUAT PERIODE LAPORAN ====================================
         //mecah dulu
@@ -74,8 +83,10 @@ class LaporanDonaturController extends Controller
         $periodeawal = Carbon::createFromFormat('d/m/Y', $periodeawal)->toDateString();
         $periodeakhir = Carbon::createFromFormat('d/m/Y', $periodeakhir)->toDateString();
 
+        //jika yang dicari adalah spesifik satu donatur
+        if($donatur_id != -1){
 
-        //sekarang lakukan query berdasarkan tipe laporannya
+            //sekarang lakukan query berdasarkan tipe laporannya
             //dapatkan data dari kotak infaq
             $datadonasi = \App\Trxdonasi::select('id', 'donatur_id','amil_id', 'jumlahtotal', 'keterangan', 'tanggaldonasi', 'insidentil')
                                         ->with(['donatur'])
@@ -91,7 +102,10 @@ class LaporanDonaturController extends Controller
                                         ->when(($sortby== 2), function($query){
                                             return $query->orderBy('tanggaldonasi', 'asc');
                                         })
+                                        ->where('donatur_id','=',$donatur_id)
                                         ->get();
+
+            // dd($datadonasi);
 
             $dataibrankasku = \App\Trxibrankasku::select('id', 'donatur_id', 'donatur_id', 'amil_id', 'nominalvaluasi', 'deskripsibarang', 'tanggaldonasi')
                                         ->with(['donatur'])
@@ -107,11 +121,13 @@ class LaporanDonaturController extends Controller
                                         ->when(($sortby== 2), function($query){
                                             return $query->orderBy('tanggaldonasi', 'asc');
                                         })
+                                        ->where('donatur_id','=',$donatur_id)
                                         ->get();
 
 
-        return view('master/laporan/trxdonatur-print', compact('datadonasi','dataibrankasku','listdonatur', 'listdonaturaktif',  'periodelaporan', 'donatur_id', 'tipelaporan'));
+            return view('master/laporan/trxdonatur-print', compact('datadonatur','donatur_id','datadonasi','dataibrankasku','listdonatur',   'periodelaporan', 'donatur_id', 'checkboxsemuadonatur'));
 
+        }
 
     }
 

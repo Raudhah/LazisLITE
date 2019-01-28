@@ -23,6 +23,10 @@ class LaporanPeruntukandonasiController extends Controller
     public $vrule_sortby = 'required|numeric';
     public $vrule_peruntukandonasi_id = 'required_if:tipelaporan,3';
     
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
 //===========================================================================================
 //      FUNGSI TAMPIL PROSES
 //===========================================================================================

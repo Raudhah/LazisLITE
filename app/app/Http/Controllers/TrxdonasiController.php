@@ -27,6 +27,10 @@ class TrxdonasiController extends Controller
     public $vrule_keterangan = 'nullable|sometimes|string|min:3';
 
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /** DONE
      * Display a listing of the resource.
      *

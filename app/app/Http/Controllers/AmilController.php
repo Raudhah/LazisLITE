@@ -11,6 +11,10 @@ class AmilController extends Controller
     public $vrule_namaamil = 'required|min:3';
     public $vrule_statusaktif = 'required|boolean';
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /** DONE
      * Display a listing of the resource.
      *

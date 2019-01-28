@@ -22,6 +22,10 @@ class TrxkotakinfaqController extends Controller
     public $vrule_keterangan = 'sometimes|nullable|string|min:3';
 
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     /** DONE
      * Display a listing of the resource.
      *
