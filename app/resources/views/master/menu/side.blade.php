@@ -92,6 +92,7 @@
           </span>
         </a>
 
+        
         <ul class="treeview-menu">
           <li><a href="{{url('laporan/all') }}"><i class="fa fa-circle-o"></i> Laporan Semua Transaksi</a></li>
           <li><a href="{{url('laporan/amil') }}"><i class="fa fa-circle-o"></i> Laporan Berdasarkan Amil</a></li>
