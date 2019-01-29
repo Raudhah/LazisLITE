@@ -98,6 +98,12 @@ class KonfigurasiController extends Controller
      */
     public function update(Request $request, Konfigurasi $konfigurasi)
     {
+
+
+        
+
+
+        // dd($path);
     
         $konfigurasi->namalaz   = $request->namalaz;
         $konfigurasi->kodelaz   = $request->kodelaz;
@@ -111,9 +117,40 @@ class KonfigurasiController extends Controller
         $konfigurasi->keterangan    = $request->keterangan;
         $konfigurasi->tekskuitansi  = $request->tekskuitansi;
         //ini yang filenya,
-        $konfigurasi->namafilelogo  = $request->namafilelogo;
-        $konfigurasi->namafilettd   = $request->namafilettd;
-        $konfigurasi->namafilebackground    = $request->namafilebackground;
+
+        //handle file dulu jika ada
+        // cache the file
+        $filelogo = $request->file('filelogo');
+        $filettd = $request->file('filettd');
+        $filebackground = $request->file('filebackground');
+
+        if($filelogo!=null){
+            // generate a new filename. getClientOriginalExtension() for the file extension
+            $filename = 'logolaz.' . $filelogo->getClientOriginalExtension();
+            // save to storage/app/public/logolaz. as the new $filename
+            $path = $filelogo->storeAs('public',$filename);
+
+            $konfigurasi->namafilelogo  = $filename;
+        }
+
+        if($filettd!=null){
+            // generate a new filename. getClientOriginalExtension() for the file extension
+            $filename = 'ttdlaz.' . $filettd->getClientOriginalExtension();
+            // save to storage/app/public/ttdlaz. as the new $filename
+            $path = $filettd->storeAs('public',$filename);
+
+            $konfigurasi->namafilettd  = $filename;
+        }
+
+        if($filebackground!=null){
+            // generate a new filename. getClientOriginalExtension() for the file extension
+            $filename = 'backgroundlaz.' . $filebackground->getClientOriginalExtension();
+            // save to storage/app/public/backgroundlaz. as the new $filename
+            $path = $filebackground->storeAs('public',$filename);
+
+            $konfigurasi->namafilebackground  = $filename;
+        }
+
         
         $status = $konfigurasi->save();
 

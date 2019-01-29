@@ -15,6 +15,7 @@
 <div class="row">
         <div class="col-sm-3">
                 <img src="{{asset('img/'.$konfig->namafilelogo)}}" width="100"/>
+                <img src="{{asset('storage/logo/logo-1548717967.png')}}" width="100"/>
         </div>
         <div class="col-sm-6">
                 {{$konfig->namacabang}}

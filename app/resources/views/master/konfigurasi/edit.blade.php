@@ -30,7 +30,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/konfigurasi/{{$data->id}}">
+<form class="form-horizontal" method="POST" enctype="multipart/form-data"  action="{{url('/konfigurasi/')}}{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('PATCH')}}
 
@@ -158,11 +158,15 @@
         <!-- //namafilelogo -->
         <div class="form-group">
             <label for="namafilelogo" class="col-sm-2 control-label input-lg">
-                Nama File Logo *
+                File Logo 
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namafilelogo" value="{{old('namafilelogo', $data->namafilelogo)}}" id="namafilelogo">
+                <input type="file" name="filelogo" value="{{old('filelogo', $data->filelogo)}}" id="filelogo">
+                <input type="hidden" class="form-control input-lg" name="namafilelogo" value="{{old('namafilelogo', $data->namafilelogo)}}" id="namafilelogo">
+                <br/> File : {{url('storage/')}}/{{$data->namafilelogo}}
+                <br/>
+                <img src="{{url('storage/')}}/{{$data->namafilelogo}}" alt="file logo" style="height:200px;border:1px solid black">
             </div>
         </div>
  
@@ -170,11 +174,15 @@
         <!-- //namafilettd -->
         <div class="form-group">
             <label for="namafilettd" class="col-sm-2 control-label input-lg">
-                Nama File TTD *
+                File Tanda Tangan 
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namafilettd" value="{{old('namafilettd', $data->namafilettd)}}" id="namafilettd">
+                <input type="file" name="filettd" value="{{old('filettd', $data->filettd)}}" id="filettd">
+                <input type="hidden" class="form-control input-lg" name="namafilettd" value="{{old('namafilettd', $data->namafilettd)}}" id="namafilettd">
+                <br/> File : {{url('storage/')}}/{{$data->namafilettd}}
+                <br/>
+                <img src="{{url('storage/')}}/{{$data->namafilettd}}" alt="file Tanda Tangan" style="height:200px;border:1px solid black">
             </div>
         </div>
  
@@ -182,11 +190,15 @@
         <!-- //namafilebackground -->
         <div class="form-group">
             <label for="namafilebackground" class="col-sm-2 control-label input-lg">
-                Nama File Background Kuitansi
+                File Background Kuitansi
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namafilebackground" value="{{old('namafilebackground', $data->namafilebackground)}}" id="namafilebackground">
+                    <input type="file" name="filebackground" value="{{old('filebackground', $data->filebackground)}}" id="filebackground">
+                    <input type="hidden" class="form-control input-lg" name="namafilebackground" value="{{old('namafilebackground', $data->namafilebackground)}}" id="namafilebackground">
+                    <br/> File : {{url('storage/')}}/{{$data->namafilebackground}}
+                    <br/>
+                    <img src="{{url('storage/')}}/{{$data->namafilebackground}}" alt="file Background" style="height:200px;border:1px solid black">
             </div>
         </div>
  
