@@ -45,6 +45,7 @@ Route::get('donatur/{donatur}/delete', 'DonaturController@delete');
 Route::get('/trxibrankasku/search', 'TrxibrankaskuController@search');
 Route::post('/trxibrankasku/search', 'TrxibrankaskuController@searchResult');
 Route::get('/trxibrankasku/{trxibrankasku}/print', 'TrxibrankaskuController@showKuitansi');
+Route::get('/trxibrankasku/{trxibrankasku}/printpdf', 'TrxibrankaskuController@showKuitansiPdf');
 Route::resource('trxibrankasku', 'TrxibrankaskuController');
 Route::get('trxibrankasku/{trxibrankasku}/delete', 'TrxibrankaskuController@delete');
 
@@ -85,6 +86,8 @@ Route::get('/dashboard', 'Dashboard@index');
 
 //========= USER 
 Route::get('/user', 'UserController@index');
+Route::get('/user/gantipassword', 'UserController@gantiPassword');
+Route::post('/user/gantipassword', 'UserController@gantiPasswordProses');
 
 
 

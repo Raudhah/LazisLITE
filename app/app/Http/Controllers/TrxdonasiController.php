@@ -230,7 +230,7 @@ class TrxdonasiController extends Controller
 
 
         // tampilkan KUITANSINYA BRO
-        return view('master/trxdonasi/kuitansi', compact('konfig','listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil',  'message'));
+        return view('master/trxdonasi/kuitansi-print', compact('konfig','listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil',  'message'));
     }
 
     /**

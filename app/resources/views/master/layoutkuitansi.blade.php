@@ -32,80 +32,12 @@
       </div>
   
       <!-- Main content -->
-      <section class="invoice" style="border:1px solid black">
-        <!-- title row -->
-        <div class="row">
-          <div class="col-xs-12">
-            <h2 class="page-header">  
-                <!-- //.TANGGALKUITANSI ==================================== -->
-                @yield('headerkuitansi')
-
-              <small class="pull-right">
-                  <!-- //.TANGGALKUITANSI ==================================== -->
-                @yield('nomorkuitansi')
-              
-              </small>
-            </h2>
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- info row -->
-        <div class="row invoice-info">
-          <div class="col-sm-6 invoice-col">
-              @yield('kolomkiri')
-          </div>
-          <!-- /.col -->
-          <div class="col-sm-6 invoice-col">
-              @yield('kolomkanan')
-          </div>
-          <!-- /.col -->
-        
-        </div>
-        <!-- /.row -->
-  
-        <!-- Table row -->
-        <div class="row">
-          <div class="col-xs-12 table-responsive">
-              @yield('rinciankuitansi')
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-  
-        <div class="row">
-          <!-- accepted payments column -->
-          <div class="col-xs-6">
-            
-            @yield('kolombawahkiri')
-          </div>
-          <!-- /.col -->
-          <div class="col-xs-6">
-            
-  
-            @yield('kolombawahkanan')
-
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-  
-        
-      </section>
+      @yield('kuitansi')
       <!-- /.content -->
       
-        <section class="invoice no-print">
-            <!-- this row will not appear when printing -->
-            <div class="row no-print">
-              <div class="col-xs-12">
-                <button type="button" class="btn btn-default" onclick="window.print()"><i class="fa fa-print"></i> Cetak Kuitansi</a>
-                </button>
-                <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-                  <i class="fa fa-download"></i> Download PDF
-                </button>
-              </div>
-            </div>
 
-        </section>
+
+
       <div class="clearfix"></div>
     </div>
     <!-- /.content-wrapper -->

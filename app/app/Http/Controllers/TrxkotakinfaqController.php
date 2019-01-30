@@ -103,6 +103,9 @@ class TrxkotakinfaqController extends Controller
 
             //id yang terakhir disimpan ini
             $idtransaksi = $status->id;
+
+            //konfig untuk data tampilannya utamanya
+            $konfig = \App\Konfigurasi::first();
             
             //buat message nya
             $message = [
@@ -112,7 +115,7 @@ class TrxkotakinfaqController extends Controller
                 ];
     
             // tampilkan KUITANSINYA BRO
-            return view('master/trxkotakinfaq/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
+            return view('master/trxkotakinfaq/kuitansi', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
         }
         else{
             return dd('Uups! Error, data gagal masuk ke dalam database');
@@ -144,11 +147,14 @@ class TrxkotakinfaqController extends Controller
         //dapatkan data donatur
         $datadonatur = $trxkotakinfaq->donatur;
 
+        //konfig untuk data tampilannya utamanya
+        $konfig = \App\Konfigurasi::first();
+
         $message = "";
 
        
         // tampilkan KUITANSINYA BRO
-        return view('master/trxkotakinfaq/detail', compact('idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
+        return view('master/trxkotakinfaq/detail', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
     }
 
     /**
@@ -171,12 +177,15 @@ class TrxkotakinfaqController extends Controller
         //dapatkan data donatur
         $datadonatur = $trxkotakinfaq->donatur;
 
+        //konfig untuk data tampilannya utamanya
+        $konfig = \App\Konfigurasi::first();
+
         $message = "";
 
         // dd($datadonatur);
 
         // tampilkan KUITANSINYA BRO
-        return view('master/trxkotakinfaq/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
+        return view('master/trxkotakinfaq/kuitansi-print', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
     }
 
     /**
@@ -244,6 +253,9 @@ class TrxkotakinfaqController extends Controller
 
             //id yang terakhir disimpan ini
             $idtransaksi = $trxkotakinfaq->id;
+
+            //konfig untuk data tampilannya utamanya
+            $konfig = \App\Konfigurasi::first();
             
             //buat message nya
             $message = [
@@ -253,7 +265,7 @@ class TrxkotakinfaqController extends Controller
                 ];
     
             // tampilkan KUITANSINYA BRO
-            return view('master/trxkotakinfaq/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
+            return view('master/trxkotakinfaq/kuitansi', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
         }
         else{
             return dd('Uups! Error, data gagal masuk ke dalam database');

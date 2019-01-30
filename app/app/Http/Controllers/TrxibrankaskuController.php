@@ -9,6 +9,7 @@ use App\peruntukandonasi;
 use App\Donatur;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class TrxibrankaskuController extends Controller
 {
@@ -100,6 +101,7 @@ class TrxibrankaskuController extends Controller
         
         //menambahkan datanya
         $status = Trxibrankasku::create($validdata);
+        
 
         if($status){
             //menampilkan kuitansinya loh ya, bukan listnya lagi....
@@ -112,6 +114,9 @@ class TrxibrankaskuController extends Controller
 
             //id yang terakhir disimpan ini
             $idtransaksi = $status->id;
+
+            //konfig untuk data tampilannya utamanya
+            $konfig = \App\Konfigurasi::first();
             
             //buat message nya
             $message = [
@@ -121,7 +126,7 @@ class TrxibrankaskuController extends Controller
                 ];
     
             // tampilkan KUITANSINYA BRO
-            return view('master/trxibrankasku/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+            return view('master/trxibrankasku/kuitansi', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
         }
         else{
             return dd('Uups! Error, data gagal masuk ke dalam database');
@@ -188,12 +193,49 @@ class TrxibrankaskuController extends Controller
 
         $message = "";
 
-        // dd($datadonatur);
+        //konfig untuk data tampilannya utamanya
+        $konfig = \App\Konfigurasi::first();
 
-        // dd(compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+    
+        return view('master/trxibrankasku/kuitansi-print', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+    }
 
-        // tampilkan KUITANSINYA BRO
-        return view('master/trxibrankasku/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+    /**
+     * Display the specified resource into PDF.
+     *
+     * @param  \App\Trxibrankasku  $trxibrankasku
+     * @return \Illuminate\Http\Response
+     */
+    public function showKuitansiPdf(Trxibrankasku $trxibrankasku)
+    {
+
+        $idtransaksi = $trxibrankasku->id;
+        $tanggaldonasi = $trxibrankasku->tanggaldonasi;
+        $deskripsibarang = $trxibrankasku->deskripsibarang;
+        $nominalvaluasi = $trxibrankasku->nominalvaluasi;
+
+        //dapatkan data amil
+        $dataamil = $trxibrankasku->amil;
+
+        //dapatkan data donatur
+        $datadonatur = $trxibrankasku->donatur;
+
+        //dapatkan data peruntukan donasi
+        $dataperuntukandonasi = $trxibrankasku->peruntukandonasi;
+
+        $message = "";
+
+        //konfig untuk data tampilannya utamanya
+        $konfig = \App\Konfigurasi::first();
+
+        //$pdf = PDF::loadView('master.trxibrankasku.kuitansi', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+        // return $pdf->download('invoice.pdf');
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->download();
+    
+        // return view('master/trxibrankasku/kuitansi-print', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
     }
 
     /**
@@ -224,6 +266,7 @@ class TrxibrankaskuController extends Controller
         // tampilkan KUITANSINYA BRO
         return view('master/trxibrankasku/edit', compact('data', 'datadonatur','listamil', 'listperuntukandonasi'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -269,6 +312,9 @@ class TrxibrankaskuController extends Controller
 
             //id yang terakhir disimpan ini
             $idtransaksi = $trxibrankasku->id;
+
+            //konfig untuk data tampilannya utamanya
+            $konfig = \App\Konfigurasi::first();
             
             //buat message nya
             $message = [
@@ -278,7 +324,7 @@ class TrxibrankaskuController extends Controller
                 ];
     
             // tampilkan KUITANSINYA BRO
-            return view('master/trxibrankasku/kuitansi', compact('idtransaksi','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+            return view('master/trxibrankasku/kuitansi', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
         }
         else{
             return dd('Uups! Error, data gagal masuk ke dalam database');

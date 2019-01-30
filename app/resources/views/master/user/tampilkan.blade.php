@@ -31,10 +31,9 @@
     <thead>
     <tr>
       <th>No.</th>
-      <th>Nama User</th>
+      <th>Nama</th>
+      <th>Email</th>
       <th>Level Akses</th>
-      <th>Reset</th>
-      <th>Keterangan    </th>
     </tr>
     </thead>
     <tbody>
@@ -47,19 +46,11 @@
 
         <tr>
             <td>{{ ++$key}}</td>
-            <td> {{ $item->namaamil }}</td>
-            <td> {{ $item->alamatamil }}</td>
-            <td> {{ $item->nomorteleponamil }}</td>
-            <td> 
-                @if($item->statusaktif)
-                    {{ 'Aktif'}}
-                @else
-                    {{ 'Non Aktif' }}
-                @endif
-            </td>
-
-            <td><a href="/amil/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/amil/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td> {{ $item->name }}</td>
+            <td> {{ $item->email }}</td>
+            <td> {{ ($item->levelakses==1 ? "Admin Harian" : "Super Admin") }}</td>
+            <td><a href="{{url('')}}/user/{{$item->id}}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="{{url('')}}/user/{{$item->id}}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

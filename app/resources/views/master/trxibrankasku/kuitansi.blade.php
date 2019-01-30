@@ -4,184 +4,119 @@
 
 @extends('master.layoutkuitansi')
 
+<!-- //========== SITE TITLE ======== -->
+@section('pagename', 'Cetak Kuitansi')
 
+@section('kuitansi')
+<div class="kuitansi" style="min-height: 75mm;max-width:210mm;margin-left:10mm;border: 1px solid green;margin-bottom: 2mm;line-height: 16px;background:url('{{asset('storage/'.$konfig->namafilebackground)}}') no-repeat top center fixed;background-size:cover;">
+    <div class="row" style="">
+        <!-- //BAGIAN KIRI -->
+        <div class="col-sm-8">
+            <!-- //BARIS KOP /HEADER KUITANSI -->
+            <div class="row">
+                    <div class="col-sm-3" style="text-align:right">
+                            <img src="{{asset('storage/'.$konfig->namafilelogo)}}" style="height:22mm"/>
+                    </div>
+                    <div class="col-sm-9" style="text-align:center;">
+                            <strong>{{$konfig->namalaz}} {{$konfig->namacabang}}</strong>
+                            <br/>
 
-<!-- //========== HEADER KUITANSI ======== -->
-<!-- //========== logo, alamat, dkk ditaruh disini ya ======== -->
-@section('headerkuitansi')
+                            <small> 
+                                <?php
+                                echo nl2br($konfig->keterangan);
+                                ?>
+                                <br/><em>{{$konfig->alamatcabang}}</em>
+                            </small>
+                    </div>
+            </div>
 
-    <div class="row">
-        <div class="col-sm-3">
-                <img src="{{asset('img/logolaz.png')}}" width="100"/>
+            <!-- //HALAMAN UTAMA DETAIL KUITANSI ADA DISINI -->
+            <div class="row">
+                <div class="col-sm-12" style="text-align:center">
+                    <h4 style="margin:0px"><strong>Tanda Terima Donasi Barang (iBrankasku)</strong></h4>
+
+                    <table class="table table-striped table-condensed" style="margin-left:2mm;margin-bottom:0px;font-size: 14px">
+                            <thead>
+                                <tr class="">
+                                    <td>
+                                            Alhamdulillah, telah diterima Pada Tanggal {{$tanggaldonasi}}  <br/>
+                                            Donasi berupa <strong>{{$deskripsibarang}}</strong>
+                                    </td>
+                                </tr>
+                            </thead>
+                        
+                            
+                    </table>
+                    <div style="line-height:14px; font-size:12px; font-style:italic">{{$konfig->tekskuitansi}}</div>
+                </div>
+            </div>
+
         </div>
-        <div class="col-sm-6">
-                LAZ Baitul Maal Abdurrahman Bin Auf (LAZ ABA)
-                <br/>
-        </div>
-        <div class="col-sm-3" style="text-align:right">
-                <small>
-                    No. : IBRK-{{$idtransaksi}}
-                </small>
+
+        <!-- //BAGIAN KANAN -->
+        <div class="col-sm-4">
+                <table style="border:0px solid black">
+                    <tr>
+                        <td><strong>Nomor</strong></td>
+                        <td>: {{config('app.kodekuitansi.trxdonasi')}}{{$idtransaksi}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tanggal</strong></td>
+                        <td>: {{$tanggaldonasi}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amil</strong></td>
+                        <td>: ({{config('app.kodeamil')}}{{$dataamil->id}}) {{$dataamil->namaamil}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jenis</strong></td>
+                        <td>: Donasi</td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:text-top"><strong>Donatur </strong></td>
+                        <td>
+                            <div style="min-height:23mm;background-color:inherit">
+                                    : {{$datadonatur->namadonatur}} ({{config('app.kodedonatur')}}{{$datadonatur->id}}), {{$datadonatur->alamatdonatur}}, {{$datadonatur->nomortelepondonatur}},
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row" style="height:30mm">
+                    <div class="col-sm-12" style="text-align:center">
+                        <img src="{{asset('storage/'.$konfig->namafilettd)}}" style="max-width:45mm; max-height:25mm"/>
+                
+                    </div>
+                </div>
         </div>
     </div>
+    <!-- //END BAGIAN KANAN-->
 
-
-
-@endsection
-
-<!-- //========== NOMOR KUITANSI ======== -->
-@section('nomorkuitansi')
-   
-@endsection
-
-<!-- //========== KOLOM KIRI KUITANSI ======== -->
-@section('kolomkiri')
-    
-    <table class="table table-condensed no-border">
-        <tbody>
-                <tr>
-                    <th>Nama Donatur</th>
-                    <td>{{$datadonatur->namadonatur}}</td>
-                </tr>
-                <tr>
-                    <th>Almat Donatur</th>
-                    <td>{{$datadonatur->alamatdonatur}}</td>
-                </tr>
-                <tr>
-                    <th>Nomor Telepon Donatur</th>
-                    <td>{{$datadonatur->nomortelepondonatur}}</td>
-                </tr>
-        </tbody>
-    </table>
-
-@endsection
-
-<!-- //========== KOLOM KANAN KUITANSI ======== -->
-@section('kolomkanan')
-    
-    <table class="table table-condensed no-border">
-        <tbody>
-                    
-                    <tr>
-                        <th>Petugas AMIL</th>
-                        <td><a href="/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
-                    </tr>
-        
-                    
-                    <tr>
-                        <th>Tanggal </th>
-                        <td>{{$tanggaldonasi}}</td>
-                    </tr>
-        
-        </tbody>
-
-    </table>
-
-
-@endsection
-
-<!-- //========== RINCIAN KUITANSI ======== -->
-@section('rinciankuitansi')
-
-        <blockquote>
-            Alhamdulillah, telah diterima Pada Tanggal {{$tanggaldonasi}}  <br/>
-            Donasi berupa <strong>{{$deskripsibarang}}</strong>
-            <small><em>Semoga ALLAH memberi pahala atas apa yang Anda berikan, <br/> memberikan barokah atas apa yang masih di tangan Anda, <br/> dan menjadikannya sebagai pembersih Anda</em></small>
-        </blockquote>
-
-@endsection
-
-<!-- //========== NOMOR KUITANSI ======== -->
-@section('kolombawahkiri')
-    
-    
-    <br/>
-@endsection
-
-@section('kolombawahkanan')
-    TANDA TANGAN DISINI
-@endsection
-
-
-<!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
-@section('footer-code')
-    
-@endsection
-
-
-
-
-<!-- //========== BOX CONTENT =========== -->
-@section('boxcontent')
-
-     
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th width="30%">KEY</th>
-                    <th>VALUE</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>Nama Donatur</th>
-                    <td>{{$datadonatur->namadonatur}}</td>
-                </tr>
-                <tr>
-                    <th>Almat Donatur</th>
-                    <td>{{$datadonatur->alamatdonatur}}</td>
-                </tr>
-                <tr>
-                    <th>Nama Donatur</th>
-                    <td>{{$datadonatur->nomortelepondonatur}}</td>
-                </tr>
-                
-                <tr>
-                    <th>Petugas AMIL</th>
-                    <td><a class="btn btn-success" href="/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
-                </tr>
-
-                
-                <tr>
-                    <th>Tanggal Donasi</th>
-                    <td>{{$tanggaldonasi}}</td>
-                </tr>
-
-                <tr>
-                    <th>Deskripsi Barang</th>
-                    <td>{{$deskripsibarang}}</td>
-                </tr>
-
-                <tr>
-                    <th>Nominal Valuasi</th>
-                    <td>{{number_format($nominalvaluasi,0,',','.')}}</td>
-                </tr>
-                
-                <tr>
-                    <th>Peruntukan Donasi</th>
-                    <td><a class="btn btn-primary" href="#">{{$dataperuntukandonasi->namaperuntukandonasi}}</a></td>
-                </tr>
-                
-
-            </tbody>
-        </table>
-
-@endsection
-
-<!-- //===========BOX  FOOTER ===========   -->
-@section('boxfooter')
-        
-        <div class="col-sm-2">
+    <div>
+        <div style="text-align:center; font-size:12px; font-weight:bold; font-style:italic; background-color:orange; overflow:hidden">
+            {{$konfig->nomorrekeningcabang}} 
+            <br/> Telepon : {{$konfig->nomorteleponcabang}} 
+            {{($konfig->emailcabang==null? "": "Email : ".$konfig->emailcabang)}} 
+            {{($konfig->websitecabang==null? "": "Website : ".$konfig->websitecabang)}} 
         </div>
+    </div>
+</div>
 
-        <div class="col-sm-10">
-            <a class="btn btn-warning" href="/trxibrankasku/{{$idtransaksi}}/edit">Edit</a>
-            <a class="btn btn-danger" href="/trxibrankasku/{{$idtransaksi}}/delete">Hapus</a>
+
+<section class="invoice no-print">
+        <!-- this row will not appear when printing -->
+        <div class="row no-print">
+          <div class="col-xs-12">
+            <a href="{{url('')}}/trxibrankasku/{{$idtransaksi}}/print" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Cetak Kuitansi</a>
+            </a>
+            <a href="{{url('')}}/trxibrankasku/{{$idtransaksi}}/printpdf" class="btn btn-primary pull-right" style="margin-right: 5px;">
+              <i class="fa fa-download"></i> Download PDF
+            </a>
+          </div>
         </div>
-    
-
+    </section>
 @endsection
+
 
 <!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
 @section('footer-code')

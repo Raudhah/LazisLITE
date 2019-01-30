@@ -30,7 +30,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" enctype="multipart/form-data"  action="{{url('/konfigurasi/')}}{{$data->id}}">
+<form class="form-horizontal" method="POST" enctype="multipart/form-data"  action="{{url('')}}/konfigurasi/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('PATCH')}}
 
