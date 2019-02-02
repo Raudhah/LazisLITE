@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Amil;
+use App\Donatur;
+use App\Trxdonasi;
+use App\Trxkotakinfaq;
+use App\Trxibrankasku;
 use Illuminate\Http\Request;
 
 class AmilController extends Controller
@@ -162,7 +166,20 @@ class AmilController extends Controller
      */
     public function delete(Amil $amil){
         $data = $amil;
-        return view('master/amil/delete',compact('data'));
+
+        //check sebelum hapus
+        //check di trxdonasi
+        $terpakaitrxdonasi = \App\Trxdonasi::where('amil_id', '=', $amil->id)->count();
+        //check di trxkotakinfaq
+        $terpakaitrxkotakinfaq = \App\Trxkotakinfaq::where('amil_id', '=', $amil->id)->count();
+        //check di trxibrankasku
+        $terpakaitrxibrankasku = \App\Trxibrankasku::where('amil_id', '=', $amil->id)->count();
+        //check di donatur
+        $terpakaidonatur = \App\Donatur::where('amil_id', '=', $amil->id)->count();
+        
+
+
+        return view('master/amil/delete',compact('data', 'terpakaitrxdonasi', 'terpakaitrxkotakinfaq', 'terpakaitrxibrankasku', 'terpakaidonatur'));
     }
 
     /** DONE

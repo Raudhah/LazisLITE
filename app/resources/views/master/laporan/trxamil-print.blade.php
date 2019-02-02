@@ -394,7 +394,7 @@
                                 @foreach ($datadonasi as $key=>$donasi)
                                     @if ($donasi->donatur_id == $donatur->id)
                                         <tr>
-                                        <td>DONASI<a href="/trxdonasi/{{$donasi->id}}" target="_blank">({{config('app.kodekuitansi.trxdonasi')}}{{$donasi->id}})</a></td>
+                                        <td>DONASI<a href="{{url('')}}/trxdonasi/{{$donasi->id}}" target="_blank">({{config('app.kodekuitansi.trxdonasi')}}{{$donasi->id}})</a></td>
                                         <td>{{$donasi->tanggaldonasi}}</td> 
                                         <td>{{$donasi->amil->namaamil}}</td>
                                         <td>{{ number_format($donasi->jumlahtotal,0,',','.')}}</td>
@@ -406,7 +406,7 @@
                                 @foreach ($datakotakinfaq as $key=>$kotakinfaq)
                                     @if ($kotakinfaq->donatur_id == $donatur->id)
                                         <tr>
-                                        <td>KTKINFAQ<a href="/trxkotakinfaq/{{$kotakinfaq->id}}" target="_blank">({{config('app.kodekuitansi.trxkotakinfaq')}}{{$kotakinfaq->id}})</a></td>
+                                        <td>KTKINFAQ<a href="{{url('')}}/trxkotakinfaq/{{$kotakinfaq->id}}" target="_blank">({{config('app.kodekuitansi.trxkotakinfaq')}}{{$kotakinfaq->id}})</a></td>
                                         <td>{{$kotakinfaq->tanggaldonasi}} </td>
                                         <td>{{$kotakinfaq->amil->namaamil}} </td>
                                         <td> {{number_format($kotakinfaq->jumlahtotal,0,',','.')}}   </td>

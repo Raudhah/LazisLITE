@@ -30,7 +30,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/amil/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="{{url('')}}/amil/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('PATCH')}}
 

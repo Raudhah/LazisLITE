@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Donatur;
 use App\Amil;
 use App\Pekerjaandonatur;
+use App\Trxdonasi;
+use App\Trxkotakinfaq;
+use App\Trxibrankasku;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -274,9 +277,18 @@ class DonaturController extends Controller
          //biar standar di viewnya
          $data = $donatur;
      
-         // dd(compact('data', 'amil','pekerjaandonatur'));
-         // tampilkan 
-         return view('master/donatur/delete', compact('data', 'amil','pekerjaandonatur'));
+
+        //check sebelum hapus
+        //check di trxdonasi
+        $terpakaitrxdonasi = \App\Trxdonasi::where('donatur_id', '=', $donatur->id)->count();
+        //check di trxkotakinfaq
+        $terpakaitrxkotakinfaq = \App\Trxkotakinfaq::where('donatur_id', '=', $donatur->id)->count();
+        //check di trxibrankasku
+        $terpakaitrxibrankasku = \App\Trxibrankasku::where('donatur_id', '=', $donatur->id)->count();
+     
+
+
+         return view('master/donatur/delete', compact('data', 'amil','pekerjaandonatur', 'terpakaitrxdonasi', 'terpakaitrxkotakinfaq', 'terpakaitrxibrankasku'));
 
     }
 

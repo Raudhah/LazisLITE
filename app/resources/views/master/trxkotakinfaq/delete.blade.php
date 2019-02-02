@@ -54,7 +54,7 @@
                 
                 <tr>
                     <th>Petugas AMIL</th>
-                    <td><a class="btn btn-success" href="/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
+                    <td><a class="btn btn-success" href="{{url('')}}/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
                 </tr>
 
                 
@@ -88,7 +88,7 @@
         <div class="col-sm-10">
 
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="/trxkotakinfaq/{{$idtransaksi}}">
+            <form class="form-horizontal" method="POST" action="{{url('')}}/trxkotakinfaq/{{$idtransaksi}}">
                 
                 {{@csrf_field()}}
                 {{method_field('DELETE')}}

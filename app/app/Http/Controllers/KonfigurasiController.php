@@ -173,14 +173,9 @@ class KonfigurasiController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Konfigurasi  $konfigurasi
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Konfigurasi $konfigurasi)
+
+    public function backup()
     {
-        //
+        return view('master/konfigurasi/backupform');
     }
 }

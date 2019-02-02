@@ -34,7 +34,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="/user/gantipassword" class="btn btn-default btn-flat">Ganti Password</a>
+                  <a href="{{url('')}}/user/gantipassword" class="btn btn-default btn-flat">Ganti Password</a>
                 </div>
                 <div class="pull-right">
 

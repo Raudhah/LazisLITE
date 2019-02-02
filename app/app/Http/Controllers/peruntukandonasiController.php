@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\peruntukandonasi;
 use Illuminate\Http\Request;
+use App\Trxdonasidetail;
+use App\Trxibrankasku;
 
 class peruntukandonasiController extends Controller
 {
@@ -156,7 +158,17 @@ class peruntukandonasiController extends Controller
     {
         //
         $data = $peruntukandonasi;
-        return view('master/peruntukandonasi/delete',compact('data'));
+
+        //check sebelum hapus
+        //check di trxdonasi
+        $terpakaitrxdonasi = \App\Trxdonasidetail::where('peruntukandonasi_id', '=', $peruntukandonasi->id)->count();
+        //check di trxkotakinfaq
+        //DI KOTAK INFAQ TIDAK ADA PERUNTUKAN DONASI, SEMUANYA OTOMATIS TEREKAM DI KOTAK INFAQ SAJA
+        //check di trxibrankasku
+        $terpakaitrxibrankasku = \App\Trxibrankasku::where('peruntukandonasi_id', '=', $peruntukandonasi->id)->count();
+     
+
+        return view('master/peruntukandonasi/delete',compact('data', 'terpakaitrxdonasi',  'terpakaitrxibrankasku'));
     }
 
     /**

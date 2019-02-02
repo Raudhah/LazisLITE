@@ -35,7 +35,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/trxdonasi/search">
+<form class="form-horizontal" method="POST" action="{{url('')}}/trxdonasi/search">
 {{@csrf_field()}}
 
         <!-- // DONATURNYA -->
@@ -333,7 +333,7 @@
 
                 type:'POST',
      
-                url:'/donatur/ajaxsearch',
+                url:'{{url('')}}/donatur/ajaxsearch',
      
                 data:{function:'searchdonatur', query: inputcaridonatur},
      
@@ -443,7 +443,7 @@
                     $("#amil_id").val(data[i].amil_id);
                     
                     //membuat tombol klik untuk detail donatur, buka di window baru
-                    var tekslinkdetail = '<a href="/donatur/' + data[i].id+ '" target="_blank" class="btn btn-primary btn-xs"> Detail Donatur </a>'
+                    var tekslinkdetail = '<a href="{{url('')}}/donatur/' + data[i].id+ '" target="_blank" class="btn btn-primary btn-xs"> Detail Donatur </a>'
                     $("#tomboldetaildonatur").html(tekslinkdetail);
 
                     //mari memilih petugas Amil yang sesuai dengan ini

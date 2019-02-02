@@ -35,7 +35,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/trxkotakinfaq/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="{{url('')}}/trxkotakinfaq/{{$data->id}}">
 {{@csrf_field()}}
 
 {{method_field('PATCH')}}
@@ -54,7 +54,7 @@
 
                     atau 
 
-                    <a class="btn btn-success btn-lg" href="/donatur/create" target="_blank">
+                    <a class="btn btn-success btn-lg" href="{{url('')}}/donatur/create" target="_blank">
                         <i class="fa fa-plus"></i> Tambah Donatur Baru
                     </a>
                 </div>
@@ -277,7 +277,7 @@
 
                 type:'POST',
      
-                url:'/donatur/ajaxsearch',
+                url:'{{url('')}}/donatur/ajaxsearch',
      
                 data:{function:'searchdonatur', query: inputcaridonatur},
      
@@ -390,7 +390,7 @@
                     $("#amil_id").val(data[i].amil_id);
                     
                     //membuat tombol klik untuk detail donatur, buka di window baru
-                    var tekslinkdetail = '<a href="/donatur/' + data[i].id+ '" target="_blank" class="btn btn-primary btn-xs"> Detail Donatur </a>'
+                    var tekslinkdetail = '<a href="{{url('')}}/donatur/' + data[i].id+ '" target="_blank" class="btn btn-primary btn-xs"> Detail Donatur </a>'
                     $("#tomboldetaildonatur").html(tekslinkdetail);
 
                     //mari memilih petugas Amil yang sesuai dengan ini

@@ -60,8 +60,8 @@
                 @endif
             </td>
 
-            <td><a href="/amil/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/amil/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td><a href="{{url('')}}/amil/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="{{url('')}}/amil/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

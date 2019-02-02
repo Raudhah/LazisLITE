@@ -52,7 +52,7 @@
                 <div class="icon">
                     <i class="fa {{$smallbox["icon"]}}"></i>
                 </div>
-                <a href="{{$smallbox["url"]}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{url('')}}/{{$smallbox["url"]}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -87,7 +87,7 @@
                       <li class="item">
                         <div class="product-info">
                             
-                          <a href="donatur/{{$donatur->id}}" class="product-title">
+                          <a href="{{url('')}}/donatur/{{$donatur->id}}" class="product-title">
                             {{++$key}}.
                             {{$donatur->namadonatur}}
                             <span class="label label-warning pull-right">Detail</span></a>
@@ -104,7 +104,7 @@
                   </div>
                   <!-- /.box-body -->
                   <div class="box-footer text-center">
-                    <a href="donatur" class="uppercase">Lihat Seluruhnya</a>
+                    <a href="{{url('')}}/donatur" class="uppercase">Lihat Seluruhnya</a>
                   </div>
                   <!-- /.box-footer -->
                 </div>
@@ -136,7 +136,7 @@
                       <li class="item">
                         <div class="product-info">
                             
-                          <a href="donatur/{{$donatur->id}}" class="product-title">
+                          <a href="{{url('')}}/{{$donatur->id}}" class="product-title">
                             {{++$key}}.
                             {{$donatur->namadonatur}}
                             <span class="label label-warning pull-right">Detail</span></a>
@@ -153,7 +153,7 @@
                   </div>
                   <!-- /.box-body -->
                   <div class="box-footer text-center">
-                    <a href="donatur" class="uppercase">Lihat Seluruhnya</a>
+                    <a href="{{url('')}}/donatur" class="uppercase">Lihat Seluruhnya</a>
                   </div>
                   <!-- /.box-footer -->
                 </div>

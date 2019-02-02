@@ -30,7 +30,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/peruntukandonasi">
+<form class="form-horizontal" method="POST" action="{{url('')}}/peruntukandonasi">
 {{@csrf_field()}}
 
 

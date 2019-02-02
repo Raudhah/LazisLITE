@@ -33,7 +33,7 @@
 <p>Laporan ini akan menampilkan detail per item transaksi. </p>
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/laporan/all">
+<form class="form-horizontal" method="POST" action="{{url('')}}/laporan/all">
 {{@csrf_field()}}
 
         <!-- // Jenis Transaksi -->

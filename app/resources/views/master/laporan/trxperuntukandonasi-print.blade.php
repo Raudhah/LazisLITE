@@ -62,7 +62,7 @@
                     @foreach ($donasi->trxdonasidetail as $key=>$item)
                         @if ($item->peruntukandonasi_id == $peruntukandonasi->id)
                             <tr>
-                                <td style="text-align:center"><a href="/trxdonasi/{{$donasi->id}}" target="_blank">({{config('app.kodekuitansi.trxdonasi')}}-{{$donasi->id}})</td>
+                                <td style="text-align:center"><a href="{{url('')}}/trxdonasi/{{$donasi->id}}" target="_blank">({{config('app.kodekuitansi.trxdonasi')}}-{{$donasi->id}})</td>
                                 <td style="text-align:center">{{$donasi->tanggaldonasi}}</td>
                                 <td>({{config('app.kodeamil')}}{{$donasi->amil_id}}) {{$donasi->amil->namaamil}}</td>
                                 <td>({{config('app.kodedonatur')}}{{$donasi->donatur_id}}) {{$donasi->donatur->namadonatur}}</td>
@@ -85,7 +85,7 @@
                         @if ($itemtrx->peruntukandonasi_id == $peruntukandonasi->id)
                             
                             <tr>
-                                <td style="text-align:center"><a href="/trxibrankasku/{{$itemtrx->id}}" target="_blank">({{config('app.kodekuitansi.trxibrankasku')}}-{{$itemtrx->id}})</td>
+                                <td style="text-align:center"><a href="{{url('')}}/trxibrankasku/{{$itemtrx->id}}" target="_blank">({{config('app.kodekuitansi.trxibrankasku')}}-{{$itemtrx->id}})</td>
                                 <td style="text-align:center">{{$itemtrx->tanggaldonasi}}</td>
                                 <td>({{config('app.kodeamil')}}{{$itemtrx->amil_id}}) {{$itemtrx->amil->namaamil}}</td>
                                 <td>({{config('app.kodedonatur')}}{{$itemtrx->donatur_id}}) {{$itemtrx->donatur->namadonatur}}</td>

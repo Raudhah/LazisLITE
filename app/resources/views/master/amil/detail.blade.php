@@ -76,8 +76,6 @@
         <div class="col-sm-2">
         </div>
 
-
-
 @endsection
 
 <!-- //===========SCRIPT FOR THE FOOTER  ===========   -->

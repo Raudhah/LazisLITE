@@ -35,7 +35,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/trxkotakinfaq">
+<form class="form-horizontal" method="POST" action="{{url('')}}/trxkotakinfaq">
 {{@csrf_field()}}
 
         <!-- // DONATURNYA -->
@@ -283,7 +283,7 @@
 
                 type:'POST',
      
-                url:'/donatur/ajaxsearch',
+                url:'{{url('')}}/donatur/ajaxsearch',
      
                 data:{function:'searchdonatur', query: inputcaridonatur},
      

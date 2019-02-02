@@ -1,5 +1,5 @@
 
-<!-- // amil -->
+<!-- // user -->
 
 @extends('master.layout')
 
@@ -30,7 +30,7 @@
 @section('boxcontent')
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/amil/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="{{url('')}}/user/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('DELETE')}}
 
@@ -46,17 +46,17 @@
             <tbody>
                 <tr>
                     <th>Nama Amil</th>
-                    <td>{{$data->namaamil}}</td>
+                    <td>{{$data->namauser}}</td>
                 </tr>
 
                 <tr>
                     <th>Alamat Amil</th>
-                    <td>{{$data->alamatamil}}</td>
+                    <td>{{$data->alamatuser}}</td>
                 </tr>
 
                 <tr>
                     <th>Nomor Telepon Amil</th>
-                    <td>{{$data->nomorteleponamil}}</td>
+                    <td>{{$data->nomorteleponuser}}</td>
                 </tr>
                 
 

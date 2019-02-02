@@ -93,7 +93,7 @@
         <div class="col-sm-10">
 
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="/trxibrankasku/{{$idtransaksi}}">
+            <form class="form-horizontal" method="POST" action="{{url('')}}/trxibrankasku/{{$idtransaksi}}">
                 
                 {{@csrf_field()}}
                 {{method_field('DELETE')}}

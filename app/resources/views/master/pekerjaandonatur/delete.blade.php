@@ -30,7 +30,7 @@
 @section('boxcontent')
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/pekerjaandonatur/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="{{url('')}}/pekerjaandonatur/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('DELETE')}}
 
@@ -72,8 +72,21 @@
         </div>
 
         <div class="col-sm-10">
-            <button type="reset" class="btn btn-default btn-lg">Batal</button>
-            <button type="submit" class="btn btn-danger btn-lg">HAPUS Data</button>
+
+                @if (($terpakaidonatur) > 0)
+                <div class="alert alert-danger alert-dismissable">
+                    Maaf Data Tidak bisa dihapus, karena masih terpakai di :
+                    <ol> 
+                    @if ($terpakaidonatur > 0)
+                        <li><a href="{{url('')}}/donatur/search" target="_blank">Data Donatur :  {{$terpakaidonatur}} Data</a></li>
+                    @endif
+                    </ol>
+                </div>
+    
+            @else 
+                    <button type="reset" class="btn btn-default btn-lg">Batal</button>
+                    <button type="submit" class="btn btn-danger btn-lg">HAPUS Data</button>
+            @endif            
         </div>
     
     </form>

@@ -33,7 +33,7 @@
 <p>Laporan ini akan menampilkan Data dari Peruntukan Donasi </p>
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/laporan/peruntukandonasi">
+<form class="form-horizontal" method="POST" action="{{url('')}}/laporan/peruntukandonasi">
 {{@csrf_field()}}
     
 

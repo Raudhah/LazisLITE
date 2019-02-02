@@ -30,7 +30,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/pekerjaandonatur">
+<form class="form-horizontal" method="POST" action="{{url('')}}/pekerjaandonatur">
 {{@csrf_field()}}
 
 

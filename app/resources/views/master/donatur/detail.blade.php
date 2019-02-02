@@ -64,7 +64,7 @@
 
                 <tr>
                     <th>Petugas AMIL</th>
-                    <td><a class="btn btn-success" href="/amil/{{$amil->id}}">{{$amil->namaamil}}</a></td>
+                    <td><a class="btn btn-success" href="{{url('')}}/amil/{{$amil->id}}">{{$amil->namaamil}}</a></td>
                 </tr>
 
                 <tr>
@@ -117,8 +117,8 @@
         </div>
 
         <div class="col-sm-10">
-            <a class="btn btn-warning" href="/donatur/{{$data->id}}/edit">Edit</a>
-            <a class="btn btn-danger" href="/donatur/{{$data->id}}/delete">Hapus</a>
+            <a class="btn btn-warning" href="{{url('')}}/donatur/{{$data->id}}/edit">Edit</a>
+            <a class="btn btn-danger" href="{{url('')}}/donatur/{{$data->id}}/delete">Hapus</a>
         </div>
     
 

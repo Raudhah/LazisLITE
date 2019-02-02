@@ -29,7 +29,7 @@
 @section('boxcontent')
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/pekerjaandonatur/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="{{url('')}}/pekerjaandonatur/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('PATCH')}}
 

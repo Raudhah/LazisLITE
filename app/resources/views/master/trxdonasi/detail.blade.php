@@ -59,7 +59,7 @@
                 
                 <tr>
                     <th>Petugas AMIL</th>
-                    <td><a class="btn btn-success" href="/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
+                    <td><a class="btn btn-success" href="{{url('')}}/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
                 </tr>
 
                 

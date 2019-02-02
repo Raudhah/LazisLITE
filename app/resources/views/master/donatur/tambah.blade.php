@@ -30,7 +30,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/donatur">
+<form class="form-horizontal" method="POST" action="{{url('')}}/donatur">
 {{@csrf_field()}}
 
         <!-- // Nama Donatur -->

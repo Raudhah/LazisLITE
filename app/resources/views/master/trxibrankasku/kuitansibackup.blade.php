@@ -54,7 +54,7 @@
                 
                 <tr>
                     <th>Petugas AMIL</th>
-                    <td><a class="btn btn-success" href="/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
+                    <td><a class="btn btn-success" href="{{url('')}}/amil/{{$dataamil->id}}">{{$dataamil->namaamil}}</a></td>
                 </tr>
 
                 
@@ -91,8 +91,8 @@
         </div>
 
         <div class="col-sm-10">
-            <a class="btn btn-warning" href="/trxibrankasku/{{$idtransaksi}}/edit">Edit</a>
-            <a class="btn btn-danger" href="/trxibrankasku/{{$idtransaksi}}/delete">Hapus</a>
+            <a class="btn btn-warning" href="{{url('')}}/trxibrankasku/{{$idtransaksi}}/edit">Edit</a>
+            <a class="btn btn-danger" href="{{url('')}}/trxibrankasku/{{$idtransaksi}}/delete">Hapus</a>
         </div>
     
 

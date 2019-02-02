@@ -30,7 +30,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/amil/search">
+<form class="form-horizontal" method="POST" action="{{url('')}}/amil/search">
 {{@csrf_field()}}
 
 

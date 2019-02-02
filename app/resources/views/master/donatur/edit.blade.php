@@ -30,7 +30,7 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/donatur/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="{{url('')}}/donatur/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('PATCH')}}
 

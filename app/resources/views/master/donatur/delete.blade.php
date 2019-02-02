@@ -30,7 +30,7 @@
 @section('boxcontent')
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/donatur/{{$data->id}}">
+<form class="form-horizontal" method="POST" action="{{url('')}}/donatur/{{$data->id}}">
 {{@csrf_field()}}
 {{method_field('DELETE')}}
 
@@ -69,7 +69,7 @@
 
         <tr>
             <th>Petugas AMIL</th>
-            <td><a class="btn btn-success" href="/amil/{{$amil->id}}">{{$amil->namaamil}}</a></td>
+            <td><a class="btn btn-success" href="{{url('')}}/amil/{{$amil->id}}">{{$amil->namaamil}}</a></td>
         </tr>
 
         <tr>
@@ -122,8 +122,28 @@
         </div>
 
         <div class="col-sm-10">
-            <button type="reset" class="btn btn-default btn-lg">Batal</button>
-            <button type="submit" class="btn btn-danger btn-lg">HAPUS Data</button>
+
+                @if (($terpakaitrxdonasi + $terpakaitrxkotakinfaq + $terpakaitrxibrankasku) > 0)
+                <div class="alert alert-danger alert-dismissable">
+                    Maaf Data Tidak bisa dihapus, karena masih terpakai di :
+                    <ol> 
+                    @if ($terpakaitrxdonasi > 0)
+                        <li><a href="{{url('')}}/trxdonasi/search" target="_blank">Transaksi Donasi :  {{$terpakaitrxdonasi}} Transaksi</a></li>
+                    @endif
+                    @if ($terpakaitrxkotakinfaq > 0)
+                        <li><a href="{{url('')}}/trxkotakinfaq/search" target="_blank">Transaksi Kotak Infaq :  {{$terpakaitrxkotakinfaq}} Transaksi</a></li>
+                    @endif
+                    @if ($terpakaitrxibrankasku > 0)
+                        <li><a href="{{url('')}}/trxibrankasku/search" target="_blank">Transaksi iBrankasku :  {{$terpakaitrxibrankasku}} Transaksi</a></li>
+                    @endif
+                    </ol>
+                </div>
+    
+            @else 
+                <button type="reset" class="btn btn-default btn-lg">Batal</button>
+                <button type="submit" class="btn btn-danger btn-lg">HAPUS Data</button>
+            @endif
+            
         </div>
     
     </form>

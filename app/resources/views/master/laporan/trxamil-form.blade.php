@@ -33,7 +33,7 @@
 <p>Laporan ini akan menampilkan Data dari Amil </p>
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/laporan/amil">
+<form class="form-horizontal" method="POST" action="{{url('')}}/laporan/amil">
 {{@csrf_field()}}
 
         <!-- //AMil yang bertanggung Jawab -->

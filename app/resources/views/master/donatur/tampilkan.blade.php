@@ -34,6 +34,7 @@
     <thead>
     <tr>
       <th>No.</th>
+      <th>ID</th>
       <th>Nama Donatur</th>
       <th>Alamat</th>
       <th>No. Telepon</th>
@@ -52,12 +53,13 @@
 
         <tr>
             <td>{{ ++$key}}</td>
+            <td> {{config('app.kodedonatur')}}{{ $item->id }}</td>
             <td> {{ $item->namadonatur }}</td>
             <td> {{ $item->alamatdonatur }}</td>
             <td> {{ $item->nomortelepondonatur }}</td>
-            <td><a href="/donatur/{{ $item->id }}"  data-toggle="tooltip" title="detail"><i class="fa fa-search"></i></a></td>
-            <td><a href="/donatur/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/donatur/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td><a href="{{url('')}}/donatur/{{ $item->id }}"  data-toggle="tooltip" title="detail"><i class="fa fa-search"></i></a></td>
+            <td><a href="{{url('')}}/donatur/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="{{url('')}}/donatur/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

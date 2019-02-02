@@ -58,10 +58,10 @@
             <td> {{ $item->donatur->namadonatur }}</td>
             <td> {{ $item->amil->namaamil }}</td>
             <td class="pull-right"> {{ number_format($item->jumlahtotal,0,',','.') }}</td>
-            <td><a href="/trxdonasi/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi"><i class="fa fa-print"></i></a></td>
-            <td><a href="/trxdonasi/{{ $item->id }}"  data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a></td>
-            <td><a href="/trxdonasi/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="/trxdonasi/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td><a href="{{url('')}}/trxdonasi/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi"><i class="fa fa-print"></i></a></td>
+            <td><a href="{{url('')}}/trxdonasi/{{ $item->id }}"  data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a></td>
+            <td><a href="{{url('')}}/trxdonasi/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td><a href="{{url('')}}/trxdonasi/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

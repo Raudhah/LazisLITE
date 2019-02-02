@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pekerjaandonatur;
+use App\Donatur;
 use Illuminate\Http\Request;
 
 class PekerjaandonaturController extends Controller
@@ -158,7 +159,11 @@ class PekerjaandonaturController extends Controller
     {
         //
         $data = $pekerjaandonatur;
-        return view('master/pekerjaandonatur/delete',compact('data'));
+
+        //check di donatur
+        $terpakaidonatur = \App\Donatur::where('pekerjaandonatur_id', '=', $pekerjaandonatur->id)->count();
+
+        return view('master/pekerjaandonatur/delete',compact('data', 'terpakaidonatur'));
     }
 
     /**
