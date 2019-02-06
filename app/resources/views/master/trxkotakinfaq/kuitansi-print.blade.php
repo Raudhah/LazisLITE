@@ -42,6 +42,9 @@
                                             <td>
                                                 Alhamdulillah, telah diterima dari hasil perolehan Kotak Infaq Pada Tanggal {{$tanggaldonasi}} Kotak Infaq
                                                 Sebesar <strong>Rp.{{number_format($jumlahtotal,0,',','.')}},00</strong>
+                                                @if ($keterangan!=null)
+                                                    ( {{$keterangan}} )
+                                                @endif
                                             </td>
                                         </tr>
                                     </thead>
@@ -109,5 +112,9 @@
 
 <!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
 @section('footer-code')
-    
+<script>
+    $(document).ready(function(){
+        window.print();
+    });
+</script>    
 @endsection

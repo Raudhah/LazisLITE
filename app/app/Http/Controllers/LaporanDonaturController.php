@@ -9,6 +9,7 @@ use App\Trxibrankasku;
 use App\Amil;
 use App\Donatur;
 use App\Trxdonasidetail;
+use App\peruntukandonasi;
 use Carbon\Carbon;
 
 class LaporanDonaturController extends Controller
@@ -105,9 +106,24 @@ class LaporanDonaturController extends Controller
                                         ->where('donatur_id','=',$donatur_id)
                                         ->get();
 
-            // dd($datadonasi);
+            $datakotakinfaq = \App\Trxkotakinfaq::select('id', 'donatur_id', 'donatur_id', 'amil_id', 'jumlahtotal', 'keterangan', 'tanggaldonasi')
+                                        ->with(['donatur'])
+                                        ->with(['amil'])
+                                        ->when(($periodelaporan!= null), function($query) use ($periodeawal, $periodeakhir){
+                                            return $query->whereBetween('tanggaldonasi', [$periodeawal, $periodeakhir]);
+                                        })
+                                        //sortby tanggal desc
+                                        ->when(($sortby== 1), function($query){
+                                            return $query->orderBy('tanggaldonasi', 'desc');
+                                        })
+                                        //sortby tanggal asc
+                                        ->when(($sortby== 2), function($query){
+                                            return $query->orderBy('tanggaldonasi', 'asc');
+                                        })
+                                        ->where('donatur_id','=',$donatur_id)
+                                        ->get();
 
-            $dataibrankasku = \App\Trxibrankasku::select('id', 'donatur_id', 'donatur_id', 'amil_id', 'nominalvaluasi', 'deskripsibarang', 'tanggaldonasi')
+            $dataibrankasku = \App\Trxibrankasku::select('id', 'donatur_id', 'peruntukandonasi_id','donatur_id', 'amil_id', 'nominalvaluasi', 'deskripsibarang', 'tanggaldonasi')
                                         ->with(['donatur'])
                                         ->with(['amil'])
                                         ->when(($periodelaporan!= null), function($query) use ($periodeawal, $periodeakhir){
@@ -125,7 +141,7 @@ class LaporanDonaturController extends Controller
                                         ->get();
 
 
-            return view('master/laporan/trxdonatur-print', compact('datadonatur','donatur_id','datadonasi','dataibrankasku','listdonatur',   'periodelaporan', 'donatur_id', 'checkboxsemuadonatur'));
+            return view('master/laporan/trxdonatur-print', compact('datadonatur','datakotakinfaq', 'donatur_id','datadonasi','dataibrankasku','listdonatur', 'periodelaporan', 'donatur_id', 'checkboxsemuadonatur'));
 
         }
 

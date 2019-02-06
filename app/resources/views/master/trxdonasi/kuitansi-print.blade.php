@@ -126,5 +126,9 @@
 
 <!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
 @section('footer-code')
-    
+<script>
+    $(document).ready(function(){
+        window.print();
+    });
+</script>
 @endsection

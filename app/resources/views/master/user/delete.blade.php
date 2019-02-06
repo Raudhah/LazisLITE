@@ -4,18 +4,18 @@
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Hapus Amil')
+@section('pagename', 'Hapus User')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Amil')
+@section('modulname', 'User')
 
 @section('modulsection', 'Hapus')
 @section('modulicon', 'fa fa-trash')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Hapus Amil')
+@section('boxheader-title', 'Hapus User')
 
-@section('boxheader-instruction', 'Apakah Yakin Anda Mau Menghapus Data Berikut?')
+@section('boxheader-instruction', 'Apakah Yakin Anda Mau Menghapus User Berikut?')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
@@ -45,32 +45,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <th>Nama Amil</th>
-                    <td>{{$data->namauser}}</td>
+                    <th>Nama User</th>
+                    <td>{{$data->name}}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{$data->email}}</td>
                 </tr>
 
                 <tr>
-                    <th>Alamat Amil</th>
-                    <td>{{$data->alamatuser}}</td>
-                </tr>
-
-                <tr>
-                    <th>Nomor Telepon Amil</th>
-                    <td>{{$data->nomorteleponuser}}</td>
+                    <th>Level Akses</th>
+                    <td>{{($data->levelakses == 1? "Admin Harian": "Super Admin")}}</td>
                 </tr>
                 
-
-                <tr>
-                    <th>Status</th>
-                    <td>
-                        @if ($data->statusaktif)
-                            Aktif
-                        @else
-                            Non-Aktif
-                        @endif
-    
-                    </td>
-                </tr>
             </tbody>
         </table>
 

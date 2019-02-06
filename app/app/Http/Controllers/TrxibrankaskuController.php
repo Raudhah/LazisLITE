@@ -9,7 +9,7 @@ use App\peruntukandonasi;
 use App\Donatur;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use PDF;
+use PDF;    
 
 class TrxibrankaskuController extends Controller
 {
@@ -231,9 +231,11 @@ class TrxibrankaskuController extends Controller
         //$pdf = PDF::loadView('master.trxibrankasku.kuitansi', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
         // return $pdf->download('invoice.pdf');
 
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML('<h1>Test</h1>');
-        return $pdf->download();
+        $data = [
+            'foo' => 'bar'
+        ];
+        $pdf = PDF::loadView('master/pdf/pdf1', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+        return $pdf->stream('document.pdf');
     
         // return view('master/trxibrankasku/kuitansi-print', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
     }

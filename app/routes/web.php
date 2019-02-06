@@ -79,17 +79,46 @@ Route::post('/laporan/peruntukandonasi', 'LaporanPeruntukandonasiController@semu
 Route::get('/laporan/donatur', 'LaporanDonaturController@semuaTrx');
 Route::post('/laporan/donatur', 'LaporanDonaturController@semuaTrxProses');
 
+//========= KUITANSI MASSAL
+Route::get('/kuitansimassal', 'KuitansiMassalController@index');
+Route::post('/kuitansimassal', 'KuitansiMassalController@tampilkan');
+
 //========= DASHBOARD
 Route::get('/dashboard', 'Dashboard@index');
+
+//========= PANDUAN
+Route::get('/panduan', 'PanduanController@index');
+Route::get('/panduan/daftarisiadmin', 'PanduanController@daftarisiadmin');
+Route::get('/panduan/daftarisisuperadmin', 'PanduanController@daftarisisuperadmin');
+Route::get('/panduan/trxdonasi', 'PanduanController@trxdonasi');
+Route::get('/panduan/trxkotakinfaq', 'PanduanController@trxkotakinfaq');
+Route::get('/panduan/trxibrankasku', 'PanduanController@trxibrankasku');
+Route::get('/panduan/donatur', 'PanduanController@donatur');
+Route::get('/panduan/amil', 'PanduanController@amil');
+Route::get('/panduan/peruntukandonasi', 'PanduanController@trxdonasi');
+Route::get('/panduan/pekerjaandonatur', 'PanduanController@trxdonasi');
+Route::get('/panduan/laporan', 'PanduanController@trxdonasi');
+Route::get('/panduan/konfigurasi', 'PanduanController@trxdonasi');
+Route::get('/panduan/gantipassword', 'PanduanController@trxdonasi');
+Route::get('/panduan/user', 'PanduanController@trxdonasi');
+Route::get('/panduan/login', 'PanduanController@trxdonasi');
+Route::get('/panduan/logout', 'PanduanController@trxdonasi');
 
 //========= USER 
 Route::get('/user', 'UserController@index');
 Route::get('/user/gantipassword', 'UserController@gantiPassword');
 Route::post('/user/gantipassword', 'UserController@gantiPasswordProses');
+Route::get('/user/create', 'UserController@create');
+Route::post('/user', 'UserController@store');
+Route::get('/user/{user}/delete', 'UserController@delete');
+Route::delete('/user/{user}', 'UserController@destroy');
 
 
-
-Auth::routes();
+//========= AUTHENTIKASI
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+// Auth::routes();  //old ones, we dont need this anymore to protect
 
 Route::get('/home', 'Dashboard@index')->name('dashboard');
 

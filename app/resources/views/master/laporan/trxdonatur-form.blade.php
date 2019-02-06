@@ -31,6 +31,7 @@
 @endsection
 
 
+
 <!-- //========== BOX CONTENT =========== -->
 @section('boxcontent')
 
@@ -249,7 +250,7 @@
         $('#datapilihan').hide();
         $('#semuadonatur').hide();
         $('#top100').hide();
-        $('#urutkanberdasarkan').hide();
+        //$('#urutkanberdasarkan').hide();
         
 
         $('#tombolcaridisemuadonatur').click(function(){

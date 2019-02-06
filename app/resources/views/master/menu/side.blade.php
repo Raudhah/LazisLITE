@@ -98,6 +98,7 @@
           <li><a href="{{url('laporan/amil') }}"><i class="fa fa-circle-o"></i> Laporan Berdasarkan Amil</a></li>
           <li><a href="{{url('laporan/peruntukandonasi') }}"><i class="fa fa-circle-o"></i> Rekap Per-Peruntukan</a></li>
           <li><a href="{{url('laporan/donatur') }}"><i class="fa fa-circle-o"></i> Rekap Per-Donatur</a></li>
+          <li><a href="{{url('kuitansimassal') }}"><i class="fa fa-circle-o"></i> Cetak Kuitansi Per-Amil</a></li>
         </ul>
       </li>
       <!-- / MENU Laporan -->
@@ -107,10 +108,9 @@
       <li><a href="{{url('user/gantipassword') }}"><i class="fa fa-key text-yellow"></i> <span>Ganti Password</span></a></li>
       
       @auth
-          
-      
-      <li><a href="{{ url('logout') }}"
-        onclick="event.preventDefault();document.getElementById('logout-form').submit();') }}"><i class="fa fa-sign-out text-red"></i> <span>Logout</span></a></li>
+
+      <li><a href="{{url('')}}{{ route('logout') }}"
+        onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out text-red"></i> <span>Logout</span></a></li>
       @endauth
     </ul>
   </section>

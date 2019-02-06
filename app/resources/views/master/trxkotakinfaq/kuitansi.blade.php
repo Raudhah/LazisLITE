@@ -42,6 +42,9 @@
                                         <td>
                                             Alhamdulillah, telah diterima dari hasil perolehan Kotak Infaq Pada Tanggal {{$tanggaldonasi}} Kotak Infaq
                                             Sebesar <strong>Rp.{{number_format($jumlahtotal,0,',','.')}},00</strong>
+                                            @if ($keterangan!=null)
+                                                    ( {{$keterangan}} )
+                                            @endif
                                         </td>
                                     </tr>
                                 </thead>
@@ -108,7 +111,7 @@
                   <div class="col-xs-12">
                     <a href="{{url('')}}/trxkotakinfaq/{{$idtransaksi}}/print" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Cetak Kuitansi</a>
                     </a>
-                    <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                    <button type="button" class="btn hidden btn-primary pull-right" style="margin-right: 5px;">
                       <i class="fa fa-download"></i> Download PDF
                     </button>
                   </div>

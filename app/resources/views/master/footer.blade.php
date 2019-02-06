@@ -19,16 +19,8 @@ $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('js/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- Morris.js charts -->
-<!-- <script src="{{asset('js/bower_components/raphael/raphael.min.js') }}"></script> -->
-<!-- <script src="{{asset('js/bower_components/morris.js/morris.min.js') }}"></script> -->
 <!-- Sparkline -->
 <script src="{{asset('js/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
-<!-- jvectormap -->
-<script src="{{asset('js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-<script src="{{asset('js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{asset('js/bower_components/jquery-knob/dist/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
 <script src="{{asset('js/bower_components/moment/min/moment.min.js') }}"></script>
 <script src="{{asset('js/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
@@ -45,13 +37,13 @@ $.widget.bridge('uibutton', $.ui.button);
 <script src="{{asset('js/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('js/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('js/dist/js/pages/dashboard.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('js/dist/js/demo.js') }}"></script>
-</body>
-</html>
 
 @yield('footer-code')
+
+</body>
+
+</html>
+
+
 
 <!-- some footer has nasty script -->

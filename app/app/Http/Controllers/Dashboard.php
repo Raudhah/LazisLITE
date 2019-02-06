@@ -129,7 +129,60 @@ class Dashboard extends Controller
         $listdonaturrutinterbaru = \App\Donatur::where('isdonaturrutin', 1)->orderBy('id', 'desc')->take(10)->get();
         $listkotakinfaqterbaru = \App\Donatur::where('iskotakinfaq', 1)->orderBy('id', 'desc')->take(10)->get();
 
-        //TrxDonasi Bulan Ini
+        //data trxdonasi dalam tahun ini
+        $donasitahunini = \App\Trxdonasi::selectRaw("sum(jumlahtotal) as jumlah, DATE_FORMAT(tanggaldonasi,'%m') as bulan")
+                                        ->whereYear('tanggaldonasi', date('Y'))
+                                        ->groupBy('bulan')
+                                        ->get();
+
+        //data kotakinfaq dalam tahun ini
+        $kotakinfaqtahunini = \App\Trxkotakinfaq::selectRaw("sum(jumlahtotal) as jumlah, DATE_FORMAT(tanggaldonasi,'%m') as bulan")
+                                        ->whereYear('tanggaldonasi', date('Y'))
+                                        ->groupBy('bulan')
+                                        ->get();
+
+        //data ibrankasku dalam tahun ini
+        $ibrankaskutahunini = \App\Trxibrankasku::selectRaw("sum(nominalvaluasi) as jumlah, DATE_FORMAT(tanggaldonasi,'%m') as bulan")
+                                        ->whereYear('tanggaldonasi', date('Y'))
+                                        ->groupBy('bulan')
+                                        ->get();
+
+        // dd($donasitahunini);
+
+        //buat array untuk barchart
+
+        $barchart = [];
+
+        for($i = 0; $i<12; $i++){
+            $barchart[] = (Object) array('bulan'=>($i+1),'trxdonasi'=>0, 'trxkotakinfaq' => 0, 'trxibrankasku' => 0);
+        }
+
+        //mengisi data donasi
+        foreach($donasitahunini as $item){
+            for($i = 0; $i<12; $i++){
+                if($item->bulan == $i+1){
+                    $barchart[$i]->trxdonasi = $item->jumlah;
+                }
+            }
+        }
+        
+        //mengisi data kotakinfaq
+        foreach($kotakinfaqtahunini as $item){
+            for($i = 0; $i<12; $i++){
+                if($item->bulan == $i+1){
+                    $barchart[$i]->trxkotakinfaq = $item->jumlah;
+                }
+            }
+        }
+
+        //mengisi data kotakinfaq
+        foreach($ibrankaskutahunini as $item){
+            for($i = 0; $i<12; $i++){
+                if($item->bulan == $i+1){
+                    $barchart[$i]->trxibrankasku = $item->jumlah;
+                }
+            }
+        }
 
 
 
@@ -137,7 +190,7 @@ class Dashboard extends Controller
 
         
 
-        return view('/master/dashboard/index', compact('smallboxes', 'listdonaturrutinterbaru', 'listkotakinfaqterbaru'));
+        return view('/master/dashboard/index', compact('smallboxes', 'listdonaturrutinterbaru', 'listkotakinfaqterbaru', 'barchart'));
     }
 
 

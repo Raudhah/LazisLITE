@@ -64,6 +64,31 @@
 
 
     <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                  
+                  <h3 class="box-title">Grafik Perolehan Tahun Ini</h3>
+      
+                    <div class="box-tools pull-right">
+                      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="chart">
+                      <canvas id="barChart" style="height:400px; width:500px; border:1px solid black"></canvas>
+                  </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-6">
                 <!-- PRODUCT LIST -->
                 <div class="box box-primary">
@@ -176,6 +201,72 @@
 
 <!-- //===========SCRIPT FOR THE FOOTER  ===========   -->
 @section('footer-code')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+
+<script>
+  
+    $(document).ready(function(){
+
+      var barChartData = {
+        labels  : ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+        datasets: [
+          {
+            label               : 'Donasi',
+            backgroundColor     : 'rgba(250, 197, 5, 1)',
+            borderColor         : 'rgba(231, 186, 24, 1)',
+            data                : [
+              @foreach ($barchart as $item)
+                      {{$item->trxdonasi}}, 
+              @endforeach
+              ]
+          },
+          {
+            label               : 'Kotak Infaq',
+            backgroundColor     : 'rgba(60,141,188,0.9)',
+            borderColor         : 'rgba(60,141,188,0.8)',
+            data                : [
+              @foreach ($barchart as $item)
+                      {{$item->trxkotakinfaq}}, 
+              @endforeach
+            ]
+          },
+          {
+            label               : 'iBrankasku',
+            backgroundColor     : 'rgba(179, 232, 33, 1)',
+            borderColor         : 'rgba(123, 162, 17, 1)',
+            data                : [
+              @foreach ($barchart as $item)
+                      {{$item->trxibrankasku}}, 
+              @endforeach
+            ]
+          }
+
+        ]
+      }
+  
+      
+     
+    var ctx = document.getElementById("barChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    });
+
+
+
+
+</script>
 
 
     

@@ -31,6 +31,7 @@
     <thead>
     <tr>
       <th>No.</th>
+      <th>ID</th>
       <th>Nama Amil</th>
       <th>Alamat</th>
       <th>No. Telepon</th>
@@ -49,6 +50,7 @@
 
         <tr>
             <td>{{ ++$key}}</td>
+            <td>{{config('app.kodeamil')}}{{ $item->id }}</td>
             <td> {{ $item->namaamil }}</td>
             <td> {{ $item->alamatamil }}</td>
             <td> {{ $item->nomorteleponamil }}</td>

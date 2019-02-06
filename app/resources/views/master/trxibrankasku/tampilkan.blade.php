@@ -34,6 +34,7 @@
     <thead>
     <tr>
       <th>No.</th>
+      <th>Kuitansi</th>
       <th>Tanggal</th>
       <th>Nama Donatur</th>
       <th>Detail Barang</th>
@@ -54,6 +55,7 @@
 
         <tr>
             <td>{{ ++$key}}</td>
+            <td> {{config('app.kodekuitansi.trxibrankasku')}}{{ $item->id }}</td>
             <td> {{ $item->tanggaldonasi }}</td>
             <td> {{ $item->donatur->namadonatur }}</td>
             <td> {{ $item->deskripsibarang }}</td>

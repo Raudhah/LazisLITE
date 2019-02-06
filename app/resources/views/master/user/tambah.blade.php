@@ -3,18 +3,18 @@
 @extends('master.layout')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Tambah Amil')
+@section('pagename', 'Tambah User')
 
 <!-- //========== MODUL HEADER ========== -->
-@section('modulname', 'Amil')
+@section('modulname', 'User')
 
 @section('modulsection', 'Tambah')
 @section('modulicon', 'fa fa-plus')
 
 <!-- //===========BOX  HEADER =========== -->
-@section('boxheader-title', 'Tambah Amil')
+@section('boxheader-title', 'Tambah User')
 
-@section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi. Hanya Amil yang aktif akan muncul saat Transaksi')
+@section('boxheader-instruction', 'Isi form berikut. Tanda * wajib diisi. Hanya User yang aktif akan muncul saat Transaksi')
 
 <!-- //===========BOX MESSAGE, for ANY ALERT AVAILABLE =========== -->
 @section('boxmessage')
@@ -30,59 +30,65 @@
 
 
 <!-- form start -->
-<form class="form-horizontal" method="POST" action="/amil">
+<form class="form-horizontal" method="POST" action="{{url('')}}/user">
 {{@csrf_field()}}
 
 
         <div class="form-group">
-            <label for="namaamil" class="col-sm-2 control-label input-lg">
-                Nama Amil *
+            <label for="name" class="col-sm-2 control-label input-lg">
+                Nama User
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="namaamil" value="{{old('namaamil')}}" id="namaamil" placeholder="Nama Amil" required>
+                <input type="text" class="form-control input-lg" name="name" value="{{old('name')}}" id="name" placeholder="Nama User" required>
             </div>
 
         </div>
 
         <div class="form-group">
-            <label for="alamatamil" class="col-sm-2 control-label input-lg">
-                Alamat Amil
+            <label for="email" class="col-sm-2 control-label input-lg">
+                Email User* (untuk login)
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="alamatamil" value="{{old('alamatamil')}}" id="alamatamil" placeholder="Jl... No...">
+                <input type="email" class="form-control input-lg" name="email" value="{{old('email')}}" id="email" placeholder="sesuatu@blabla.com">
             </div>
-
         </div>
 
         <div class="form-group">
-            <label for="nomorteleponamil" class="col-sm-2 control-label input-lg">
-                Nomor Telepon Amil
+            <label for="levelakses" class="col-sm-2 control-label input-lg">
+                Level Akses
             </label>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control input-lg" name="nomorteleponamil" value="{{old('nomorteleponamil')}}" id="nomorteleponamil" placeholder="08xxxxx">
+                    <select name="levelakses" id="levelakses"  class="form-control input-lg"  required>
+                            <option value="1" {{(old('levelakses') == 1? "selected":"")}}>Admin Harian</option>
+                            <option value="2" {{(old('levelakses') == 2? "selected":"")}}>Super Admin</option>
+                    </select>
             </div>
-
         </div>
 
         <div class="form-group">
-            <label for="statusaktif" class="col-sm-2 control-label input-lg">
-                Status Aktif
-            </label>
-
-            <div class="col-sm-10">
-
-                    <label class="input-lg">
-                        <input type="radio" name="statusaktif" checked  value="1"> Aktif 
-                    </label>
-                    <label class="input-lg">
-                        <input type="radio" name="statusaktif" value='0'> Non-Aktif
-                    </label>
-            </div>
-
+                <label for="password" class="col-sm-2 control-label input-lg">
+                    Password
+                </label>
+    
+                <div class="col-sm-10">
+                    <input type="password" class="form-control input-lg" name="password" value="{{old('password')}}" id="password" placeholder="Password">
+                </div>
         </div>
+
+        <div class="form-group">
+                <label for="password_confirmation" class="col-sm-2 control-label input-lg">
+                   Konfirmasi Password
+                </label>
+    
+                <div class="col-sm-10">
+                    <input type="password" class="form-control input-lg" name="password_confirmation" id="password_confirmation" placeholder="Password Lagi">
+                </div>
+        </div>
+
+ 
 
 @endsection
 

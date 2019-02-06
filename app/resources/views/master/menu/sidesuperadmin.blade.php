@@ -36,6 +36,8 @@
         <!-- / MENU PEKERJAAN DONATUR -->
 
 
+
+
         <!-- MENU AMIL -->
         <li class="treeview">
           <a href="{{url('')}}#">
@@ -69,6 +71,21 @@
         </li>
         <!-- / MENU PERUNTUKAN DONASI -->
 
+        <!-- MENU USER -->
+        <li class="treeview">
+          <a href="{{url('')}}#">
+            <i class="fa fa-lock text-white"></i> <span>Data User</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+
+          <ul class="treeview-menu">
+            <li><a href="{{url('')}}/user/create"><i class="fa fa-plus"></i> Tambah User Baru</a></li>
+            <li><a href="{{url('')}}/user"><i class="fa fa-list"></i> Tampilkan List User</a></li>
+          </ul>
+        </li>
+        <!-- / MENU USER -->
 
 
         <li><a href="{{url('')}}/panduan"><i class="fa fa-book text-red"></i> <span>Petunjuk Penggunaan</span></a></li>
@@ -78,11 +95,12 @@
         <li><a href="{{url('')}}/konfigurasi/backup"><i class="fa fa-cubes text-teal"></i> <span>Backup Database</span></a></li>
 
         <li class="header">User</li>
+        <li><a href="{{url('')}}/user"><i class="fa fa-key text-yellow"></i> <span>Data User</span></a></li>
+        <li><a href="{{url('')}}/user/create"><i class="fa fa-key text-yellow"></i> <span>Tambah User</span></a></li>
         <li><a href="{{url('')}}/user/gantipassword"><i class="fa fa-key text-yellow"></i> <span>Ganti Password</span></a></li>
         
         @auth
-            
-        
+
         <li><a href="{{url('')}}{{ route('logout') }}"
           onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out text-red"></i> <span>Logout</span></a></li>
         @endauth

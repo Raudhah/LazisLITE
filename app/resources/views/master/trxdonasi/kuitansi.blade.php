@@ -130,7 +130,7 @@
           <div class="col-xs-12">
             <a href="{{url('')}}/trxdonasi/{{$idtransaksi}}/print" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Cetak Kuitansi</a>
             </a>
-            <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+            <button type="button" class="hidden btn btn-primary pull-right" style="margin-right: 5px;">
               <i class="fa fa-download"></i> Download PDF
             </button>
           </div>

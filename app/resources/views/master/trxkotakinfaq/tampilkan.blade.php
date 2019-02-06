@@ -34,6 +34,7 @@
     <thead>
     <tr>
       <th>No.</th>
+      <th>Kuitansi</th>
       <th>Tanggal</th>
       <th>Amil</th>
       <th>Nama Donatur</th>
@@ -55,6 +56,7 @@
 
         <tr>
             <td>{{ ++$key}}</td>
+            <td> {{config('app.kodekuitansi.trxkotakinfaq')}}{{ $item->id }}</td>
             <td> {{ $item->tanggaldonasi }}</td>
             <td> {{ $item->amil->namaamil }}</td>
             <td> {{ $item->donatur->namadonatur }}</td>
