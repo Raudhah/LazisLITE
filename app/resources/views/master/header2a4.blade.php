@@ -52,6 +52,7 @@
       body.A3               .sheet { width: 297mm; height: 419mm }
       body.A3.landscape     .sheet { width: 420mm; height: 296mm }
       body.A4               .sheet { width: 210mm; }
+      body.F4               .sheet { width: 210mm; height:320mm}
       body.A4.landscape     .sheet { width: 297mm; height: 209mm }
       body.A5               .sheet { width: 148mm; height: 209mm }
       body.A5.landscape     .sheet { width: 210mm; height: 147mm }
@@ -61,19 +62,46 @@
       body.legal.landscape  .sheet { width: 357mm; height: 215mm }
       
       /** Padding area **/
+      .sheet.padding-2mm { padding: 2mm }
       .sheet.padding-5mm { padding: 5mm }
       .sheet.padding-10mm { padding: 10mm }
       .sheet.padding-15mm { padding: 15mm }
       .sheet.padding-20mm { padding: 20mm }
       .sheet.padding-25mm { padding: 25mm }
+
+      /** kuitansi **/
+      .kuitansi{
+        height: 79mm;
+        border: 1px solid green;
+        margin-left: 3mm;
+        margin-top: 3mm;
+        margin-right: 3mm;
+        line-height: 16px;
+        overflow:hidden;
+      }
+      
       
       /** For screen preview **/
       @media screen {
+        body {
+          -webkit-print-color-adjust: exact !important;
+        }
+
         body { background: #e0e0e0 }
         .sheet {
           background: white;
           box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
           margin: 5mm auto;
+        }
+
+        .bgblue {
+          background-color: #337ab7 !important;
+          color : #fff;
+        }
+
+        .bggold{
+          background-color: orange  !important;
+          color: #fff;
         }
       }
       
@@ -86,6 +114,26 @@
         body.letter, body.legal    { width: 216mm }
         body.letter.landscape      { width: 280mm }
         body.legal.landscape       { width: 357mm }
+        body.F4               .sheet { width: 210mm;}
+
+        body {
+          -webkit-print-color-adjust: exact !important;
+        }
+
+        .bgblue {
+          background-color: #337ab7 !important;
+          color : #fff !important;
+        }
+
+        .bggold{
+          background-color: orange  !important;
+          color: #fff !important;
+        }
+
+        * {
+          -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+          color-adjust: exact !important;  /*Firefox*/
+        }
       }
 
 
@@ -95,4 +143,4 @@
   </style>
 </head>
 
-<body class="A4">
+<body class="F4">

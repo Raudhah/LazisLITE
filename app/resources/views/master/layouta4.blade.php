@@ -9,7 +9,7 @@
 
     @include("master/header2a4")
       <!-- Main content -->
-      <section class="sheet padding-5mm">
+      <section class="sheet">
 
         @yield('boxcontent')
 

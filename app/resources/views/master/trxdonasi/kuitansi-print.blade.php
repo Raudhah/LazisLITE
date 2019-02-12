@@ -9,7 +9,7 @@
 
 <!-- //========== BOX CONTENT =========== -->
 @section('boxcontent')
-    <div class="kuitansi" style="min-height: 75mm;border: 1px solid green;margin-bottom: 2mm;line-height: 16px;background:url('{{asset('storage/'.$konfig->namafilebackground)}}') no-repeat top center fixed;background-size:cover;">
+    <div class="kuitansi" style="background-image:url('{{asset('storage/'.$konfig->namafilebackground)}}') !important; background-repeat: no-repeat  !important; background-position:top center fixed  !important;background-size:100% !important;" media="print">
             <div class="row" style="">
                 <!-- //BAGIAN KIRI -->
                 <div class="col-sm-8">
@@ -38,10 +38,10 @@
 
                             <table class="table table-striped table-condensed" style="margin-left:2mm;margin-bottom:0px;font-size: 14px">
                                     <thead>
-                                        <tr class="bg-primary">
-                                            <th style="padding:0px;width:10mm;text-align:center">No.</th>
-                                            <th style="padding:0px;width:80mm;text-align:center">Peruntukan Donasi</th>
-                                            <th style="padding:0px;width:30mm;text-align:center">Jumlah</th>
+                                        <tr class="bgblue">
+                                            <th style="padding:0px;width:10mm;text-align:center;background-color:#337ab7 !important"  class="bgblue">No.</th>
+                                            <th style="padding:0px;width:80mm;text-align:center;background-color:#337ab7 !important"  class="bgblue">Peruntukan Donasi</th>
+                                            <th style="padding:0px;width:30mm;text-align:center;background-color:#337ab7 !important"  class="bgblue">Jumlah</th>
                                         </tr>
                                     </thead>
                                 
@@ -58,9 +58,9 @@
                                             
                                         <!- // JUMLAH TOTALNYA-->
                                             <tr style="" class="bg-gray">
-                                                <td style="padding:0px;" class=""></td>
-                                                <td style="padding:0px;" class=""><strong> JUMLAH TOTAL</strong></td>
-                                                <td style="padding:0px;text-align:right"><strong>{{number_format($jumlahtotal,0,',','.')}}</strong></td>
+                                                <td style="padding:0px;background-color:#d2d6de !important" class=""></td>
+                                                <td style="padding:0px;background-color:#d2d6de !important" class=""><strong> JUMLAH TOTAL</strong></td>
+                                                <td style="padding:0px;text-align:right;background-color:#d2d6de !important"><strong>{{number_format($jumlahtotal,0,',','.')}}</strong></td>
                                             </tr>
                                             
                                     </tbody>
@@ -111,7 +111,7 @@
             <!-- //END BAGIAN KANAN-->
 
             <div>
-                <div style="text-align:center; font-size:12px; font-weight:bold; font-style:italic; background-color:orange; overflow:hidden">
+                <div style="text-align:center; font-size:12px; font-weight:bold; font-style:italic; background-color:orange; overflow:hidden" class="bggold">
                     {{$konfig->nomorrekeningcabang}} 
                     <br/> Telepon : {{$konfig->nomorteleponcabang}} 
                     {{($konfig->emailcabang==null? "": "Email : ".$konfig->emailcabang)}} 

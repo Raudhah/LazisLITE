@@ -9,7 +9,7 @@
 
 <!-- //========== BOX CONTENT =========== -->
 @section('boxcontent')
-    <div class="kuitansi" style="min-height: 75mm;border: 1px solid green;margin-bottom: 2mm;line-height: 16px;background:url('{{asset('storage/'.$konfig->namafilebackground)}}') no-repeat top center fixed;background-size:cover;">
+    <div class="kuitansi" style="min-height: 75mm;border: 1px solid green;margin-bottom: 2mm;line-height: 16px;background:url('{{asset('storage/'.$konfig->namafilebackground)}}') no-repeat top center fixed !important;">
             <div class="row" style="">
                 <!-- //BAGIAN KIRI -->
                 <div class="col-sm-8">
@@ -74,7 +74,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Jenis</strong></td>
-                                <td>: Donasi</td>
+                                <td>: Kotak Infaq</td>
                             </tr>
                             <tr>
                                 <td style="vertical-align:text-top"><strong>Donatur </strong></td>

@@ -71,7 +71,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Jenis</strong></td>
-                                <td>: Donasi</td>
+                                <td>: iBrankasku</td>
                             </tr>
                             <tr>
                                 <td style="vertical-align:text-top"><strong>Donatur </strong></td>
