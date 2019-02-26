@@ -111,6 +111,17 @@
         </div>
 
        
+        <!-- //CATATAN TERKAIT DONATUR -->
+        <div class="form-group">
+            <label for="catatan" class="col-sm-2 control-label input-lg">
+                Catatan
+            </label>
+
+            <div class="col-sm-10">
+                    <input type="text"  name="catatan" id="catatan" value="{{old('catatan', $data->catatan)}}"  class="form-control input-lg" placeholder="Catatan terkait (semisal No. Kunci atau Peruntukan Donasi Rutin)">    
+            </div>
+        </div>
+
         <!-- //TANGGAL LAHIR DONATUR -->
         <div class="form-group">
             <label for="tanggallahir" class="col-sm-2 control-label input-lg">

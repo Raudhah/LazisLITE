@@ -9,16 +9,18 @@
 
 <!-- //========== BOX CONTENT =========== -->
 @section('boxcontent')
+
+
     <div class="kuitansi" style="background-image:url('{{asset('storage/'.$konfig->namafilebackground)}}') !important; background-repeat: no-repeat  !important; background-position:top center fixed  !important;background-size:100% !important;" media="print">
             <div class="row" style="">
                 <!-- //BAGIAN KIRI -->
-                <div class="col-sm-8">
+                <div class="col-sm-8 kiri" style="">
                     <!-- //BARIS KOP /HEADER KUITANSI -->
-                    <div class="row">
-                            <div class="col-sm-3" style="text-align:right">
-                                    <img src="{{asset('storage/'.$konfig->namafilelogo)}}" style="height:22mm"/>
+                    <div class="header">
+                            <div class="logolaz">
+                                    <img src="{{asset('storage/'.$konfig->namafilelogo)}}"/>
                             </div>
-                            <div class="col-sm-9" style="text-align:center;">
+                            <div class="datalaz" style="text-align:center;">
                                     <strong>{{$konfig->namalaz}} {{$konfig->namacabang}}</strong>
                                     <br/>
 
@@ -32,16 +34,16 @@
                     </div>
 
                     <!-- //HALAMAN UTAMA DETAIL KUITANSI ADA DISINI -->
-                    <div class="row">
-                        <div class="col-sm-12" style="text-align:center">
-                            <h4 style="margin:0px"><strong>Tanda Terima Pembayaran</strong></h4>
+                    <div class="row isikuitansi">
+                        <div class="col-sm-12">
+                            <h4><strong>Tanda Terima Pembayaran</strong></h4>
 
-                            <table class="table table-striped table-condensed" style="margin-left:2mm;margin-bottom:0px;font-size: 14px">
+                            <table class="table table-striped table-condensed">
                                     <thead>
                                         <tr class="bgblue">
-                                            <th style="padding:0px;width:10mm;text-align:center;background-color:#337ab7 !important"  class="bgblue">No.</th>
-                                            <th style="padding:0px;width:80mm;text-align:center;background-color:#337ab7 !important"  class="bgblue">Peruntukan Donasi</th>
-                                            <th style="padding:0px;width:30mm;text-align:center;background-color:#337ab7 !important"  class="bgblue">Jumlah</th>
+                                            <th style="width:10mm;background-color:#337ab7 !important"  class="bgblue">No.</th>
+                                            <th style="width:80mm;background-color:#337ab7 !important"  class="bgblue">Peruntukan Donasi</th>
+                                            <th style="width:30mm;background-color:#337ab7 !important"  class="bgblue">Jumlah</th>
                                         </tr>
                                     </thead>
                                 
@@ -50,17 +52,17 @@
                                         @foreach ($listtrxdonasidetail as $key=>$trxdonasidetail)
                                             
                                             <tr>
-                                                <td style="padding:0px;text-align:center">{{++$key}}</td>
-                                                <td style="padding:0px;text-align:left">{{$trxdonasidetail->peruntukandonasi->namaperuntukandonasi}}</td>
-                                                <td style="padding:0px;text-align:right">{{number_format($trxdonasidetail->jumlah,0,',','.')}}</td>
+                                                <td style="text-align:center">{{++$key}}</td>
+                                                <td style="text-align:left">{{$trxdonasidetail->peruntukandonasi->namaperuntukandonasi}}</td>
+                                                <td style="text-align:right">{{number_format($trxdonasidetail->jumlah,0,',','.')}}</td>
                                             </tr>
                                         @endforeach
                                             
                                         <!- // JUMLAH TOTALNYA-->
                                             <tr style="" class="bg-gray">
-                                                <td style="padding:0px;background-color:#d2d6de !important" class=""></td>
-                                                <td style="padding:0px;background-color:#d2d6de !important" class=""><strong> JUMLAH TOTAL</strong></td>
-                                                <td style="padding:0px;text-align:right;background-color:#d2d6de !important"><strong>{{number_format($jumlahtotal,0,',','.')}}</strong></td>
+                                                <td style="background-color:#d2d6de !important" class=""></td>
+                                                <td style="background-color:#d2d6de !important" class=""><strong> JUMLAH TOTAL</strong></td>
+                                                <td style="text-align:right;background-color:#d2d6de !important"><strong>{{number_format($jumlahtotal,0,',','.')}}</strong></td>
                                             </tr>
                                             
                                     </tbody>
@@ -72,8 +74,8 @@
                 </div>
 
                 <!-- //BAGIAN KANAN -->
-                <div class="col-sm-4">
-                        <table style="border:0px solid black">
+                <div class="col-sm-4 kanan">
+                        <table  class="" style="padding:0px;">
                             <tr>
                                 <td><strong>Nomor</strong></td>
                                 <td>: {{config('app.kodekuitansi.trxdonasi')}}{{$idtransaksi}}</td>
@@ -100,9 +102,9 @@
                             </tr>
                         </table>
 
-                        <div class="row" style="height:30mm">
+                        <div class="row" style="height:26mm;">
                             <div class="col-sm-12" style="text-align:center">
-                                <img src="{{asset('storage/'.$konfig->namafilettd)}}" style="max-width:45mm; max-height:25mm"/>
+                                <img src="{{asset('storage/'.$konfig->namafilettd)}}" style="max-width:45mm; max-height:23mm"/>
                         
                             </div>
                         </div>
@@ -111,16 +113,24 @@
             <!-- //END BAGIAN KANAN-->
 
             <div>
-                <div style="text-align:center; font-size:12px; font-weight:bold; font-style:italic; background-color:orange; overflow:hidden" class="bggold">
+                <div class="bawahkuitansi" >
+
                     {{$konfig->nomorrekeningcabang}} 
-                    <br/> Telepon : {{$konfig->nomorteleponcabang}} 
-                    {{($konfig->emailcabang==null? "": "Email : ".$konfig->emailcabang)}} 
-                    {{($konfig->websitecabang==null? "": "Website : ".$konfig->websitecabang)}} 
+                    - Sms center : {{$konfig->nomorteleponcabang}} 
+                  
+                    <div class="garnish"></div>
+                    <div class="urlweb">
+                        {{($konfig->websitecabang==null? "": "".$konfig->websitecabang)}}
+                    </div>
                 </div>
             </div>
 
 
     </div>
+
+    <div class="pagebreak"> </div>
+
+    
  
 @endsection
 

@@ -13,18 +13,8 @@ class PanduanController extends Controller
     }
     
     public function index(){
-        // $user = Auth()::user();
-
-        // //jika usernya levelaksesnya 1
-        // if($user->levelakses == 1){
-        //     return view('master/panduan/daftarisiadmin');
-        // }
-        // else{
-        //     return view('master/panduan/daftarisisuperadmin');
-        // }
+        return view('master/panduan/panduan');
     }
 
-    public function daftarisiadmin(){
-        return view('master/panduan/daftarisiadmin');
-    }
+
 }

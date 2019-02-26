@@ -20,6 +20,7 @@ class CreateDonatursTable extends Migration
             $table->string('alamatdonatur', 128)->nullable();
             $table->string('nomortelepondonatur', 32)->nullable();
             $table->date('tanggallahir')->nullable();
+            $table->string('catatan', 128)->nullable();
             //constraint dengan tabel lain (tabel amil dan tabel pekerjaan donatur)
             $table->integer('pekerjaandonatur_id')->unsigned();
             $table->integer('amil_id')->unsigned();

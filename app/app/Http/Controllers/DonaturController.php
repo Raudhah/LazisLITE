@@ -21,6 +21,7 @@ class DonaturController extends Controller
     public $vrule_pekerjaandonatur_id = 'required|numeric';
     public $vrule_amil_id = 'required|numeric';
     public $vrule_alamatdonatur = '';
+    public $vrule_catatan = '';
     public $vrule_nomortelepon = '';
 
     
@@ -39,7 +40,7 @@ class DonaturController extends Controller
      */
     public function index()
     {
-        $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur')
+        $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur', 'catatan')
                             ->orderBy('id', 'desc')
                             ->take('500')
                             ->get();
@@ -87,6 +88,7 @@ class DonaturController extends Controller
             'isdonaturinsidental' => $this->vrule_isdonaturinsidental,
             'amil_id' => $this->vrule_amil_id,
             'alamatdonatur' => $this->vrule_alamatdonatur,
+            'catatan' => $this->vrule_catatan,
             'nomortelepondonatur' => $this->vrule_nomortelepon,
             'tanggallahir' => $this->vrule_tanggallahir,
             'pekerjaandonatur_id' => $this->vrule_pekerjaandonatur_id,
@@ -111,6 +113,7 @@ class DonaturController extends Controller
             'isdonaturinsidental' => $isdonaturinsidental,
             'amil_id' => $request->amil_id,
             'alamatdonatur' => $request->alamatdonatur,
+            'catatan' => $request->catatan,
             'nomortelepondonatur' => $request->nomortelepondonatur,
             'tanggallahir' => $request->tanggallahir,
             'pekerjaandonatur_id' => $request->pekerjaandonatur_id,
@@ -119,7 +122,7 @@ class DonaturController extends Controller
         
         //jika sukses menambahkan
         if($status){
-            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur')
+            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur', 'catatan')
                                         ->orderBy('id', 'desc')
                                         ->take('500')
                                         ->get();
@@ -208,6 +211,7 @@ class DonaturController extends Controller
             'isdonaturinsidental' => $this->vrule_isdonaturinsidental,
             'amil_id' => $this->vrule_amil_id,
             'alamatdonatur' => $this->vrule_alamatdonatur,
+            'catatan' => $this->vrule_catatan,
             'nomortelepondonatur' => $this->vrule_nomortelepon,
             'tanggallahir' => $this->vrule_tanggallahir,
             'pekerjaandonatur_id' => $this->vrule_pekerjaandonatur_id,
@@ -229,6 +233,7 @@ class DonaturController extends Controller
         $donatur->isdonaturinsidental   = $isdonaturinsidental;
         $donatur->amil_id               = $request->amil_id;
         $donatur->alamatdonatur         = $request->alamatdonatur;
+        $donatur->catatan               = $request->catatan;
         $donatur->nomortelepondonatur   = $request->nomortelepondonatur;
         $donatur->tanggallahir          = $request->tanggallahir;
         $donatur->pekerjaandonatur_id   = $request->pekerjaandonatur_id;
@@ -238,7 +243,7 @@ class DonaturController extends Controller
 
         //jika sukses menambahkan, mari menampilkan
         if($status){
-            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur')
+            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur', 'catatan')
                                         ->orderBy('id', 'desc')
                                         ->take('500')
                                         ->get();
@@ -308,7 +313,7 @@ class DonaturController extends Controller
 
         //jika sukses menghapus, mari menampilkan
         if($status){
-            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur')
+            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur', 'catatan')
                                         ->orderBy('id', 'desc')
                                         ->take('500')
                                         ->get();
@@ -380,7 +385,7 @@ class DonaturController extends Controller
         $tanggallahirantara = $request->tanggallahir;
 
         
-        $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur')
+        $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur', 'catatan')
                             //when amil_id
                             ->when($request->amil_id != null, function($query) use ($listamil){
                                 return $query->whereIn('amil_id', $listamil);
@@ -450,7 +455,7 @@ class DonaturController extends Controller
         if($request->get('function') == 'searchdonatur'){
 
             //mencari-cari
-            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur', 'amil_id')
+            $data = \App\Donatur::select('id','namadonatur', 'alamatdonatur', 'nomortelepondonatur', 'amil_id', 'catatan')
                                         ->orWhere('namadonatur', 'like', '%'.$query.'%')
                                         ->orWhere('nomortelepondonatur', 'like', '%'.$query.'%')
                                         ->orWhere('alamatdonatur', 'like', '%'.$query.'%')

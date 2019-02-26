@@ -9,32 +9,31 @@
 
 <!-- //========== BOX CONTENT =========== -->
 @section('boxcontent')
-    <div class="kuitansi" style="min-height: 75mm;border: 1px solid green;margin-bottom: 2mm;line-height: 16px;background:url('{{asset('storage/'.$konfig->namafilebackground)}}') no-repeat top center fixed !important;">
-            <div class="row" style="">
-                <!-- //BAGIAN KIRI -->
-                <div class="col-sm-8">
-                    <!-- //BARIS KOP /HEADER KUITANSI -->
-                    <div class="row">
-                            <div class="col-sm-3" style="text-align:right">
-                                    <img src="{{asset('storage/'.$konfig->namafilelogo)}}" style="height:22mm"/>
-                            </div>
-                            <div class="col-sm-9" style="text-align:center;">
-                                    <strong>{{$konfig->namalaz}} {{$konfig->namacabang}}</strong>
-                                    <br/>
-
-                                    <small> 
-                                        <?php
-                                        echo nl2br($konfig->keterangan);
-                                        ?>
-                                        <br/><em>{{$konfig->alamatcabang}}</em>
-                                    </small>
-                            </div>
+<div class="kuitansi" style="background-image:url('{{asset('storage/'.$konfig->namafilebackground)}}') !important; background-repeat: no-repeat  !important; background-position:top center fixed  !important;background-size:100% !important;" media="print">
+    <div class="row" style="">
+        <!-- //BAGIAN KIRI -->
+        <div class="col-sm-8 kiri" style="">
+            <!-- //BARIS KOP /HEADER KUITANSI -->
+            <div class="header">
+                    <div class="logolaz">
+                            <img src="{{asset('storage/'.$konfig->namafilelogo)}}"/>
                     </div>
+                    <div class="datalaz" style="text-align:center;">
+                            <strong>{{$konfig->namalaz}} {{$konfig->namacabang}}</strong>
+                            <br/>
 
+                            <small> 
+                                <?php
+                                echo nl2br($konfig->keterangan);
+                                ?>
+                                <br/><em>{{$konfig->alamatcabang}}</em>
+                            </small>
+                    </div>
+            </div>
                     <!-- //HALAMAN UTAMA DETAIL KUITANSI ADA DISINI -->
-                    <div class="row">
-                        <div class="col-sm-12" style="text-align:center">
-                            <h4 style="margin:0px"><strong>Tanda Terima Kotak Infaq</strong></h4>
+                    <div class="row isikuitansi">
+                        <div class="col-sm-12">
+                            <h4><strong>Tanda Terima Kotak Infaq</strong></h4>
 
                             <table class="table table-striped table-condensed" style="margin-left:2mm;margin-bottom:0px;font-size: 14px">
                                     <thead>
@@ -57,12 +56,13 @@
 
                 </div>
 
+
                 <!-- //BAGIAN KANAN -->
-                <div class="col-sm-4">
-                        <table style="border:0px solid black">
+                <div class="col-sm-4 kanan">
+                        <table  class="" style="padding:0px;">
                             <tr>
                                 <td><strong>Nomor</strong></td>
-                                <td>: {{config('app.kodekuitansi.trxdonasi')}}{{$idtransaksi}}</td>
+                                <td>: {{config('app.kodekuitansi.trxkotakinfaq')}}{{$idtransaksi}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Tanggal</strong></td>
@@ -86,9 +86,9 @@
                             </tr>
                         </table>
 
-                        <div class="row" style="height:30mm">
+                        <div class="row" style="height:26mm;">
                             <div class="col-sm-12" style="text-align:center">
-                                <img src="{{asset('storage/'.$konfig->namafilettd)}}" style="max-width:45mm; max-height:25mm"/>
+                                <img src="{{asset('storage/'.$konfig->namafilettd)}}" style="max-width:45mm; max-height:23mm"/>
                         
                             </div>
                         </div>
@@ -97,16 +97,23 @@
             <!-- //END BAGIAN KANAN-->
 
             <div>
-                <div style="text-align:center; font-size:12px; font-weight:bold; font-style:italic; background-color:orange; overflow:hidden">
+                <div class="bawahkuitansi" >
+
                     {{$konfig->nomorrekeningcabang}} 
-                    <br/> Telepon : {{$konfig->nomorteleponcabang}} 
-                    {{($konfig->emailcabang==null? "": "Email : ".$konfig->emailcabang)}} 
-                    {{($konfig->websitecabang==null? "": "Website : ".$konfig->websitecabang)}} 
+                    - Sms center : {{$konfig->nomorteleponcabang}} 
+                  
+                    <div class="garnish"></div>
+                    <div class="urlweb">
+                        {{($konfig->websitecabang==null? "": "".$konfig->websitecabang)}}
+                    </div>
                 </div>
             </div>
 
 
     </div>
+
+    <div class="pagebreak"> </div>
+
  
 @endsection
 

@@ -27,7 +27,7 @@
       <div class="pad margin no-print">
         <div class="callout callout-info" style="margin-bottom: 0!important;">
           <h4><i class="fa fa-info"></i> Note:</h4>
-          Halaman ini dioptimasi untuk dapat dicetak. Klik tombol Cetak di bawah. Anda juga dapat mendownload versi PDF nya. 
+          Klik tombol Cetak di bawah untuk mencetak Kuitansi ini.  
         </div>
       </div>
   

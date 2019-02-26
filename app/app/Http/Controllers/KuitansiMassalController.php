@@ -79,6 +79,8 @@ class KuitansiMassalController extends Controller
 
         //sekarang querying isinya
 
+        $dataibrankasku = $datakotakinfaq = $datadonasi = null;
+
         if($istrxdonasi != null){
             $datadonasi = \App\Trxdonasi::select('id','donatur_id','amil_id','tanggaldonasi', 'keterangan', 'jumlahtotal')
                             //when periode laporan di set dengan benar

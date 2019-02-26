@@ -52,7 +52,7 @@
       body.A3               .sheet { width: 297mm; height: 419mm }
       body.A3.landscape     .sheet { width: 420mm; height: 296mm }
       body.A4               .sheet { width: 210mm; }
-      body.F4               .sheet { width: 210mm; height:320mm}
+      body.F4               .sheet { width: 210mm;}
       body.A4.landscape     .sheet { width: 297mm; height: 209mm }
       body.A5               .sheet { width: 148mm; height: 209mm }
       body.A5.landscape     .sheet { width: 210mm; height: 147mm }
@@ -71,13 +71,111 @@
 
       /** kuitansi **/
       .kuitansi{
-        height: 79mm;
-        border: 1px solid green;
-        margin-left: 3mm;
-        margin-top: 3mm;
+        height: 73mm;
+        width: 201mm;
+        border: 0px solid green;
+        margin-left: 5mm;
+        margin-top: 5mm;
+        margin-bottom: 5mm;
         margin-right: 3mm;
-        line-height: 16px;
+        line-height: 14px;
+        float:left;
         overflow:hidden;
+      }
+
+      /** KOLOM KIRI**/
+
+      .kuitansi .kiri{
+        width: 136mm;
+        height: 67mm;
+        float: left;
+        border-top-color: red;
+        border-top-style: solid;
+        border-top-width: 3mm;
+      }
+
+      .kiri .header{
+        overflow:hidden;
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      .kuitansi .kiri .header .logolaz{
+        width:25mm;
+        text-align: right;
+        float: left;
+      }
+
+      .kuitansi .kiri .header .datalaz{
+        width:125mm;
+        margin: 0px;
+      }
+
+      .kuitansi .kiri .logolaz img{
+        height:16mm;
+      }
+
+      .kiri .isikuitansi{
+        text-align: center;
+      }
+
+      .kiri .isikuitansi h4{
+        margin: 0px;
+        margin-top: 5mm;
+      }
+
+      .kiri .isikuitansi table{
+        margin-left:2mm;
+        margin-bottom:0px;
+        font-size: 14px; 
+      }
+
+      .kiri .isikuitansi table thead th{ 
+        text-align:center;
+        padding: 0px;
+      }
+
+      .kiri .isikuitansi table tbody td{ 
+        text-align:center;
+        padding: 0px;
+      }
+
+      
+
+      /** KOLOM KANAN **/
+      .kuitansi .kanan{
+        width: 65mm;
+        float: left;
+        border-top-color: green;
+        border-top-style: solid;
+        border-top-width: 3mm;
+      }
+
+      .pagebreak{
+        page-break-after: always;
+      }
+
+      .bawahkuitansi{
+        text-align:center; 
+        font-size:12px; 
+        font-weight:bold; 
+        font-style:italic; 
+        line-height: 12px;
+        height: 12mm;
+        overflow:hidden;
+        color: #000 !important;
+      }
+
+      .bawahkuitansi .garnish{
+        border-top-right-radius: 50px 20px;
+        background-color: red !important;
+        height: 3mm;
+        width: 160mm;
+        float: left;
+      }
+
+      .bawahkuitansi .urlweb{
+        font-size:12px;
       }
       
       
@@ -96,13 +194,9 @@
 
         .bgblue {
           background-color: #337ab7 !important;
-          color : #fff;
+          color : #fff !important;
         }
 
-        .bggold{
-          background-color: orange  !important;
-          color: #fff;
-        }
       }
       
       /** Fix for Chrome issue #273306 **/
@@ -125,14 +219,15 @@
           color : #fff !important;
         }
 
-        .bggold{
-          background-color: orange  !important;
-          color: #fff !important;
-        }
 
         * {
           -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
           color-adjust: exact !important;  /*Firefox*/
+        }
+
+        .pagebreak{
+          display: block;
+          page-break-after: always;
         }
       }
 

@@ -88,21 +88,6 @@ Route::get('/dashboard', 'Dashboard@index');
 
 //========= PANDUAN
 Route::get('/panduan', 'PanduanController@index');
-Route::get('/panduan/daftarisiadmin', 'PanduanController@daftarisiadmin');
-Route::get('/panduan/daftarisisuperadmin', 'PanduanController@daftarisisuperadmin');
-Route::get('/panduan/trxdonasi', 'PanduanController@trxdonasi');
-Route::get('/panduan/trxkotakinfaq', 'PanduanController@trxkotakinfaq');
-Route::get('/panduan/trxibrankasku', 'PanduanController@trxibrankasku');
-Route::get('/panduan/donatur', 'PanduanController@donatur');
-Route::get('/panduan/amil', 'PanduanController@amil');
-Route::get('/panduan/peruntukandonasi', 'PanduanController@trxdonasi');
-Route::get('/panduan/pekerjaandonatur', 'PanduanController@trxdonasi');
-Route::get('/panduan/laporan', 'PanduanController@trxdonasi');
-Route::get('/panduan/konfigurasi', 'PanduanController@trxdonasi');
-Route::get('/panduan/gantipassword', 'PanduanController@trxdonasi');
-Route::get('/panduan/user', 'PanduanController@trxdonasi');
-Route::get('/panduan/login', 'PanduanController@trxdonasi');
-Route::get('/panduan/logout', 'PanduanController@trxdonasi');
 
 //========= USER 
 Route::get('/user', 'UserController@index');

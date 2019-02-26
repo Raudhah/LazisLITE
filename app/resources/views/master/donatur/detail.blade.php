@@ -72,6 +72,11 @@
                     <td>{{$data->nomortelepondonatur}}</td>
                 </tr>
 
+                <tr>
+                    <th>Catatan</th>
+                    <td><strong>{{$data->catatan}}</strong></td>
+                </tr>
+
 
                 <tr>
                     <th>Alamat Donatur</th>

@@ -47,7 +47,6 @@ class LaporanDonaturController extends Controller
     //proses formnya disini untuk kemudian kita tampilkan bareng-bareng
     public function semuaTrxProses(Request $request){
 
-        
 
         //cek dulu apakah data nya valid ataukah tidak. 
         $validdata = request()->validate([
@@ -143,6 +142,26 @@ class LaporanDonaturController extends Controller
 
             return view('master/laporan/trxdonatur-print', compact('datadonatur','datakotakinfaq', 'donatur_id','datadonasi','dataibrankasku','listdonatur', 'periodelaporan', 'donatur_id', 'checkboxsemuadonatur'));
 
+        }
+        else{
+            if($tipelaporan == 1){
+                
+                $topdonatur = \App\Trxdonasi::selectRaw("donatur_id, sum(jumlahtotal) as jumlah")
+                                                ->when(($periodelaporan!= null), function($query) use ($periodeawal, $periodeakhir){
+                                                    return $query->whereBetween('tanggaldonasi', [$periodeawal, $periodeakhir]);
+                                                })
+                                                ->groupBy('donatur_id')
+                                                ->orderBy('jumlah', 'desc')
+                                                ->get();
+
+                dd($topdonatur);
+
+                dd("100 donatur terbanyak");
+
+            }
+            else{
+                dd("100 donatur tersering");
+            }
         }
 
     }

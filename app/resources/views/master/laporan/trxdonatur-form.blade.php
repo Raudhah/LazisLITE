@@ -54,9 +54,9 @@
                 <i class="fa fa-search"></i> Cari Donatur
             </button>
 
-            atau 
+            <span class="hidden">atau</span> 
 
-            <button type="button" class="btn btn-success btn-lg" id="tombolcaridisemuadonatur">
+            <button type="button" class="hidden btn btn-success btn-lg" id="tombolcaridisemuadonatur">
                 <i class="fa fa-plus"></i> Cari di SEMUA DONATUR
             </button>
         </div>

@@ -68,6 +68,10 @@
                         <!-- //Menampilkan donatur yang dipilih -->
                         <table class="table table-striped">
                             <tr>
+                                <th>ID Donatur</th>
+                                <td id="detailiddonatur">N/A</td>
+                            </tr>
+                            <tr>
                                 <th>Nama</th>
                                 <td id="detailnamadonatur">{{$datadonatur->namadonatur}}</td>
                             </tr>
@@ -78,6 +82,10 @@
                             <tr>
                                 <th>Nomor Telepon</th>
                                 <td id="detailnomortelepondonatur">{{$datadonatur->nomortelepondonatur}}</td>
+                            </tr>
+                            <tr>
+                                <th>Catatan</th>
+                                <td id="detailcatatan">N/A</td>
                             </tr>
                             <tr>
                                 <th></th>
@@ -333,7 +341,7 @@
                 data:{function:'searchdonatur', query: inputcaridonatur},
      
                 success:function(data){
-                   alert('berhasil dapatnya');
+                   //alert('berhasil dapatnya');
 
                    
                    
@@ -370,13 +378,14 @@
             tekshasilpencarian += '<table class="table">';
             tekshasilpencarian += "<thead>";
             tekshasilpencarian += "<tr>";
-            tekshasilpencarian += "<td>Nama</td><td>Alamat</td><td>No.Telepon</td><td></td>";
+            tekshasilpencarian += "<td>ID</td><td>Nama</td><td>Alamat</td><td>No.Telepon</td><td></td>";
             tekshasilpencarian += "</tr>";
             tekshasilpencarian += "</thead>";
             tekshasilpencarian += "<tbody>";
             for(var i=0; i < data.length; i++){
 
                 tekshasilpencarian += "<tr>";
+                tekshasilpencarian += "<td>" + "{{config('app.kodedonatur')}}" + data[i].id + "</td>";
                 tekshasilpencarian += '<td><span id="nama'+data[i].id+'">' + data[i].namadonatur + "</span></td>";
                 if(data[i].alamatdonatur != null){
                     tekshasilpencarian += "<td>" + data[i].alamatdonatur + "</td>";
@@ -410,7 +419,7 @@
         }
 
         function pilihdonatur(iddonatur){
-            alert("Sebenarnya ini tu dipanggila apa ndak ya?");
+            //alert("Sebenarnya ini tu dipanggila apa ndak ya?");
             console.log("Donatur terpilih " + iddonatur);
             console.log("isi GLOBALDATA ");
             console.log(GLOBALDATA);
@@ -429,9 +438,11 @@
                     //menampilkan datanya
                     $("#datapilihan").show(500);
 
+                    $("#detailiddonatur").html("{{config('app.kodedonatur')}}" + data[i].id);
                     $("#detailnamadonatur").html(data[i].namadonatur);
                     $("#detailalamatdonatur").html(data[i].alamatdonatur);
                     $("#detailnomortelepondonatur").html(data[i].nomortelepondonatur);
+                    $("#detailcatatan").html(data[i].catatan);
                     
                     //ini isi form hidden
                     $("#donatur_id").val(data[i].id);

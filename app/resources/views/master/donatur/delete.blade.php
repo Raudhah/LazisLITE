@@ -88,6 +88,11 @@
             <th>Tanggal Lahir</th>
             <td>{{$data->tanggallahir}}</td>
         </tr>
+
+        <tr>
+            <th>Catatan</th>
+            <td><strong>{{$data->catatan}}</strong></td>
+        </tr>
         
         <tr>
             <th>Pekerjaan Donatur</th>

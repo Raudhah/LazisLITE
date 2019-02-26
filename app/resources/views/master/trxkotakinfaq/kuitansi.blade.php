@@ -74,7 +74,7 @@
                         </tr>
                         <tr>
                             <td><strong>Jenis</strong></td>
-                            <td>: Donasi</td>
+                            <td>: Kotak Infaq</td>
                         </tr>
                         <tr>
                             <td style="vertical-align:text-top"><strong>Donatur </strong></td>
@@ -97,11 +97,15 @@
         <!-- //END BAGIAN KANAN-->
 
         <div>
-            <div style="text-align:center; font-size:12px; font-weight:bold; font-style:italic; background-color:orange; overflow:hidden">
+            <div class="bawahkuitansi" >
+
                 {{$konfig->nomorrekeningcabang}} 
-                <br/> Telepon : {{$konfig->nomorteleponcabang}} 
-                {{($konfig->emailcabang==null? "": "Email : ".$konfig->emailcabang)}} 
-                {{($konfig->websitecabang==null? "": "Website : ".$konfig->websitecabang)}} 
+                - Sms center : {{$konfig->nomorteleponcabang}} 
+              
+                <div class="garnish"></div>
+                <div class="urlweb">
+                    {{($konfig->websitecabang==null? "": "".$konfig->websitecabang)}}
+                </div>
             </div>
         </div>
 

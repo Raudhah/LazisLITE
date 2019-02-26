@@ -38,6 +38,7 @@
       <th>Nama Donatur</th>
       <th>Alamat</th>
       <th>No. Telepon</th>
+      <th>Catatan</th>
       <th></th>
       <th></th>
       <th></th>
@@ -57,6 +58,7 @@
             <td> {{ $item->namadonatur }}</td>
             <td> {{ $item->alamatdonatur }}</td>
             <td> {{ $item->nomortelepondonatur }}</td>
+            <td> {{ $item->catatan }}</td>
             <td><a href="{{url('')}}/donatur/{{ $item->id }}"  data-toggle="tooltip" title="detail"><i class="fa fa-search"></i></a></td>
             <td><a href="{{url('')}}/donatur/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
             <td><a href="{{url('')}}/donatur/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
