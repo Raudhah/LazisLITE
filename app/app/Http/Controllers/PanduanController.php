@@ -13,7 +13,10 @@ class PanduanController extends Controller
     }
     
     public function index(){
-        return view('master/panduan/panduan');
+        
+        $levelakses = Auth::user()->levelakses;
+        
+        return view('master/panduan/panduan', compact('levelakses'));
     }
 
 
