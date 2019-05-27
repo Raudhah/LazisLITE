@@ -208,7 +208,7 @@ class TrxdonasiController extends Controller
      * @param  \App\Trxdonasi  $trxdonasi
      * @return \Illuminate\Http\Response
      */
-    public function showKuitansi(Trxdonasi $trxdonasi)
+    public function showKuitansi(Trxdonasi $trxdonasi, $formattanggal=1)
     {
 
         $idtransaksi = $trxdonasi->id;
@@ -230,7 +230,7 @@ class TrxdonasiController extends Controller
 
 
         // tampilkan KUITANSINYA BRO
-        return view('master/trxdonasi/kuitansi-print', compact('konfig','listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil',  'message'));
+        return view('master/trxdonasi/kuitansi-print', compact('konfig','listtrxdonasidetail','insidentil','idtransaksi','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil',  'message', 'formattanggal'));
     }
 
     /**

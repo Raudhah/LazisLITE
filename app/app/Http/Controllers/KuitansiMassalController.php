@@ -22,6 +22,7 @@ class KuitansiMassalController extends Controller
      
      //vrule urutkan berdasarkan
      public $vrule_sortby = 'required';
+     public $vrule_formattanggal = 'required';
      public $vrule_amil_id = 'required|numeric';
 
      public function __construct(){
@@ -46,6 +47,7 @@ class KuitansiMassalController extends Controller
             'periodelaporan' => $this->vrule_periodelaporan,
             'amil_id'       => $this->vrule_amil_id,
             'sortby' => $this->vrule_sortby,
+            'formattanggal' => $this->vrule_formattanggal,
         ]);
 
 
@@ -57,6 +59,8 @@ class KuitansiMassalController extends Controller
         $amil_id = $request->amil_id;
         $tipelaporan = $request->tipelaporan;
         $sortby = $request->sortby;
+        $formattanggal = $request->formattanggal;
+        
 
         //DAPATKAN DATA AMIL =================================
         $dataamil = \App\Amil::find($request->amil_id);
@@ -144,7 +148,7 @@ class KuitansiMassalController extends Controller
 
         }
 
-        return view('master/kuitansimassal/kuitansimassal', compact('listamil', 'datadonasi', 'datakotakinfaq', 'dataibrankasku', 'istrxdonasi', 'istrxkotakinfaq', 'istrxibrankasku', 'konfig'));
+        return view('master/kuitansimassal/kuitansimassal', compact('listamil', 'datadonasi', 'datakotakinfaq', 'dataibrankasku', 'istrxdonasi', 'istrxkotakinfaq', 'istrxibrankasku', 'konfig', 'formattanggal'));
         
         
 

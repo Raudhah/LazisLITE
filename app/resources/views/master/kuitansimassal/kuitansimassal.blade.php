@@ -11,9 +11,57 @@
 @section('boxcontent')
 
 
+<!-- //========== FORMAT TANGGAL =========== -->
+<?php
+
+    //fungsi print tanggal sesuai dengan format yang diinginkan... 
+    function printtanggal($tanggalasli, $formattanggal){
+        //array nama2 bulan dalam bahasa indo.kenapa gak pakai locale ID? karena tak semua server ready dengan itu.
+        $namanamabulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember");
+        
+        //extract tanggal donasi ke tiap2 formatnya dd, mm, yyyy
+        $date = DateTime::createFromFormat('d/m/Y', $tanggalasli);
+        $tanggal = $date->format('d');
+        $bulan = $date->format('m');
+        
+        $bulannama = $namanamabulan[(($bulan-1)%12)];;
+        $tahun = $date->format('Y');
+
+        //periode saja (bulan dan tahun)
+        if($formattanggal==1){
+            echo '<tr>
+                <td><strong>Periode</strong></td>
+                <td>: '.$bulannama.' '.$tahun.'</td>
+            </tr>';
+        }
+        //tanggal lengkap (d/m/y)
+        else if($formattanggal==2){
+
+            echo '<tr>
+                <td><strong>Tanggal</strong></td>
+                <td>: '.$tanggalasli.'</td>
+            </tr>';
+            
+        }
+        //periode dan tanggal dipisah
+        else{
+            echo '<tr>
+                <td><strong>Tanggal</strong></td>
+                <td>: '.$tanggal.'</td>
+            </tr>';
+            echo '<tr>
+                <td><strong>Periode</strong></td>
+                <td>: '.$bulannama.' '.$tahun.'</td>
+            </tr>';
+    
+        }
+    }
+
+?>
+
 <!-- //========== KUITANSI TRX DONASI =========== -->
 <?php 
-$counter = 1;
+    $counter = 1;
 ?>
 
 @if ($datadonasi != null)
@@ -35,7 +83,7 @@ $counter = 1;
 
                                 <small> 
                                     <?php
-                                    echo nl2br($konfig->keterangan);
+                                    echo nl2br($konfig->keterangan);        //agar enter tetap kelihatan
                                     ?>
                                     <br/><em>{{$konfig->alamatcabang}}</em>
                                 </small>
@@ -94,10 +142,9 @@ $counter = 1;
                                     <td><strong>Nomor</strong></td>
                                     <td>: {{config('app.kodekuitansi.trxdonasi')}}{{$donasi->id}}</td>
                                 </tr>
-                                <tr>
-                                    <td><strong>Tanggal</strong></td>
-                                    <td>: {{$donasi->tanggaldonasi}}</td>
-                                </tr>
+
+                                {{printtanggal($donasi->tanggaldonasi, $formattanggal)}}
+                                
                                 <tr>
                                     <td><strong>Amil</strong></td>
                                     <td>: ({{config('app.kodeamil')}}{{$donasi->amil->id}}) {{$donasi->amil->namaamil}}</td>
@@ -191,7 +238,7 @@ $counter = 1;
                                 <thead>
                                     <tr class="">
                                         <td>
-                                            Alhamdulillah, telah diterima dari hasil perolehan Kotak Infaq Pada Tanggal {{$kotakinfaq->tanggaldonasi}} Kotak Infaq
+                                            Alhamdulillah, telah diterima dari hasil perolehan Kotak Infaq 
                                             Sebesar <strong>Rp.{{number_format($kotakinfaq->jumlahtotal,0,',','.')}},00</strong>
                                             @if ($kotakinfaq->keterangan!=null)
                                                 ( {{$kotakinfaq->keterangan}} )
@@ -216,10 +263,9 @@ $counter = 1;
                             <td><strong>Nomor</strong></td>
                             <td>: {{config('app.kodekuitansi.trxkotakinfaq')}}{{$kotakinfaq->id}}</td>
                         </tr>
-                        <tr>
-                            <td><strong>Tanggal</strong></td>
-                            <td>: {{$kotakinfaq->tanggaldonasi}}</td>
-                        </tr>
+
+                        {{printtanggal($donasi->tanggaldonasi, $formattanggal)}}
+                        
                         <tr>
                             <td><strong>Amil</strong></td>
                             <td>: ({{config('app.kodeamil')}}{{$kotakinfaq->amil->id}}) {{$kotakinfaq->amil->namaamil}}</td>
@@ -231,7 +277,7 @@ $counter = 1;
                         <tr>
                             <td style="vertical-align:text-top"><strong>Donatur </strong></td>
                             <td>
-                                <div style="min-height:23mm;background-color:inherit">
+                                <div style="min-height:20mm;background-color:inherit">
                                         : {{$kotakinfaq->donatur->namadonatur}} ({{config('app.kodedonatur')}}{{$kotakinfaq->donatur->id}}), {{$kotakinfaq->donatur->alamatdonatur}}, {{$kotakinfaq->donatur->nomortelepondonatur}},
                                 </div>
                             </td>
@@ -314,7 +360,7 @@ $counter = 1;
                                             <tr class="">
                                                 <td>
                                                         Alhamdulillah, telah diterima Pada Tanggal {{$ibrankasku->tanggaldonasi}}  <br/>
-                                                        Donasi berupa <strong>{{$ibrankasku->deskripsibarang}}</strong>
+                                                        Donasi : <strong>{{$ibrankasku->deskripsibarang}}</strong>
                                                 </td>
                                             </tr>
                                         </thead>
@@ -334,10 +380,9 @@ $counter = 1;
                                     <td><strong>Nomor</strong></td>
                                     <td>: {{config('app.kodekuitansi.trxibrankasku')}}{{$ibrankasku->id}}</td>
                                 </tr>
-                                <tr>
-                                    <td><strong>Tanggal</strong></td>
-                                    <td>: {{$ibrankasku->tanggaldonasi}}</td>
-                                </tr>
+                                
+                                {{printtanggal($donasi->tanggaldonasi, $formattanggal)}}
+
                                 <tr>
                                     <td><strong>Amil</strong></td>
                                     <td>: ({{config('app.kodeamil')}}{{$ibrankasku->amil->id}}) {{$ibrankasku->amil->namaamil}}</td>
@@ -349,7 +394,7 @@ $counter = 1;
                                 <tr>
                                     <td style="vertical-align:text-top"><strong>Donatur </strong></td>
                                     <td>
-                                        <div style="min-height:23mm;background-color:inherit">
+                                        <div style="min-height:20mm;background-color:inherit">
                                                 : {{$ibrankasku->donatur->namadonatur}} ({{config('app.kodedonatur')}}{{$ibrankasku->donatur->id}}), {{$ibrankasku->donatur->alamatdonatur}}, {{$ibrankasku->donatur->nomortelepondonatur}},
                                         </div>
                                     </td>

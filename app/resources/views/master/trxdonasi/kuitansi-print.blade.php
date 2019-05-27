@@ -1,9 +1,12 @@
+@include('master/commonfunction');
+
+
 <!-- // pekerjaan laporan -->
 
 @extends('master.layouta4')
 
 <!-- //========== SITE TITLE ======== -->
-@section('pagename', 'Laporan Semua Transaksi')
+@section('pagename', 'KUITANSI')
 
 
 
@@ -11,7 +14,7 @@
 @section('boxcontent')
 
 
-    <div class="kuitansi" style="background-image:url('{{asset('storage/'.$konfig->namafilebackground)}}') !important; background-repeat: no-repeat  !important; background-position:top center fixed  !important;background-size:100% !important;" media="print">
+<div class="kuitansi" style="background-image:url('{{asset('storage/'.$konfig->namafilebackground)}}') !important; background-repeat: no-repeat  !important; background-position:top center fixed  !important;background-size:100% !important;" media="print">
             <div class="row" style="">
                 <!-- //BAGIAN KIRI -->
                 <div class="col-sm-8 kiri" style="">
@@ -52,17 +55,17 @@
                                         @foreach ($listtrxdonasidetail as $key=>$trxdonasidetail)
                                             
                                             <tr>
-                                                <td style="text-align:center">{{++$key}}</td>
-                                                <td style="text-align:left">{{$trxdonasidetail->peruntukandonasi->namaperuntukandonasi}}</td>
-                                                <td style="text-align:right">{{number_format($trxdonasidetail->jumlah,0,',','.')}}</td>
+                                                <td style="padding:0px;text-align:center">{{++$key}}</td>
+                                                <td style="padding:0px;text-align:left">{{$trxdonasidetail->peruntukandonasi->namaperuntukandonasi}}</td>
+                                                <td style="padding:0px;text-align:right">{{number_format($trxdonasidetail->jumlah,0,',','.')}}</td>
                                             </tr>
                                         @endforeach
                                             
                                         <!- // JUMLAH TOTALNYA-->
                                             <tr style="" class="bg-gray">
-                                                <td style="background-color:#d2d6de !important" class=""></td>
-                                                <td style="background-color:#d2d6de !important" class=""><strong> JUMLAH TOTAL</strong></td>
-                                                <td style="text-align:right;background-color:#d2d6de !important"><strong>{{number_format($jumlahtotal,0,',','.')}}</strong></td>
+                                                <td style="padding:0px;background-color:#d2d6de !important" class=""></td>
+                                                <td style="padding:0px;background-color:#d2d6de !important" class=""><strong> JUMLAH TOTAL</strong></td>
+                                                <td style="padding:0px;text-align:right;background-color:#d2d6de !important"><strong>{{number_format($jumlahtotal,0,',','.')}}</strong></td>
                                             </tr>
                                             
                                     </tbody>
@@ -80,10 +83,7 @@
                                 <td><strong>Nomor</strong></td>
                                 <td>: {{config('app.kodekuitansi.trxdonasi')}}{{$idtransaksi}}</td>
                             </tr>
-                            <tr>
-                                <td><strong>Tanggal</strong></td>
-                                <td>: {{$tanggaldonasi}}</td>
-                            </tr>
+                            {{printtanggal($tanggaldonasi, $formattanggal)}}
                             <tr>
                                 <td><strong>Amil</strong></td>
                                 <td>: ({{config('app.kodeamil')}}{{$dataamil->id}}) {{$dataamil->namaamil}}</td>
@@ -95,7 +95,7 @@
                             <tr>
                                 <td style="vertical-align:text-top"><strong>Donatur </strong></td>
                                 <td>
-                                    <div style="min-height:23mm;background-color:inherit">
+                                    <div style="min-height:20mm;background-color:inherit">
                                             : {{$datadonatur->namadonatur}} ({{config('app.kodedonatur')}}{{$datadonatur->id}}), {{$datadonatur->alamatdonatur}}, {{$datadonatur->nomortelepondonatur}},
                                     </div>
                                 </td>

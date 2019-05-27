@@ -60,6 +60,8 @@ Route::get('trxkotakinfaq/{trxkotakinfaq}/delete', 'TrxkotakinfaqController@dele
 Route::get('/trxdonasi/search', 'TrxdonasiController@search');
 Route::post('/trxdonasi/search', 'TrxdonasiController@searchResult');
 Route::get('/trxdonasi/{trxdonasi}/print', 'TrxdonasiController@showKuitansi');
+Route::get('/trxdonasi/{trxdonasi}/print/{formattanggal}', 'TrxdonasiController@showKuitansi');
+Route::get('/trxdonasi/{trxdonasi}/print/{formattanggal}', 'TrxdonasiController@showKuitansi');
 Route::resource('trxdonasi', 'TrxdonasiController');
 Route::get('trxdonasi/{trxdonasi}/delete', 'TrxdonasiController@delete');
 

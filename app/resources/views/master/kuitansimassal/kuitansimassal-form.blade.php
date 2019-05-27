@@ -100,7 +100,7 @@
         <!-- //RADIO URUTKAN BERDASARKAN -->
         <div class="form-group">
 
-            <label for="jeniskelaminlaporan" class="col-sm-2 control-label input-lg">
+            <label for="sortby" class="col-sm-2 control-label input-lg">
                 Urutkan Berdasarkan
             </label>
             
@@ -110,6 +110,26 @@
                 </label>
                 <label class="input-lg">
                     <input type="radio" name="sortby" value="2"> Tanggal (Terlama)
+                </label>
+            </div>
+        </div>
+
+        <!-- //RADIO FORMAT TANGGAL DI KUITANSI -->
+        <div class="form-group">
+
+            <label for="jeniskelaminlaporan" class="col-sm-2 control-label input-lg">
+                Urutkan Berdasarkan
+            </label>
+            
+            <div class="col-sm-10">
+                <label class="input-lg">
+                    <input type="radio" name="formattanggal" value="1" checked> Periode saja (Bulan & Tahun)
+                </label>
+                <label class="input-lg">
+                    <input type="radio" name="formattanggal" value="2"> Tanggal Lengkap (dd/mm/yyyy)
+                </label>
+                <label class="input-lg">
+                    <input type="radio" name="formattanggal" value="3"> Tanggal dan Periode (dipisah)
                 </label>
             </div>
         </div>
