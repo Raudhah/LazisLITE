@@ -174,7 +174,7 @@ class TrxibrankaskuController extends Controller
      * @param  \App\Trxibrankasku  $trxibrankasku
      * @return \Illuminate\Http\Response
      */
-    public function showKuitansi(Trxibrankasku $trxibrankasku)
+    public function showKuitansi(Trxibrankasku $trxibrankasku, $formattanggal=1)
     {
 
         $idtransaksi = $trxibrankasku->id;
@@ -197,7 +197,7 @@ class TrxibrankaskuController extends Controller
         $konfig = \App\Konfigurasi::first();
 
     
-        return view('master/trxibrankasku/kuitansi-print', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message'));
+        return view('master/trxibrankasku/kuitansi-print', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','nominalvaluasi', 'deskripsibarang', 'dataamil', 'dataperuntukandonasi', 'message', 'formattanggal'));
     }
 
     /**

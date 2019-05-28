@@ -1,4 +1,4 @@
-@include('master/commonfunction');
+@include('master/commonfunction')
 
 
 <!-- // pekerjaan laporan -->
@@ -79,30 +79,30 @@
                 <!-- //BAGIAN KANAN -->
                 <div class="col-sm-4 kanan">
                         <table  class="" style="padding:0px;">
-                            <tr>
-                                <td><strong>Nomor</strong></td>
-                                <td>: {{config('app.kodekuitansi.trxdonasi')}}{{$idtransaksi}}</td>
-                            </tr>
-                            {{printtanggal($tanggaldonasi, $formattanggal)}}
-                            <tr>
-                                <td><strong>Amil</strong></td>
-                                <td>: ({{config('app.kodeamil')}}{{$dataamil->id}}) {{$dataamil->namaamil}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Jenis</strong></td>
-                                <td>: Donasi</td>
-                            </tr>
-                            <tr>
-                                <td style="vertical-align:text-top"><strong>Donatur </strong></td>
-                                <td>
-                                    <div style="min-height:20mm;background-color:inherit">
-                                            : {{$datadonatur->namadonatur}} ({{config('app.kodedonatur')}}{{$datadonatur->id}}), {{$datadonatur->alamatdonatur}}, {{$datadonatur->nomortelepondonatur}},
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td><strong>Nomor</strong></td>
+                                    <td>: {{config('app.kodekuitansi.trxdonasi')}}{{$idtransaksi}}</td>
+                                </tr>
+                                {{printtanggal($tanggaldonasi, $formattanggal)}}
+                                <tr>
+                                    <td><strong>Amil</strong></td>
+                                    <td>: ({{config('app.kodeamil')}}{{$dataamil->id}}) {{$dataamil->namaamil}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Jenis</strong></td>
+                                    <td>: Donasi</td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:text-top"><strong>Donatur </strong></td>
+                                    <td>
+                                        <div style="min-height:20mm;background-color:inherit">
+                                                : {{$datadonatur->namadonatur}} ({{config('app.kodedonatur')}}{{$datadonatur->id}}), {{$datadonatur->alamatdonatur}}, {{$datadonatur->nomortelepondonatur}},
+                                        </div>
+                                    </td>
+                                </tr>
                         </table>
 
-                        <div class="row" style="height:26mm;">
+                        <div class="row" style="height:23mm;">
                             <div class="col-sm-12" style="text-align:center">
                                 <img src="{{asset('storage/'.$konfig->namafilettd)}}" style="max-width:45mm; max-height:23mm"/>
                         

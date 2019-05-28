@@ -62,10 +62,14 @@
             <td> {{ $item->donatur->namadonatur }}</td>
             <td class="pull-right"> {{ number_format($item->jumlahtotal,0,',','.') }}</td>
             <td> {{ $item->keterangan }}</td>
-            <td><a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi"><i class="fa fa-print"></i></a></td>
-            <td><a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}"  data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a></td>
-            <td><a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
-            <td><a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
+            <td class="text-center">
+                <a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi (Periode saja)"><i class="fa fa-print"></i></a>
+                <a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}/print/2"  data-toggle="tooltip" title="Cetak Kuitansi (Tanggal dd/mm/yyyy)"><i class="fa fa-print text-green"></i></a>
+                <a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}/print/3"  data-toggle="tooltip" title="Cetak Kuitansi (Tanggal dan Periode)"><i class="fa fa-print text-yellow"></i></a>
+            </td>
+            <td class="text-center"><a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}"  data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a></td>
+            <td class="text-center"><a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}/edit"  data-toggle="tooltip" title="edit data"><i class="fa fa-edit"></i></a></td>
+            <td class="text-center"><a href="{{url('')}}/trxkotakinfaq/{{ $item->id }}/delete" data-toggle="tooltip" title="Hapus data"><i class="fa fa-trash"></i></a></td>
         </tr>
        
 

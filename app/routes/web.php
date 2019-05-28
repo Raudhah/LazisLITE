@@ -45,6 +45,7 @@ Route::get('donatur/{donatur}/delete', 'DonaturController@delete');
 Route::get('/trxibrankasku/search', 'TrxibrankaskuController@search');
 Route::post('/trxibrankasku/search', 'TrxibrankaskuController@searchResult');
 Route::get('/trxibrankasku/{trxibrankasku}/print', 'TrxibrankaskuController@showKuitansi');
+Route::get('/trxibrankasku/{trxibrankasku}/print/{formattanggal}', 'TrxibrankaskuController@showKuitansi');
 Route::get('/trxibrankasku/{trxibrankasku}/printpdf', 'TrxibrankaskuController@showKuitansiPdf');
 Route::resource('trxibrankasku', 'TrxibrankaskuController');
 Route::get('trxibrankasku/{trxibrankasku}/delete', 'TrxibrankaskuController@delete');
@@ -53,6 +54,7 @@ Route::get('trxibrankasku/{trxibrankasku}/delete', 'TrxibrankaskuController@dele
 Route::get('/trxkotakinfaq/search', 'TrxkotakinfaqController@search');
 Route::post('/trxkotakinfaq/search', 'TrxkotakinfaqController@searchResult');
 Route::get('/trxkotakinfaq/{trxkotakinfaq}/print', 'TrxkotakinfaqController@showKuitansi');
+Route::get('/trxkotakinfaq/{trxkotakinfaq}/print/{formattanggal}', 'TrxkotakinfaqController@showKuitansi');
 Route::resource('trxkotakinfaq', 'TrxkotakinfaqController');
 Route::get('trxkotakinfaq/{trxkotakinfaq}/delete', 'TrxkotakinfaqController@delete');
 
@@ -60,7 +62,6 @@ Route::get('trxkotakinfaq/{trxkotakinfaq}/delete', 'TrxkotakinfaqController@dele
 Route::get('/trxdonasi/search', 'TrxdonasiController@search');
 Route::post('/trxdonasi/search', 'TrxdonasiController@searchResult');
 Route::get('/trxdonasi/{trxdonasi}/print', 'TrxdonasiController@showKuitansi');
-Route::get('/trxdonasi/{trxdonasi}/print/{formattanggal}', 'TrxdonasiController@showKuitansi');
 Route::get('/trxdonasi/{trxdonasi}/print/{formattanggal}', 'TrxdonasiController@showKuitansi');
 Route::resource('trxdonasi', 'TrxdonasiController');
 Route::get('trxdonasi/{trxdonasi}/delete', 'TrxdonasiController@delete');

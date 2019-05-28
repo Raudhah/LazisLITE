@@ -61,8 +61,8 @@
             <td> {{ $item->amil->namaamil }}</td>
             <td class="pull-right"> {{ number_format($item->jumlahtotal,0,',','.') }}</td>
             <td class="text-center">
-                <a href="{{url('')}}/trxdonasi/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi (Tanggal dd/mm/yyyy)"><i class="fa fa-print"></i></a>
-                <a href="{{url('')}}/trxdonasi/{{ $item->id }}/print/2"  data-toggle="tooltip" title="Cetak Kuitansi (Periode saja)"><i class="fa fa-print text-green"></i></a>
+                <a href="{{url('')}}/trxdonasi/{{ $item->id }}/print"  data-toggle="tooltip" title="Cetak Kuitansi (Periode saja)"><i class="fa fa-print"></i></a>
+                <a href="{{url('')}}/trxdonasi/{{ $item->id }}/print/2"  data-toggle="tooltip" title="Cetak Kuitansi (Tanggal dd/mm/yyyy)"><i class="fa fa-print text-green"></i></a>
                 <a href="{{url('')}}/trxdonasi/{{ $item->id }}/print/3"  data-toggle="tooltip" title="Cetak Kuitansi (Tanggal dan Periode)"><i class="fa fa-print text-yellow"></i></a>
             </td>
             <td class="text-center"><a href="{{url('')}}/trxdonasi/{{ $item->id }}"  data-toggle="tooltip" title="Detail"><i class="fa fa-search"></i></a></td>

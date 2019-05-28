@@ -163,7 +163,7 @@ class TrxkotakinfaqController extends Controller
      * @param  \App\Trxkotakinfaq  $trxkotakinfaq
      * @return \Illuminate\Http\Response
      */
-    public function showKuitansi(Trxkotakinfaq $trxkotakinfaq)
+    public function showKuitansi(Trxkotakinfaq $trxkotakinfaq, $formattanggal=1)
     {
 
         $idtransaksi = $trxkotakinfaq->id;
@@ -185,7 +185,7 @@ class TrxkotakinfaqController extends Controller
         // dd($datadonatur);
 
         // tampilkan KUITANSINYA BRO
-        return view('master/trxkotakinfaq/kuitansi-print', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message'));
+        return view('master/trxkotakinfaq/kuitansi-print', compact('idtransaksi','konfig','datadonatur', 'tanggaldonasi','jumlahtotal', 'keterangan', 'dataamil', 'message', 'formattanggal'));
     }
 
     /**

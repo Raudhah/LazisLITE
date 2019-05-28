@@ -1,3 +1,4 @@
+@include('master/commonfunction')
 <!-- // pekerjaan laporan -->
 
 @extends('master.layouta4')
@@ -62,10 +63,9 @@
                                 <td><strong>Nomor</strong></td>
                                 <td>: {{config('app.kodekuitansi.trxibrankasku')}}{{$idtransaksi}}</td>
                             </tr>
-                            <tr>
-                                <td><strong>Tanggal</strong></td>
-                                <td>: {{$tanggaldonasi}}</td>
-                            </tr>
+
+                            {{printtanggal($tanggaldonasi, $formattanggal)}}
+                            
                             <tr>
                                 <td><strong>Amil</strong></td>
                                 <td>: ({{config('app.kodeamil')}}{{$dataamil->id}}) {{$dataamil->namaamil}}</td>
@@ -77,14 +77,14 @@
                             <tr>
                                 <td style="vertical-align:text-top"><strong>Donatur </strong></td>
                                 <td>
-                                    <div style="min-height:23mm;background-color:inherit">
+                                    <div style="min-height:20mm;background-color:inherit">
                                             : {{$datadonatur->namadonatur}} ({{config('app.kodedonatur')}}{{$datadonatur->id}}), {{$datadonatur->alamatdonatur}}, {{$datadonatur->nomortelepondonatur}},
                                     </div>
                                 </td>
                             </tr>
                         </table>
 
-                        <div class="row" style="height:26mm;">
+                        <div class="row" style="height:23mm;">
                             <div class="col-sm-12" style="text-align:center">
                                 <img src="{{asset('storage/'.$konfig->namafilettd)}}" style="max-width:45mm; max-height:23mm"/>
                         
